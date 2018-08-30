@@ -348,6 +348,9 @@ namespace IPC247
                     if (Result == "1")
                     {
                         LoadInfoProductGroup();
+                        listdetails = null;
+                        dgcDetails.DataSource = listdetails;
+                        dgvDetails.RefreshData();
                     }
                     else
                     {
