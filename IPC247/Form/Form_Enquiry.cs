@@ -70,10 +70,11 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_LoadMaster_Enquiry";
-                var json = API.API_GET_Rep(sLink);
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_LoadMaster_Enquiry";
+                //var json = API.API_GET_Rep(sLink);
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_LoadMaster_Enquiry");
                 txtTrangThai.Properties.DataSource = dt;
                 txtTrangThai.EditValue = 0;
             }
@@ -127,38 +128,57 @@ namespace IPC247
                 }
                 #endregion Check Validate
                 #region Lưu thông tin 
-                string str = "[" +
-                    string.Format(@" 
-                                {{""Key"":""Id_Enquiry"",""value"":""{0}"",""Type"":""string""}},
-                                {{""Key"":""ID"",""value"":""{1}"",""Type"":""string""}},
-                                {{""Key"":""Description"",""value"":""{2}"",""Type"":""string""}},
-                                {{""Key"":""Curator"",""value"":""{3}"",""Type"":""string""}},
-                                {{""Key"":""Status"",""value"":""{4}"",""Type"":""string""}},
-                                {{""Key"":""User"",""value"":""{5}"",""Type"":""string""}},
-                                {{""Key"":""DeadLine"",""value"":""{6}"",""Type"":""Base64""}} ",
-                    en.ID_Enquiry //0
-                    , IDDetail //1
-                    , txtNoiDung.Text //2
-                    , txtPhuTrach.EditValue.ToString()//3
-                    , txtTrangThai.EditValue.ToString()  //4
-                    , Form_Main.user.Username //5
-                    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtDeadline.DateTime.ToString("dd/MM/yyyy HH:mm:ss")))  // 6
-                ) + "]";
-                //  JObject json = JObject.Parse(str);
-                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Save_info_EnquiryDetails", Param = str });
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
-                json = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
-                if (Result == 1)//Login thành công
+                //string str = "[" +
+                //    string.Format(@" 
+                //                {{""Key"":""Id_Enquiry"",""value"":""{0}"",""Type"":""string""}},
+                //                {{""Key"":""ID"",""value"":""{1}"",""Type"":""string""}},
+                //                {{""Key"":""Description"",""value"":""{2}"",""Type"":""string""}},
+                //                {{""Key"":""Curator"",""value"":""{3}"",""Type"":""string""}},
+                //                {{""Key"":""Status"",""value"":""{4}"",""Type"":""string""}},
+                //                {{""Key"":""User"",""value"":""{5}"",""Type"":""string""}},
+                //                {{""Key"":""DeadLine"",""value"":""{6}"",""Type"":""Base64""}} ",
+                //    en.ID_Enquiry //0
+                //    , IDDetail //1
+                //    , txtNoiDung.Text //2
+                //    , txtPhuTrach.EditValue.ToString()//3
+                //    , txtTrangThai.EditValue.ToString()  //4
+                //    , Form_Main.user.Username //5
+                //    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtDeadline.DateTime.ToString("dd/MM/yyyy HH:mm:ss")))  // 6
+                //) + "]";
+                ////  JObject json = JObject.Parse(str);
+                //var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Save_info_EnquiryDetails", Param = str });
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
+                //json = API.API_POS(sLink, json);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("Id_Enquiry", en.ID_Enquiry); //0
+                param.Add("ID", IDDetail); //1
+                param.Add("Description", txtNoiDung.Text); //2
+                param.Add("Curator", txtPhuTrach.EditValue.ToString()); //3
+                param.Add("Status", txtTrangThai.EditValue.ToString()); //4
+                param.Add("User", Form_Main.user.Username); //5
+                param.Add("DeadLine", txtDeadline.DateTime.ToString("dd/MM/yyyy HH:mm:ss")); //6
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Save_info_EnquiryDetails", param);
+
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    LoadEnquiryDetial(en.ID_Enquiry);
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+
+                    if (Result == "1")//Login thành công
+                    {
+                        LoadEnquiryDetial(en.ID_Enquiry);
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Lưu Thông Tin Không Thành Công", "Thông Báo");
+                    }
                 }
                 else
                 {
-                    XtraMessageBox.Show("Lưu Thông Tin Không Thành Công", "Thông Báo");
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Enquiry", "Saveinfo()", "Không có dữ liệu trả về"));
                 }
                 #endregion Lưu thông tin 
             }
@@ -172,10 +192,11 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_ListUser";
-                var json = API.API_GET_Rep(sLink);
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_ListUser";
+                //var json = API.API_GET_Rep(sLink);
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_Get_ListUser");
                 txtPhuTrach.Properties.DataSource = dt;
                 txtPhuTrach.EditValue = Form_Main.user.Username;
             }
@@ -190,10 +211,11 @@ namespace IPC247
             try
             {
                 string sql_Exect = string.Format("Exec sp_GetList_EnquiryDetails @ID_Enquiry={0}", ID_Enquiry);
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET_Rep(sLink);
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET_Rep(sLink);
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
                 dgc_Main.DataSource = dt;
                 dgv_Main.BestFitColumns(true);
             }
@@ -221,20 +243,28 @@ namespace IPC247
                     if (del != "")
                     {
                         string sql_Exect = string.Format("Exec sp_EnquiryDetail_Delete @ID ='{0}' ", del);
-                        string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                        var json = API.API_GET(sLink);
-                        dynamic jsondata = JObject.Parse(json);
-                        var jsondataChild = jsondata.GetValue("Data");
-                        var Result = jsondataChild.First.GetValue("Result").Value;
-                        var Message = jsondataChild.First.GetValue("Message").Value;
-                        if (Result == 1)//Login thành công
+                        //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                        //var json = API.API_GET(sLink);
+                        //dynamic jsondata = JObject.Parse(json);
+                        //var jsondataChild = jsondata.GetValue("Data");
+                        DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
+                        if (dt != null && dt.Rows.Count > 0)
                         {
-                            XtraMessageBox.Show(Message, "Thông Báo");
-                            LoadEnquiryDetial(en.ID_Enquiry);
+                            var Result = dt.Rows[0]["Result"].ToString();
+                            var Message = dt.Rows[0]["Message"].ToString();
+                            if (Result == "1")//Login thành công
+                            {
+                                XtraMessageBox.Show(Message, "Thông Báo");
+                                LoadEnquiryDetial(en.ID_Enquiry);
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show("Xóa Thông Tin Không Thành Công", "Thông Báo");
+                            }
                         }
                         else
                         {
-                            XtraMessageBox.Show("Xóa Thông Tin Không Thành Công", "Thông Báo");
+                            API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Enquiry", "DeleteEnquiryDetails()", "Không có dữ liệu trả về"));
                         }
                     }
                 }

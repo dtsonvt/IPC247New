@@ -30,11 +30,12 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_LoadMaster_Customer";
-                var json = API.API_GET_Rep(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_LoadMaster_Customer";
+                //var json = API.API_GET_Rep(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_LoadMaster_Customer");
                 txtTrangThai.Properties.DataSource = dt;
 
             }
@@ -47,11 +48,12 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_GetList_Company";
-                var json = API.API_GET_Rep(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_GetList_Company";
+                //var json = API.API_GET_Rep(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_GetList_Company");
                 txtCongTy.Properties.DataSource = dt;
             }
             catch (Exception ex)
@@ -64,11 +66,12 @@ namespace IPC247
             try
             {
                 string sql_Exect = string.Format("Exec sp_Get_ListCustomer @Flag ='{0}' ", chkHienThi.Checked ? "1" : "0");
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET_Rep(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET_Rep(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
                 dgc_Main.DataSource = dt;
                 dgv_Main.BestFitColumns(true);
 
@@ -134,41 +137,60 @@ namespace IPC247
                     XtraMessageBox.Show("Vui lòng bổ sung những thông tin còn trống", "Thông Báo");
                     return;
                 }
-                string str = "[" +
-                    string.Format(@" 
-                                {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},
-                                {{""Key"":""CardName"",""value"":""{1}"",""Type"":""string""}},
-                                {{""Key"":""Address"",""value"":""{2}"",""Type"":""Base64""}},
-                                {{""Key"":""Company"",""value"":""{3}"",""Type"":""string""}},
-                                {{""Key"":""Phone"",""value"":""{4}"",""Type"":""string""}},
-                                {{""Key"":""Email"",""value"":""{5}"",""Type"":""string""}},
-                                {{""Key"":""Status"",""value"":""{6}"",""Type"":""string""}},
-                                {{""Key"":""User"",""value"":""{7}"",""Type"":""string""}}  ",
-                    IDCardCode //0
-                    , txtTenKH.Text //1
-                    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtDiaChi.Text)) //2
-                    , txtCongTy.EditValue.ToString() //3
-                    , txtSDT.Text //4
-                    , txtEmail.Text //5
-                    , txtTrangThai.EditValue.ToString() //6
-                    , Form_Main.user.Username //7
-                ) + "]";
-                //  JObject json = JObject.Parse(str);
-                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Customer_Insert", Param = str });
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
-                json = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
-
-                if (Result == 1)//Login thành công
+                //string str = "[" +
+                //    string.Format(@" 
+                //                {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},
+                //                {{""Key"":""CardName"",""value"":""{1}"",""Type"":""string""}},
+                //                {{""Key"":""Address"",""value"":""{2}"",""Type"":""Base64""}},
+                //                {{""Key"":""Company"",""value"":""{3}"",""Type"":""string""}},
+                //                {{""Key"":""Phone"",""value"":""{4}"",""Type"":""string""}},
+                //                {{""Key"":""Email"",""value"":""{5}"",""Type"":""string""}},
+                //                {{""Key"":""Status"",""value"":""{6}"",""Type"":""string""}},
+                //                {{""Key"":""User"",""value"":""{7}"",""Type"":""string""}}  ",
+                //    IDCardCode //0
+                //    , txtTenKH.Text //1
+                //    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtDiaChi.Text)) //2
+                //    , txtCongTy.EditValue.ToString() //3
+                //    , txtSDT.Text //4
+                //    , txtEmail.Text //5
+                //    , txtTrangThai.EditValue.ToString() //6
+                //    , Form_Main.user.Username //7
+                //) + "]";
+                ////  JObject json = JObject.Parse(str);
+                //var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Customer_Insert", Param = str });
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
+                //json = API.API_POS(sLink, json);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("ID", IDCardCode); //0
+                param.Add("CardName", txtTenKH.Text); //1
+                param.Add("Address", txtDiaChi.Text); //2
+                param.Add("Company", txtTenKH.Text); //3
+                param.Add("Phone", txtSDT.Text); //4
+                param.Add("Email", txtEmail.Text); //5
+                param.Add("Status", txtTrangThai.EditValue.ToString()); //6
+                param.Add("User", Form_Main.user.Username); //7
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Customer_Insert", param);
+                if(dt!= null && dt.Rows.Count > 0)
                 {
-                    sp_Get_Customer();
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["ResultMessage"].ToString();//jsondataChild.First.GetValue("Message").Value;
+                    if (Result == "1")//Login thành công
+                    {
+                        sp_Get_Customer();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Tạo Báo Giá Không Thành Công", "Thông Báo");
+                    }
                 }
                 else
                 {
-                    XtraMessageBox.Show("Tạo Báo Giá Không Thành Công", "Thông Báo");
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Customer", "SaveInfo()", "không có kết quả trả về"));
                 }
             }
             catch (Exception ex)
@@ -206,21 +228,28 @@ namespace IPC247
                     if (del != "")
                     {
                         string sql_Exect = string.Format("Exec sp_Customer_Delete @ID ='{0}' ", del);
-                        string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                        var json = API.API_GET(sLink);
-                        dynamic jsondata = JObject.Parse(json);
-                        var jsondataChild = jsondata.GetValue("Data");
-                        var Result = jsondataChild.First.GetValue("Result").Value;
-                        var Message = jsondataChild.First.GetValue("Message").Value;
-                        if (Result == 1)//Login thành công
+                        //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                        //var json = API.API_GET(sLink);
+                        //dynamic jsondata = JObject.Parse(json);
+                        DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
+                        if(dt!=null && dt.Rows.Count > 0)
                         {
-                            XtraMessageBox.Show(Message, "Thông Báo");
-                            sp_Get_Customer();
-                            ClearForm();
+                            var Result = dt.Rows[0]["Result"].ToString(); //jsondataChild.First.GetValue("Result").Value;
+                            var Message = dt.Rows[0]["Message"].ToString(); //jsondataChild.First.GetValue("Message").Value;
+                            if (Result == "1")//Login thành công
+                            {
+                                XtraMessageBox.Show(Message, "Thông Báo");
+                                sp_Get_Customer();
+                                ClearForm();
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show("Hủy Khách Hàng Không Thành Công", "Thông Báo");
+                            }
                         }
                         else
                         {
-                            XtraMessageBox.Show("Hủy Khách Hàng Không Thành Công", "Thông Báo");
+                            API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Customer", "DeleteCustomer()", "Không có dữ liệu trả về"));
                         }
                     }
                 }

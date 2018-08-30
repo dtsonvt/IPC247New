@@ -51,13 +51,21 @@ namespace IPC247
 		{
 			try
 			{
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Quote_GenKey";
-				var json = API.API_GET_Rep(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Quote_GenKey";
+                //var json = API.API_GET_Rep(sLink);
 
-				var jsondata = JObject.Parse(json).GetValue("Data");
-				DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-				txtTenBaoGia.Text = dt.Rows[0][0].ToString();
-			}
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery("sp_Quote_GenKey");
+                if(dt!=null && dt.Rows.Count > 0)
+                {
+                    txtTenBaoGia.Text = dt.Rows[0][0].ToString();
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "LoadSoBaoGia()","không có data "));
+                }
+            }
 			catch (Exception ex)
 			{
 				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "LoadSoBaoGia()", ex.ToString()));
@@ -66,21 +74,23 @@ namespace IPC247
 
 		private void LoadControlProduct()
 		{
-			try
-			{
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product";
-				var json = API.API_GET_Rep(sLink);
+            try
+            {
+                //	string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product";
+                //	var json = API.API_GET_Rep(sLink);
 
-				var jsondata = JObject.Parse(json).GetValue("Data");
-				DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-				searchSP.Properties.DataSource = dt;
+                //	var jsondata = JObject.Parse(json).GetValue("Data");
+                //	DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTable("sp_Get_Product");
+                searchSP.Properties.DataSource = dt;
 
-				LoadSoBaoGia();
-			}
-			catch (Exception ex)
-			{
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "LoadControlProduct()", ex.ToString()));
-			}
+                LoadSoBaoGia();
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "LoadControlProduct()", ex.ToString()));
+            }
 		}
 		private void TinhTien()
 		{
@@ -145,49 +155,82 @@ namespace IPC247
 				{
 					ID_Header = "0";
 				}
-				//   return Request.CreateResponse(HttpStatusCode.OK, new { Success = true, Data = ConvertDataTableToListObject(dt) });
-				// };
-				string str = "[" +
-					string.Format(@" {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""SoBaoGia"",""value"":""{1}"",""Type"":""string""}},
-{{""Key"":""ToKhachHang"",""value"":""{2}"",""Type"":""string""}},{{""Key"":""NguoiNhan"",""value"":""{3}"",""Type"":""string""}},{{""Key"":""Mobile_NguoiNhan"",""value"":""{4}"",""Type"":""string""}},
-{{""Key"":""Tel_NguoiNhan"",""value"":""{5}"",""Type"":""string""}},{{""Key"":""NgayBaoGia"",""value"":""{6}"",""Type"":""string""}},{{""Key"":""Email_NguoiNhan"",""value"":""{7}"",""Type"":""string""}},{{""Key"":""VAT"",""value"":""{8}"",""Type"":""string""}},
-{{""Key"":""XMLSanPham"",""value"":""{9}"",""Type"":""Base64""}},{{""Key"":""TongTien"",""value"":""{10}"",""Type"":""string""}},{{""Key"":""UserID"",""value"":""{11}"",""Type"":""string""}},{{""Key"":""DiaChi"",""value"":""{12}"",""Type"":""string""}},{{""Key"":""DieuKhoan"",""value"":""{13}"",""Type"":""string""}},{{""Key"":""ID_Enquiry"",""value"":""{14}"",""Type"":""string""}},{{""Key"":""IDCardCode"",""value"":""{15}"",""Type"":""string""}},{{""Key"":""Company"",""value"":""{16}"",""Type"":""string""}} "
-                    , ID_Header //0
-					, txtTenBaoGia.Text //1
-					, txtToKH.Text //2
-					, txtTenKH.Text //3
-					, txtSDT.Text //4
-					, txtTel.Text //5
-					, NgayBaoGia.ToString("dd/MM/yyyy") // 6
-					, txtEmail.Text //7
-					, txtVAT.EditValue.ToString() //8
-					, Convert.ToBase64String(Encoding.UTF8.GetBytes(xEle.ToString())) //9
-					, lst.Sum(o => o.ThanhTien).ToString() //10
-					, Form_Main.user.Username //11
-					, txtDiaChi.Text //12
-					, txtDieuKhoan.Text //13
-                    , en.ID_Enquiry //14
-                    , cus.ID //15
-                    , com.ID //16
-                    ) + "]";
-				//  JObject json = JObject.Parse(str);
-				var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_SaveQuote", Param = str });
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
-				json = API.API_POS(sLink, json);
-				dynamic jsondata = JObject.Parse(json);
-				var jsondataChild = jsondata.GetValue("Data");
-				var Result = jsondataChild.First.GetValue("Result").Value;
-				var Message = jsondataChild.First.GetValue("Message").Value;
-                cus.ID = jsondataChild.First.GetValue("IDCardCode").Value.ToString();
-                com.ID = jsondataChild.First.GetValue("IDCompany").Value.ToString();
-                if (Result == 1)//Login thành công
-				{
-					XtraMessageBox.Show(Message, "Thông Báo");
-				}
-				else
-				{
-					XtraMessageBox.Show("Tạo Báo Giá Không Thành Công", "Thông Báo");
-				}
+                //   return Request.CreateResponse(HttpStatusCode.OK, new { Success = true, Data = ConvertDataTableToListObject(dt) });
+                // };
+                //				string str = "[" +
+                //					string.Format(@" {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""SoBaoGia"",""value"":""{1}"",""Type"":""string""}},
+                //{{""Key"":""ToKhachHang"",""value"":""{2}"",""Type"":""string""}},{{""Key"":""NguoiNhan"",""value"":""{3}"",""Type"":""string""}},{{""Key"":""Mobile_NguoiNhan"",""value"":""{4}"",""Type"":""string""}},
+                //{{""Key"":""Tel_NguoiNhan"",""value"":""{5}"",""Type"":""string""}},{{""Key"":""NgayBaoGia"",""value"":""{6}"",""Type"":""string""}},{{""Key"":""Email_NguoiNhan"",""value"":""{7}"",""Type"":""string""}},{{""Key"":""VAT"",""value"":""{8}"",""Type"":""string""}},
+                //{{""Key"":""XMLSanPham"",""value"":""{9}"",""Type"":""Base64""}},{{""Key"":""TongTien"",""value"":""{10}"",""Type"":""string""}},{{""Key"":""UserID"",""value"":""{11}"",""Type"":""string""}},{{""Key"":""DiaChi"",""value"":""{12}"",""Type"":""string""}},{{""Key"":""DieuKhoan"",""value"":""{13}"",""Type"":""string""}},{{""Key"":""ID_Enquiry"",""value"":""{14}"",""Type"":""string""}},{{""Key"":""IDCardCode"",""value"":""{15}"",""Type"":""string""}},{{""Key"":""Company"",""value"":""{16}"",""Type"":""string""}} "
+                //                    , ID_Header //0
+                //					, txtTenBaoGia.Text //1
+                //					, txtToKH.Text //2
+                //					, txtTenKH.Text //3
+                //					, txtSDT.Text //4
+                //					, txtTel.Text //5
+                //					, NgayBaoGia.ToString("dd/MM/yyyy") // 6
+                //					, txtEmail.Text //7
+                //					, txtVAT.EditValue.ToString() //8
+                //					, Convert.ToBase64String(Encoding.UTF8.GetBytes(xEle.ToString())) //9
+                //					, lst.Sum(o => o.ThanhTien).ToString() //10
+                //					, Form_Main.user.Username //11
+                //					, txtDiaChi.Text //12
+                //					, txtDieuKhoan.Text //13
+                //                    , en.ID_Enquiry //14
+                //                    , cus.ID //15
+                //                    , com.ID //16
+                //                    ) + "]";
+                //				//  JObject json = JObject.Parse(str);
+                //				var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_SaveQuote", Param = str });
+                //				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
+                //				json = API.API_POS(sLink, json);
+                //				dynamic jsondata = JObject.Parse(json);
+                //				var jsondataChild = jsondata.GetValue("Data");
+                //				var Result = jsondataChild.First.GetValue("Result").Value;
+                //				var Message = jsondataChild.First.GetValue("Message").Value;
+                //                cus.ID = jsondataChild.First.GetValue("IDCardCode").Value.ToString();
+                //                com.ID = jsondataChild.First.GetValue("IDCompany").Value.ToString();
+
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("ID", ID_Header); //0
+                param.Add("SoBaoGia", txtTenBaoGia.Text); //1
+                param.Add("ToKhachHang", txtToKH.Text); //2
+                param.Add("NguoiNhan", txtTenKH.Text); //3
+                param.Add("Mobile_NguoiNhan", txtSDT.Text); //4
+                param.Add("Tel_NguoiNhan", txtTel.Text); //5
+                param.Add("NgayBaoGia", NgayBaoGia.ToString("dd/MM/yyyy")); //6
+                param.Add("Email_NguoiNhan", txtEmail.Text); //7
+                param.Add("VAT", txtVAT.EditValue.ToString()); //8
+                param.Add("XMLSanPham", xEle.ToString());//9
+                param.Add("TongTien", lst.Sum(o => o.ThanhTien).ToString());//10
+                param.Add("UserID", Form_Main.user.Username);//11
+                param.Add("DiaChi", txtDiaChi.Text);//12
+                param.Add("DieuKhoan", txtDieuKhoan.Text);//13
+                param.Add("ID_Enquiry", en.ID_Enquiry);//14
+                param.Add("IDCardCode", cus.ID);//15
+                param.Add("Company", com.ID);//16
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_SaveQuote", param);
+
+                if(dt!= null && dt.Rows.Count > 0)
+                {
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+                    cus.ID = dt.Rows[0]["IDCardCode"].ToString();
+                    com.ID = dt.Rows[0]["IDCompany"].ToString();
+                    if (Result == "1")//Login thành công
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo");
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Tạo Báo Giá Không Thành Công", "Thông Báo");
+                    }
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "SaveQuote()", "Không có dữ liệu trả về!"));
+                }
 			}
 			catch (Exception ex)
 			{
@@ -381,6 +424,10 @@ namespace IPC247
 					XtraMessageBox.Show("Vui lòng chọn sản phẩm", "Thông Báo");
 					return;
 				}
+                if(lst== null)
+                {
+                    lst = new List<InfoReportDetails>();
+                }
 				ob.ID = (lst.Count + 1).ToString();
 				ID = (lst.Count + 1).ToString();
 				ob.TenHang = txtTenSanPham.Text;

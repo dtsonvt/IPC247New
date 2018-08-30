@@ -26,10 +26,11 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_getInfo_Enquiry";
-                var json = API.API_GET_Rep(sLink);
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_getInfo_Enquiry";
+                //var json = API.API_GET_Rep(sLink);
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_getInfo_Enquiry");
                 dgc_Main.DataSource = dt;
                 dgv_Main.BestFitColumns(true);
             }

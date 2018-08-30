@@ -28,6 +28,22 @@ namespace IPC247
                 }
             }
         }
+        public ProductGroupDetails()
+        {
+            ID = "";
+            ProductCode = "";
+            ProductName = "";
+            Price = 0;
+            SoLuong = 0;
+        }
+        public ProductGroupDetails(string _ID, string _ProductCode,string _ProductName, decimal _Price, int _SoLuong)
+        {
+            ID = _ID;
+            ProductCode = _ProductCode;
+            ProductName = _ProductName;
+            Price = _Price;
+            SoLuong = _SoLuong;
+        }
     }
 
     public class ProductSelect
@@ -37,6 +53,24 @@ namespace IPC247
         public string ProductName { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+
+        public ProductSelect()
+        {
+            ID = "";
+            ProductCode = "";
+            ProductName = "";
+            Description = "";
+            Price = 0;
+        }
+
+        public ProductSelect(string _ID, string _ProductCode ,string _ProductName, string _Description , decimal _Price)
+        {
+            ID = _ID;
+            ProductCode = _ProductCode;
+            ProductName = _ProductName;
+            Description = _Description;
+            Price = _Price;
+        }
     }
 
     public class ProductGroupHeader
@@ -82,6 +116,18 @@ namespace IPC247
 			UpdateDate = ob.UpdateDate;
 			TongTien = ob.TongTien;
 		}
-	}
+        public ProductGroupHeader(string _ID, string _ProductGroupName,string _ListProductCode, string _CreateBy,
+            string _CreateDate, string _UpdateBy ,string _UpdateDate, decimal _TongTien)
+        {
+            ID = _ID;
+            ProductGroupName = _ProductGroupName;
+            ListProductCode = _ListProductCode;
+            CreateBy = _CreateBy;
+            CreateDate = _CreateDate;
+            UpdateBy = _UpdateBy;
+            UpdateDate = _UpdateDate;
+            TongTien = _TongTien;
+        }
+    }
 }
 

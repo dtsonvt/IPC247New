@@ -39,17 +39,30 @@ namespace IPC247
                 ipc.DiaChi = txtDiaChi.Text;
                 var jsonsave = new JavaScriptSerializer().Serialize(ipc);
                 string base64info = Convert.ToBase64String(Encoding.UTF8.GetBytes(jsonsave.ToString()));
-                string str = "[" + string.Format(@"{{""Key"":""Key"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""Value"",""value"":""{1}"",""Type"":""string""}},{{""Key"":""UserID"",""value"":""{2}"",""Type"":""string""}}", "Info", base64info, Form_Main.user.Username) + "]";
+                //string str = "[" + string.Format(@"{{""Key"":""Key"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""Value"",""value"":""{1}"",""Type"":""string""}},{{""Key"":""UserID"",""value"":""{2}"",""Type"":""string""}}", "Info", base64info, Form_Main.user.Username) + "]";
 
-                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_UpdateInfoMaster", Param = str });
-                string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_SaveQuote";
-                json = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
-
-                XtraMessageBox.Show(Message, "Thông Báo", System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_UpdateInfoMaster", Param = str });
+                //string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_SaveQuote";
+                //json = API.API_POS(sLink, json);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("Key", "Info"); //0
+                param.Add("Value", base64info); //1
+                param.Add("UserID", Form_Main.user.Username); //2
+                DataTable dt = SQLHelper.ExecuteDataTableUndefine("sp_UpdateInfoMaster", param);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+                    XtraMessageBox.Show(Message, "Thông Báo", System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_MasterData", "SaveInfo()", "Không lấy được thông tin"));
+                }
             }
             catch (Exception ex)
             {
@@ -96,17 +109,31 @@ namespace IPC247
                 {
                     base64 = Convert.ToBase64String(ImageToByteArray(img));
                 }
-                string str = "[" + string.Format(@"{{""Key"":""Key"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""Value"",""value"":""{1}"",""Type"":""string""}},{{""Key"":""UserID"",""value"":""{2}"",""Type"":""string""}}", ImageIndex, base64, Form_Main.user.Username) + "]";
+                //string str = "[" + string.Format(@"{{""Key"":""Key"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""Value"",""value"":""{1}"",""Type"":""string""}},{{""Key"":""UserID"",""value"":""{2}"",""Type"":""string""}}", ImageIndex, base64, Form_Main.user.Username) + "]";
 
-                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_UpdateInfoMaster", Param = str });
-                string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_SaveQuote";
-                json = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
+                //var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_UpdateInfoMaster", Param = str });
+                //string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_SaveQuote";
+                //json = API.API_POS(sLink, json);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
 
-                // XtraMessageBox.Show(Message, "Thông Báo", System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("Key", ImageIndex); //0
+                param.Add("Value", base64); //1
+                param.Add("UserID", Form_Main.user.Username); //2
+                DataTable dt = SQLHelper.ExecuteDataTableUndefine("sp_UpdateInfoMaster", param);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+                    XtraMessageBox.Show(Message, "Thông Báo", System.Windows.Forms.MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_MasterData", "SaveImage()", "Không lấy được thông tin"));
+                }
             }
             catch (Exception ex)
             {
@@ -195,14 +222,15 @@ namespace IPC247
             {
                 string sql_Exect = "Exec sp_GetInfoMaster @Key='Info,ImageLeft,ImageRight'"; //11
 
-                string sLink =Form_Main.URL_API+ "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
+                //string sLink =Form_Main.URL_API+ "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable(sql_Exect);
                 string base64 = dt.Rows[0][0].ToString();
 
-                json = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(base64));
+                var json = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(base64));
                 JObject a = JObject.Parse(json);
                 Form_Main.info.TenCongTy = a.GetValue("TenCongTy").ToString();
                 Form_Main.info.NguoiGui = a.GetValue("NguoiGui").ToString();

@@ -11,6 +11,7 @@ namespace IPC247
 {
     public static class API
     {
+        /*
         public static string API_POS(string LinkAPI, string json)
         {
             string jsonretun = "";
@@ -141,30 +142,38 @@ namespace IPC247
 			}
             return jsonretun.Replace("=0=","\r\n");
         }
-
+        */
 		public static void API_ERRORLOG(ERRORLOG  log)
 		{
 			try
 			{
-				string str = "[" +
-				string.Format(@" {{""Key"":""IP"",""value"":""{0}"",""Type"":""string""}},
-								{{""Key"":""UserName"",""value"":""{1}"",""Type"":""string""}},
-								{{""Key"":""Form"",""value"":""{2}"",""Type"":""string""}},
-								{{""Key"":""Event"",""value"":""{3}"",""Type"":""string""}},
-								{{""Key"":""ErrorDescription"",""value"":""{4}"",""Type"":""Base64""}}"
-			 , log.IP //0
-			 , Form_Main.user.Username //1
-			 , log.Form //2
-			 , log.Event //3
-			 , Convert.ToBase64String(Encoding.UTF8.GetBytes(log.ErrorDescription)) //4
-			) + "]"; //6
-									 //  JObject json = JObject.Parse(str);
-				var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Insert_ERROR_LOG", Param = str });
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
-				json = API.API_POS(sLink, json);
-				dynamic jsondata = JObject.Parse(json);
-				var jsondataChild = jsondata.GetValue("Data");
-			}
+                //	string str = "[" +
+                //	string.Format(@" {{""Key"":""IP"",""value"":""{0}"",""Type"":""string""}},
+                //					{{""Key"":""UserName"",""value"":""{1}"",""Type"":""string""}},
+                //					{{""Key"":""Form"",""value"":""{2}"",""Type"":""string""}},
+                //					{{""Key"":""Event"",""value"":""{3}"",""Type"":""string""}},
+                //					{{""Key"":""ErrorDescription"",""value"":""{4}"",""Type"":""Base64""}}"
+                // , log.IP //0
+                // , Form_Main.user.Username //1
+                // , log.Form //2
+                // , log.Event //3
+                // , Convert.ToBase64String(Encoding.UTF8.GetBytes(log.ErrorDescription)) //4
+                //) + "]"; //6
+                //						 //  JObject json = JObject.Parse(str);
+                //	var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Insert_ERROR_LOG", Param = str });
+                //	string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
+                //	json = API.API_POS(sLink, json);
+                //	dynamic jsondata = JObject.Parse(json);
+                //	var jsondataChild = jsondata.GetValue("Data");
+
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IP", log.IP);
+                param.Add("UserName", Form_Main.user.Username);
+                param.Add("Form", log.Form);
+                param.Add("Event", log.Event);
+                param.Add("ErrorDescription", log.ErrorDescription);
+                SQLHelper.ExecuteDataTableUndefine("sp_Insert_ERROR_LOG", param);
+            }
 			catch
 			{
 			}

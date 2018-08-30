@@ -40,10 +40,11 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_ListUser";
-                var json = API.API_GET_Rep(sLink);
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_ListUser";
+                //var json = API.API_GET_Rep(sLink);
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_Get_ListUser");
                 txtPhuTrach.Properties.DataSource = dt;
                 txtPhuTrach.EditValue = Form_Main.user.Username;
             }
@@ -97,59 +98,85 @@ namespace IPC247
                 }
                 #endregion Check Validate
                 #region Lưu thông tin header
-                string str = "[" +
-                    string.Format(@" 
-                                {{""Key"":""IDRequest"",""value"":""{0}"",""Type"":""string""}},
-                                {{""Key"":""IDCardCode"",""value"":""{1}"",""Type"":""string""}},
-                                {{""Key"":""Company"",""value"":""{2}"",""Type"":""string""}},
-                                {{""Key"":""CompanyName"",""value"":""{3}"",""Type"":""string""}},
-                                {{""Key"":""Description"",""value"":""{4}"",""Type"":""string""}},
-                                {{""Key"":""SDT"",""value"":""{5}"",""Type"":""string""}},
-                                {{""Key"":""Email"",""value"":""{6}"",""Type"":""string""}},
-                                {{""Key"":""User"",""value"":""{7}"",""Type"":""string""}} ,
-                                {{""Key"":""ID_Enquiry"",""value"":""{8}"",""Type"":""string""}} ,
-                                {{""Key"":""EnquiryName"",""value"":""{9}"",""Type"":""string""}} ,
-                                {{""Key"":""Curator"",""value"":""{10}"",""Type"":""string""}},
-                                {{""Key"":""CardName"",""value"":""{11}"",""Type"":""string""}}",
-                    en.ID_Request //0
-                    , cus.ID //1
-                    , com.ID //2
-                    , txtCongty.Text //3
-                    , txtMoTa.Text  //4
-                    , txtSDT.Text //5
-                    , txtEmail.Text //6
-                    , Form_Main.user.Username //7
-                    , en.ID_Enquiry //8
-                    , txtEnquiry.Text//9
-                    , txtPhuTrach.EditValue //10
-                    , txtKhachHang.Text //11
-                ) + "]";
-                //  JObject json = JObject.Parse(str);
-                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Enquiry_Insert", Param = str });
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
-                json = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var ID_Enquiry = jsondataChild.First.GetValue("ID_Enquiry").Value;
-                var Company = jsondataChild.First.GetValue("Company").Value;
-                var IDCardCode = jsondataChild.First.GetValue("IDCardCode").Value;
-                if (Result == 1)//Login thành công
+                //string str = "[" +
+                //    string.Format(@" 
+                //                {{""Key"":""IDRequest"",""value"":""{0}"",""Type"":""string""}},
+                //                {{""Key"":""IDCardCode"",""value"":""{1}"",""Type"":""string""}},
+                //                {{""Key"":""Company"",""value"":""{2}"",""Type"":""string""}},
+                //                {{""Key"":""CompanyName"",""value"":""{3}"",""Type"":""string""}},
+                //                {{""Key"":""Description"",""value"":""{4}"",""Type"":""string""}},
+                //                {{""Key"":""SDT"",""value"":""{5}"",""Type"":""string""}},
+                //                {{""Key"":""Email"",""value"":""{6}"",""Type"":""string""}},
+                //                {{""Key"":""User"",""value"":""{7}"",""Type"":""string""}} ,
+                //                {{""Key"":""ID_Enquiry"",""value"":""{8}"",""Type"":""string""}} ,
+                //                {{""Key"":""EnquiryName"",""value"":""{9}"",""Type"":""string""}} ,
+                //                {{""Key"":""Curator"",""value"":""{10}"",""Type"":""string""}},
+                //                {{""Key"":""CardName"",""value"":""{11}"",""Type"":""string""}}",
+                //    en.ID_Request //0
+                //    , cus.ID //1
+                //    , com.ID //2
+                //    , txtCongty.Text //3
+                //    , txtMoTa.Text  //4
+                //    , txtSDT.Text //5
+                //    , txtEmail.Text //6
+                //    , Form_Main.user.Username //7
+                //    , en.ID_Enquiry //8
+                //    , txtEnquiry.Text//9
+                //    , txtPhuTrach.EditValue //10
+                //    , txtKhachHang.Text //11
+                //) + "]";
+                ////  JObject json = JObject.Parse(str);
+                //var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Enquiry_Insert", Param = str });
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
+                //json = API.API_POS(sLink, json);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var ID_Enquiry = jsondataChild.First.GetValue("ID_Enquiry").Value;
+                //var Company = jsondataChild.First.GetValue("Company").Value;
+                //var IDCardCode = jsondataChild.First.GetValue("IDCardCode").Value;
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IDRequest", en.ID_Request); //0
+                param.Add("IDCardCode", cus.ID); //1
+                param.Add("Company", com.ID); //2
+                param.Add("CompanyName", txtCongty.Text); //3
+                param.Add("Description", txtMoTa.Text); //4
+                param.Add("SDT", txtSDT.Text); //5
+                param.Add("Email", txtEmail.Text); //6
+                param.Add("User", Form_Main.user.Username); //7
+                param.Add("ID_Enquiry", en.ID_Enquiry); //8
+                param.Add("EnquiryName", txtEnquiry.Text); //9
+                param.Add("Curator", txtPhuTrach.EditValue); //10
+                param.Add("CardName", txtKhachHang.Text); //11
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Enquiry_Insert", param);
+                if(dt!=null && dt.Rows.Count > 0)
                 {
-                    if (ID_Enquiry != "0")
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var ID_Enquiry = dt.Rows[0]["ID_Enquiry"].ToString();
+                    var Company = dt.Rows[0]["Company"].ToString();
+                    var IDCardCode = dt.Rows[0]["IDCardCode"].ToString();
+                    if (Result == "1")//Login thành công
                     {
-                        en.ID_Enquiry = ID_Enquiry;
-                        en.CardCode = IDCardCode;
-                        en.CompanyCode = Company;
-                        PushInfo();
-                        this.Close();
+                        if (ID_Enquiry != "0")
+                        {
+                            en.ID_Enquiry = ID_Enquiry;
+                            en.CardCode = IDCardCode;
+                            en.CompanyCode = Company;
+                            PushInfo();
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Lưu Thông Tin Không Thành Công", "Thông Báo");
                     }
                 }
                 else
                 {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Add_Enquiry", "Saveinfo()", "Không có dữ liệu trả về"));
                     XtraMessageBox.Show("Lưu Thông Tin Không Thành Công", "Thông Báo");
                 }
-
                 #endregion lưu thông tin header
             }
             catch (Exception ex)

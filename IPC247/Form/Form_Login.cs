@@ -59,24 +59,28 @@ namespace IPC247
 		{
 			try
 			{
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_Login";
-				var json = new JavaScriptSerializer().Serialize(new { UserName = username, Password = password });
-				json = API.API_POS(sLink, json);
-				if (json != null)
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_Login";
+                //var json = new JavaScriptSerializer().Serialize(new { UserName = username, Password = password });
+                //json = API.API_POS(sLink, json);
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("UserName", username);
+                param.Add("Password", password);
+                DataTable dt = SQLHelper.ExecuteDataTableUndefine("sp_extension_Login", param);
+                if (dt != null && dt.Rows.Count > 0)
 				{
-					dynamic jsondata = JObject.Parse(json);
-					var jsondataChild = jsondata.GetValue("Data");
-					var Result = jsondataChild.First.GetValue("Result").Value;
-					var Message = jsondataChild.First.GetValue("Message").Value;
+					//dynamic jsondata = JObject.Parse(json);
+					//var jsondataChild = jsondata.GetValue("Data");
+					string Result = dt.Rows[0]["Result"].ToString();
+                    string Message = dt.Rows[0]["Message"].ToString();
 
-					if (Result == 1)//Login thành công
+					if (Result == "1")//Login thành công
 					{
 						Form_Main.Flag_Login = true;
 						Form_Main.user.Username = username;
 						Form_Main.user.Name = Message;
-						Form_Main.user.Email = jsondataChild.First.GetValue("Email").Value;
-						Form_Main.user.Phone = jsondataChild.First.GetValue("Phone").Value;
-						Form_Main.user.ChucNang = jsondataChild.First.GetValue("ChucNang").Value;
+						Form_Main.user.Email = dt.Rows[0]["Email"].ToString();// jsondataChild.First.GetValue("Email").Value;
+						Form_Main.user.Phone = dt.Rows[0]["Phone"].ToString();//jsondataChild.First.GetValue("Phone").Value;
+                        Form_Main.user.ChucNang = dt.Rows[0]["ChucNang"].ToString();//jsondataChild.First.GetValue("ChucNang").Value;
                         this.Close();
 					}
 					else
