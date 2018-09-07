@@ -981,6 +981,7 @@ D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\de\DevExpress.XtraNavBar.v17.2
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\es\DevExpress.XtraNavBar.v17.2.resources.dll
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\ja\DevExpress.XtraNavBar.v17.2.resources.dll
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\ru\DevExpress.XtraNavBar.v17.2.resources.dll
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.csprojAssemblyReference.cache
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.Form_Add_Enquiry.resources
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.Form_Search_Enquiry.resources
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.Form_Search_Customer.resources

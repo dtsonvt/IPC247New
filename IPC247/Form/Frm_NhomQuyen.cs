@@ -107,7 +107,7 @@ namespace IPC247
                         }
                     }
                 }
-                string sql_Exect = string.Format("Exec sp_CapNhatNhomQuyen @TenNhom='{0}',@CreateBy='{1}',@DSQuyen='{2}'", cbb_ThongTinNhom.Text, Form_Main.user.Username, DSNhomquyen); //11
+                string sql_Exect = string.Format("Exec sp_CapNhatNhomQuyen @TenNhom=N'{0}',@CreateBy='{1}',@DSQuyen='{2}'", cbb_ThongTinNhom.Text, Form_Main.user.Username, DSNhomquyen); //11
 
                 //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
                 //var json = API.API_GET(sLink);
@@ -152,7 +152,7 @@ namespace IPC247
         {
             try
             {
-                string sql_Exect = string.Format("Exec sp_GetDSChiTietPQ @TenNhom='{0}'", tennhom); //11
+                string sql_Exect = string.Format("Exec sp_GetDSChiTietPQ @TenNhom=N'{0}'", tennhom); //11
 
                 //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
                 //var json = API.API_GET(sLink);
@@ -205,7 +205,7 @@ namespace IPC247
 			{
 				if (DialogResult.Yes == XtraMessageBox.Show("Bạn có muốn bỏ nhóm quyền này không?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
 				{
-					string sql_Exect = string.Format("Exec sp_NhomQuyen_Update @TenNhom='{0}'", cbb_ThongTinNhom.Text); //11
+					string sql_Exect = string.Format("Exec sp_NhomQuyen_Update @TenNhom=N'{0}'", cbb_ThongTinNhom.Text); //11
 
                     //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
                     //var json = API.API_GET(sLink);
