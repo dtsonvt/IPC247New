@@ -15,6 +15,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Net;
+using System.Diagnostics;
 
 namespace IPC247
 {
@@ -258,13 +259,25 @@ namespace IPC247
 				/// check version:
 				/// 
 				string _version = System.Windows.Forms.Application.ProductVersion;
-                string ver = GetVersion(); 
+                string ver = GetVersion();
                 if (_version != ver)
-				{
-					XtraMessageBox.Show(string.Format("Version Hiện Tại là {0}, Vui lòng cập nhật bản mới nhất!", ver), "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-					Flag_ExitNow = true;
-					Application.Exit();
-				}
+                {
+                    XtraMessageBox.Show(string.Format("Version Hiện Tại là {0}, Vui lòng cập nhật bản mới nhất!", ver), "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Flag_ExitNow = true;
+                   
+                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "AutoUpdate.exe"))
+                    {
+                        try
+                        {
+                            Process.Start(AppDomain.CurrentDomain.BaseDirectory + "AutoUpdate.exe");
+                            Application.Exit();
+                        }
+                        catch (Exception)
+                        {
+                            Application.Exit();
+                        }
+                    }
+                }
 			}
 			catch (Exception)
 			{
