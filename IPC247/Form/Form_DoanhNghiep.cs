@@ -30,11 +30,12 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_LoadMaster_Company";
-                var json = API.API_GET_Rep(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_LoadMaster_Company";
+                //var json = API.API_GET_Rep(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_LoadMaster_Company");
                 cbbTrangThai.Properties.DataSource = dt;
 
             }
@@ -47,13 +48,14 @@ namespace IPC247
         {
             try
             {
-                string sql_Exect = string.Format("Exec sp_Get_ListCompany @Flag ='{0}' ", chkHienThi.Checked?"1":"0");
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-             //   string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_ListCompany";
-                var json = API.API_GET_Rep(sLink);
+                   string sql_Exect = string.Format("Exec sp_Get_ListCompany @Flag ='{0}' ", chkHienThi.Checked?"1":"0");
+                //   string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                ////   string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_ListCompany";
+                //   var json = API.API_GET_Rep(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //   var jsondata = JObject.Parse(json).GetValue("Data");
+                //   DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
                 dgc_Main.DataSource = dt;
                 dgv_Main.BestFitColumns(true);
 
@@ -119,39 +121,59 @@ namespace IPC247
                     return;
                 }
 
-                string str = "[" +
-                    string.Format(@" 
-                                {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},
-                                {{""Key"":""CompanyName"",""value"":""{1}"",""Type"":""Base64""}},
-                                {{""Key"":""Description"",""value"":""{2}"",""Type"":""Base64""}},
-                                {{""Key"":""Address"",""value"":""{3}"",""Type"":""string""}},
-                                {{""Key"":""Status"",""value"":""{4}"",""Type"":""string""}},
-                                {{""Key"":""User"",""value"":""{5}"",""Type"":""string""}}  ",
-                    IDCompany //0
-                    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtTenCongTy.Text)) //1
-                    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtMoTa.Text)) //2
-                    , txtDiaChi.Text //3
-                    , cbbTrangThai.EditValue.ToString() //4
-                    , Form_Main.user.Username //5
-                ) + "]";
-                //  JObject json = JObject.Parse(str);
-                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Company_Insert", Param = str });
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
-                json = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
+                //string str = "[" +
+                //    string.Format(@" 
+                //                {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},
+                //                {{""Key"":""CompanyName"",""value"":""{1}"",""Type"":""Base64""}},
+                //                {{""Key"":""Description"",""value"":""{2}"",""Type"":""Base64""}},
+                //                {{""Key"":""Address"",""value"":""{3}"",""Type"":""string""}},
+                //                {{""Key"":""Status"",""value"":""{4}"",""Type"":""string""}},
+                //                {{""Key"":""User"",""value"":""{5}"",""Type"":""string""}}  ",
+                //    IDCompany //0
+                //    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtTenCongTy.Text)) //1
+                //    , Convert.ToBase64String(Encoding.UTF8.GetBytes(txtMoTa.Text)) //2
+                //    , txtDiaChi.Text //3
+                //    , cbbTrangThai.EditValue.ToString() //4
+                //    , Form_Main.user.Username //5
+                //) + "]";
+                ////  JObject json = JObject.Parse(str);
+                //var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Company_Insert", Param = str });
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
+                //json = API.API_POS(sLink, json);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("ID", IDCompany); //0
+                param.Add("CompanyName", txtTenCongTy.Text); //1
+                param.Add("Description", txtMoTa.Text); //2
+                param.Add("Address", txtDiaChi.Text); //3
+                param.Add("Status", cbbTrangThai.EditValue.ToString()); //4
+                param.Add("User", Form_Main.user.Username); //5
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Company_Insert", param);
 
-                if (Result == 1)//Login thành công
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    //XtraMessageBox.Show(Message, "Thông Báo");
-                    sp_Get_Company();
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+
+                    if (Result == "1")//Login thành công
+                    {
+                        //XtraMessageBox.Show(Message, "Thông Báo");
+                        sp_Get_Company();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Lưu Thông Tin Không Thành Công", "Thông Báo");
+                    }
                 }
                 else
                 {
-                    XtraMessageBox.Show("Lưu Thông Tin Không Thành Công", "Thông Báo");
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_DoanhNghiep", "SaveInfo()", "Không có dữ liệu trả về"));
                 }
+                  
             }
             catch (Exception ex)
             {
@@ -186,21 +208,29 @@ namespace IPC247
                     if(del!="")
                     {
                         string sql_Exect = string.Format("Exec sp_Company_Delete @ID ='{0}' ", del);
-                        string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                        var json = API.API_GET(sLink);
-                        dynamic jsondata = JObject.Parse(json);
-                        var jsondataChild = jsondata.GetValue("Data");
-                        var Result = jsondataChild.First.GetValue("Result").Value;
-                        var Message = jsondataChild.First.GetValue("Message").Value;
-                        if (Result == 1)//Login thành công
+                        //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                        //var json = API.API_GET(sLink);
+                        //dynamic jsondata = JObject.Parse(json);
+                        //var jsondataChild = jsondata.GetValue("Data");
+                        DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
+                        if (dt != null && dt.Rows.Count > 0)
                         {
-                            XtraMessageBox.Show(Message, "Thông Báo");
-                            sp_Get_Company();
-                            ClearForm();
+                            var Result = dt.Rows[0]["Result"].ToString();
+                            var Message = dt.Rows[0]["Message"].ToString();
+                            if (Result == "1")//Login thành công
+                            {
+                                XtraMessageBox.Show(Message, "Thông Báo");
+                                sp_Get_Company();
+                                ClearForm();
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show("Hủy Doanh Nghiệp Không Thành Công", "Thông Báo");
+                            }
                         }
                         else
                         {
-                            XtraMessageBox.Show("Hủy Doanh Nghiệp Không Thành Công", "Thông Báo");
+                            API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_DoanhNghiep", "DeleteCompany()", "Không có dữ liệu trả về"));
                         }
                     }
                 }

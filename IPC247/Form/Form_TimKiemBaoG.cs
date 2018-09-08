@@ -33,13 +33,14 @@ namespace IPC247
 		{
 			try
 			{
-				string sql_Exect = string.Format("Exec sp_getData_Quote_header"); //11
+				//string sql_Exect = string.Format("Exec sp_getData_Quote_header"); //11
 
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-				var json = API.API_GET(sLink);
-				dynamic jsondata = JObject.Parse(json);
-				var jsondataChild = jsondata.GetValue("Data");
-				DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondataChild.ToString(), (typeof(DataTable)));
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondataChild.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_getData_Quote_header");
 
 				slk_BaoGia.Properties.DataSource = dt;
 				slk_BaoGia.Properties.View.ExpandAllGroups();
@@ -56,11 +57,12 @@ namespace IPC247
 			{
 				string sql_Exect = string.Format("Exec sp_GetQuote_Detail " +
 			  "@ID={0}", ID); //11
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-				var json = API.API_GET(sLink);
-				dynamic jsondata = JObject.Parse(json);
-				var jsondataChild = jsondata.GetValue("Data");
-				DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondataChild.ToString(), (typeof(DataTable)));
+                              //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                              //var json = API.API_GET(sLink);
+                              //dynamic jsondata = JObject.Parse(json);
+                              //var jsondataChild = jsondata.GetValue("Data");
+                              //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondataChild.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
 				listob = new List<InfoCustomer>();
 				for (int i = 0; i < dt.Rows.Count; i++)
 				{
@@ -125,11 +127,12 @@ namespace IPC247
 			{
 				string sql_Exect = string.Format("Exec sp_GetQuote_Detail_RealTime " +
 			  "@ID={0}", ID); //11
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-				var json = API.API_GET(sLink);
-				dynamic jsondata = JObject.Parse(json);
-				var jsondataChild = jsondata.GetValue("Data");
-				DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondataChild.ToString(), (typeof(DataTable)));
+                              //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                              //var json = API.API_GET(sLink);
+                              //dynamic jsondata = JObject.Parse(json);
+                              //var jsondataChild = jsondata.GetValue("Data");
+                              //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondataChild.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
 				for (int i = 0; i < dt.Rows.Count; i++)
 				{
 					ob.ID = dt.Rows[i]["ID"].ToString();
@@ -293,8 +296,9 @@ namespace IPC247
 						// Xóa data 
 						string sql_Exect = string.Format("Exec sp_Quote_Delete " +
 				   "@ID={0}", dr.ID); //11
-						string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-						var json = API.API_GET(sLink);
+                                      //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                                      //var json = API.API_GET(sLink);
+                        SQLHelper.ExecuteDataTableByQuery(sql_Exect);
 					}
 				}
 			}

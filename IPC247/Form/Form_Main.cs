@@ -25,8 +25,8 @@ namespace IPC247
         public static User user = new User();
         public static InfoIPC info = new InfoIPC();
         public static string URL_API = ConfigurationManager.AppSettings["URL_API"].ToString();
-        public static string URL_Log = ConfigurationManager.AppSettings["URL_Log"].ToString();
-		public static string IPAddress = "";
+        //public static string URL_Log = ConfigurationManager.AppSettings["URL_Log"].ToString();
+        public static string IPAddress = "";
         bool exist = false;
         #endregion Static Param
 
@@ -46,13 +46,22 @@ namespace IPC247
 			string version = "";
 			try
 			{
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_getVersion";
-				var json = API.API_GET_Rep(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_getVersion";
+                //var json = API.API_GET_Rep(sLink);
 
-				var jsondata = JObject.Parse(json).GetValue("Data");
-				DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-				version =  dt.Rows[0][0].ToString();
-			}
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTable("sp_getVersion");
+                if(dt== null || dt.Rows.Count == 0)
+                {
+                    return version;
+                }
+                else
+                {
+                    version = dt.Rows[0][0].ToString();
+                }
+            }
 			catch (Exception ex)
 			{
 				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Main", "GetVersion()", ex.ToString()));
@@ -65,65 +74,73 @@ namespace IPC247
             {
                 string sql_Exect = "Exec sp_GetInfoMaster @Key='Info,ImageLeft,ImageRight'"; //11
 
-                string sLink = URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
+                //string sLink = URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-                string base64 = dt.Rows[0][0].ToString();
-
-                json = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(base64));
-                JObject a = JObject.Parse(json);
-                info = new InfoIPC();
-                info.TenCongTy = a.GetValue("TenCongTy").ToString();
-                info.NguoiGui = a.GetValue("NguoiGui").ToString();
-                info.Mobile = a.GetValue("Mobile").ToString();
-                info.Email = a.GetValue("Email").ToString();
-                info.DiaChi = a.GetValue("DiaChi").ToString();
-
-
-                string FileFolder = AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image";
-                if (!Directory.Exists(FileFolder))
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
+                if(dt != null && dt.Rows.Count > 0)
                 {
-                    Directory.CreateDirectory(FileFolder);
+                    string base64 = dt.Rows[0][0].ToString();
+
+                    var json = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(base64));
+                    JObject a = JObject.Parse(json);
+                    info = new InfoIPC();
+                    info.TenCongTy = a.GetValue("TenCongTy").ToString();
+                    info.NguoiGui = a.GetValue("NguoiGui").ToString();
+                    info.Mobile = a.GetValue("Mobile").ToString();
+                    info.Email = a.GetValue("Email").ToString();
+                    info.DiaChi = a.GetValue("DiaChi").ToString();
+
+
+                    string FileFolder = AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image";
+                    if (!Directory.Exists(FileFolder))
+                    {
+                        Directory.CreateDirectory(FileFolder);
+                    }
+                    Image img;
+                    string image = dt.Rows[1][0].ToString();
+                    if (image != "")
+                    {
+                        FileFolder = FileFolder + "/" + "ImageLeft.jpg";
+                        if (File.Exists(FileFolder))
+                        {
+                            File.Delete(FileFolder);
+                        }
+                        try
+                        {
+                            img = byteArrayToImage(Convert.FromBase64String(image));
+                            img.Save(FileFolder);
+                        }
+                        catch (Exception ex)
+                        {
+                            API.API_ERRORLOG(new ERRORLOG(IPAddress, "Form_Main", "LoadThongTinDefault() - Save ImageLeft.jpg", ex.ToString()));
+                        }
+                    }
+                    image = dt.Rows[2][0].ToString();
+                    if (image != "")
+                    {
+                        FileFolder = AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image";
+                        FileFolder = FileFolder + "/" + "ImageRight.jpg";
+                        if (!File.Exists(FileFolder))
+                        {
+                            File.Delete(FileFolder);
+                        }
+                        try
+                        {
+                            img = byteArrayToImage(Convert.FromBase64String(image));
+                            img.Save(FileFolder);
+                        }
+                        catch (Exception ex)
+                        {
+                            API.API_ERRORLOG(new ERRORLOG(IPAddress, "Form_Main", "LoadThongTinDefault() - Save ImageRight.jpg", ex.ToString()));
+                        }
+                    }
                 }
-                Image img;
-                string image = dt.Rows[1][0].ToString();
-                if (image != "")
+                else
                 {
-                    FileFolder = FileFolder + "/" + "ImageLeft.jpg";
-                    if (File.Exists(FileFolder))
-                    {
-                        File.Delete(FileFolder);
-                    }
-                    try
-                    {
-                        img = byteArrayToImage(Convert.FromBase64String(image));
-                        img.Save(FileFolder);
-                    }
-                    catch (Exception ex)
-                    {
-						API.API_ERRORLOG(new ERRORLOG(IPAddress, "Form_Main", "LoadThongTinDefault() - Save ImageLeft.jpg", ex.ToString()));
-					}
-                }
-                image = dt.Rows[2][0].ToString();
-                if (image != "")
-                {
-                    FileFolder = AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image";
-                    FileFolder = FileFolder + "/" + "ImageRight.jpg";
-                    if (!File.Exists(FileFolder))
-                    {
-                        File.Delete(FileFolder);
-                    }
-                    try
-                    {
-                        img = byteArrayToImage(Convert.FromBase64String(image));
-                        img.Save(FileFolder);
-                    }
-                    catch (Exception ex)
-                    {
-						API.API_ERRORLOG(new ERRORLOG(IPAddress, "Form_Main", "LoadThongTinDefault() - Save ImageRight.jpg", ex.ToString()));
-					}
+                    API.API_ERRORLOG(new ERRORLOG(IPAddress, "Form_Main", "LoadThongTinDefault()", sql_Exect+"\r\n Không lấy được thông tin"));
                 }
             }
             catch (Exception ex)
@@ -144,8 +161,9 @@ namespace IPC247
 				if (!string.IsNullOrEmpty(user.Username))
 				{
 					string sql_Exect = string.Format("Exec sp_extension_Logoff @UserName='{0}'", user.Username); //11
-					string sLink = URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-					var json = API.API_GET(sLink);
+					//string sLink = URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+					//var json = API.API_GET(sLink);
+                    SQLHelper.ExecuteDataTableByQuery(sql_Exect);
 				}
             }
             catch(Exception ex)
@@ -240,9 +258,10 @@ namespace IPC247
 				/// check version:
 				/// 
 				string _version = System.Windows.Forms.Application.ProductVersion;
-				if (_version != GetVersion())
+                string ver = GetVersion(); 
+                if (_version != ver)
 				{
-					XtraMessageBox.Show(string.Format("Version Hiện Tại là {0}, Vui lòng cập nhật bản mới nhất!", GetVersion()), "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+					XtraMessageBox.Show(string.Format("Version Hiện Tại là {0}, Vui lòng cập nhật bản mới nhất!", ver), "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 					Flag_ExitNow = true;
 					Application.Exit();
 				}
@@ -525,27 +544,31 @@ namespace IPC247
       
         private void Get_Push_Notify_Tick(object sender, EventArgs e)
         {
+            string sql_Exect = string.Format("Exec sp_Get_Notify @UserName='{0}'", Form_Main.user.Username);
             try
             {
-                string sql_Exect = string.Format("Exec sp_Get_Notify @UserName='{0}'",Form_Main.user.Username);
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET_Rep(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET_Rep(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-                for (int i = 0; i < dt.Rows.Count; i++)
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect); 
+                if(dt!=null && dt.Rows.Count > 0)
                 {
-                    string Caption = dt.Rows[i]["Caption"].ToString();
-                    string Body = dt.Rows[i]["Body"].ToString();
-                    int AutoFormDelay;
-                    int.TryParse(dt.Rows[i]["AutoFormDelay"].ToString(),out AutoFormDelay);
-                    alertControl1.AutoFormDelay = AutoFormDelay;
-                    alertControl1.Show(this, Caption, Body, "", Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image/switchtimescalesto_32x32.png"), null);
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string Caption = dt.Rows[i]["Caption"].ToString();
+                        string Body = dt.Rows[i]["Body"].ToString();
+                        int AutoFormDelay;
+                        int.TryParse(dt.Rows[i]["AutoFormDelay"].ToString(), out AutoFormDelay);
+                        alertControl1.AutoFormDelay = AutoFormDelay;
+                        alertControl1.Show(this, Caption, Body, "", Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image/switchtimescalesto_32x32.png"), null);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Main", "Get_Push_Notify_Tick()", ex.ToString()));
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Main", "Get_Push_Notify_Tick()", sql_Exect+"\r\n"+ex.ToString()));
             }
         }
 

@@ -28,22 +28,23 @@ namespace IPC247
         {
             string sql_Exect = "Exec sp_Account_GetData"; //11
 
-            string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-            var json = API.API_GET(sLink);
-
-            var jsondata = JObject.Parse(json).GetValue("Data");
-            DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+            //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+            //var json = API.API_GET(sLink);
+            //var jsondata = JObject.Parse(json).GetValue("Data");
+            //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+            DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
             dgc_Main.DataSource = dt;
             dgv_Main.BestFitColumns(true);
 
             sql_Exect = "Exec sp_GetNhomQuyen_header"; //11
 
-            sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-            json = API.API_GET(sLink);
+            //sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+            //json = API.API_GET(sLink);
 
-            jsondata = JObject.Parse(json).GetValue("Data");
+            //jsondata = JObject.Parse(json).GetValue("Data");
 
-            dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+            //dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+            dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
             cbbNhomQuyen.Properties.DataSource = dt;
         }
 
@@ -163,40 +164,64 @@ namespace IPC247
             }
             try
             {
-                string str = "[" +
-                   string.Format(@" {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""UserName"",""value"":""{1}"",""Type"":""string""}},
-{{""Key"":""Password"",""value"":""{2}"",""Type"":""string""}},{{""Key"":""Name"",""value"":""{3}"",""Type"":""string""}},{{""Key"":""RoleGroup"",""value"":""{4}"",""Type"":""string""}},
-{{""Key"":""Address"",""value"":""{5}"",""Type"":""string""}},{{""Key"":""Email"",""value"":""{6}"",""Type"":""string""}},{{""Key"":""Phone"",""value"":""{7}"",""Type"":""string""}},{{""Key"":""Status"",""value"":""{8}"",""Type"":""string""}},
-{{""Key"":""IsLogin"",""value"":""{9}"",""Type"":""string""}},{{""Key"":""User"",""value"":""{10}"",""Type"":""string""}}"
-                   , ID //0
-                   , txtUserName.Text //1
-                   , MatKhau //2
-                   , txtTenUser.Text //3
-                   , cbbNhomQuyen.EditValue //4
-                   , txtDiaChi.Text // 5
-                   , txtEmail.Text //6
-                   , txtSDT.Text//7
-                   , txtTrangThai.Checked?"1":"0"//8
-                   , cbbTrangThaiDangNhap.Checked ? "1" : "0" //9                           ,                                       // , xEle.ToString()
-                   , Form_Main.user.Username) + "]"; //10
-                                                     //  JObject json = JObject.Parse(str);
-                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Account_Insert", Param = str });
-                string sLink = Form_Main.URL_API+  "/api/IPC247/sp_extension_SaveQuote";
-                json = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
+                //                string str = "[" +
+                //                   string.Format(@" {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},{{""Key"":""UserName"",""value"":""{1}"",""Type"":""string""}},
+                //{{""Key"":""Password"",""value"":""{2}"",""Type"":""string""}},{{""Key"":""Name"",""value"":""{3}"",""Type"":""string""}},{{""Key"":""RoleGroup"",""value"":""{4}"",""Type"":""string""}},
+                //{{""Key"":""Address"",""value"":""{5}"",""Type"":""string""}},{{""Key"":""Email"",""value"":""{6}"",""Type"":""string""}},{{""Key"":""Phone"",""value"":""{7}"",""Type"":""string""}},{{""Key"":""Status"",""value"":""{8}"",""Type"":""string""}},
+                //{{""Key"":""IsLogin"",""value"":""{9}"",""Type"":""string""}},{{""Key"":""User"",""value"":""{10}"",""Type"":""string""}}"
+                //                   , ID //0
+                //                   , txtUserName.Text //1
+                //                   , MatKhau //2
+                //                   , txtTenUser.Text //3
+                //                   , cbbNhomQuyen.EditValue //4
+                //                   , txtDiaChi.Text // 5
+                //                   , txtEmail.Text //6
+                //                   , txtSDT.Text//7
+                //                   , txtTrangThai.Checked?"1":"0"//8
+                //                   , cbbTrangThaiDangNhap.Checked ? "1" : "0" //9                           ,                                       // , xEle.ToString()
+                //                   , Form_Main.user.Username) + "]"; //10
+                //                                                     //  JObject json = JObject.Parse(str);
+                //                var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Account_Insert", Param = str });
+                //                string sLink = Form_Main.URL_API+  "/api/IPC247/sp_extension_SaveQuote";
+                //                json = API.API_POS(sLink, json);
+                //                dynamic jsondata = JObject.Parse(json);
+                //                var jsondataChild = jsondata.GetValue("Data");
+                //                var Result = jsondataChild.First.GetValue("Result").Value;
+                //                var Message = jsondataChild.First.GetValue("Message").Value;
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("ID", ID); //0
+                param.Add("UserName", txtUserName.Text); //0
+                param.Add("Password", MatKhau); //0
+                param.Add("Name", txtTenUser.Text); //0
+                param.Add("RoleGroup", cbbNhomQuyen.EditValue); //0
+                param.Add("Address", txtDiaChi.Text); //0
+                param.Add("Email", txtEmail.Text); //0
+                param.Add("Phone", txtSDT.Text); //0
+                param.Add("Status", txtTrangThai.Checked ? "1" : "0"); //0
+                param.Add("IsLogin", cbbTrangThaiDangNhap.Checked ? "1" : "0"); //0
+                param.Add("User", Form_Main.user.Username); //0
 
-                if (Result == 1)//Login thành công
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Account_Insert", param);
+                if(dt!= null && dt.Rows.Count > 0)
                 {
-                    XtraMessageBox.Show(Message, "Thông Báo");
-                    LoadForm();
+                    string Result = dt.Rows[0]["Result"].ToString();
+                    string Message = dt.Rows[0]["Message"].ToString();
+                    if (Result == "1")//Login thành công
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo");
+                        LoadForm();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Cập Nhật Thông Tin Không Thành Công", "Thông Báo");
+                    }
                 }
                 else
                 {
-                    XtraMessageBox.Show("Cập Nhật Thông Tin Không Thành Công", "Thông Báo");
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_NhomQuyen", "LuuThongTin()", "Không có kết quả trả về"));
                 }
+               
             }
             catch (Exception ex)
             {
@@ -214,20 +239,31 @@ namespace IPC247
             try
             {
                 string sql_Exect = string.Format("Exec sp_HuyUser @ID ='{0}' ", ID);
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
 
-                if (Result == 1)//Login thành công
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
+                if(dt!= null && dt.Rows.Count >0)
                 {
-                    XtraMessageBox.Show(Message, "Thông Báo");
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();//jsondataChild.First.GetValue("Message").Value;
+                    if (Result == "1")//Login thành công
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo");
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Hủy Tài Khoản Không Thành Công", "Thông Báo");
+                    }
                 }
                 else
                 {
-                    XtraMessageBox.Show("Hủy Tài Khoản Không Thành Công", "Thông Báo");
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_NhomQuyen", "HuyTaiKhoan()", sql_Exect+"-Không có kết quả trả về"));
                 }
             }
             catch (Exception ex)

@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Collections;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraGrid.Views.Grid;
+using System.Data.SqlClient;
 
 namespace IPC247
 {
@@ -130,15 +131,19 @@ namespace IPC247
             }
             return rows;
         }
+
+     
         private void LoadInfoProduct()
         {
             try
             {
-                string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product";
-                var json = API.API_GET(sLink);
+                //string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product";
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTable("sp_Get_Product");
                 dgc_Product.DataSource = dt;
                 dgv_Product.BestFitColumns(true);
             }
@@ -158,25 +163,33 @@ namespace IPC247
             try
             {
                 btnXoaAll.Enabled = false;
-                string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_DeleteAllProduct";
+               // string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_DeleteAllProduct";
 
-                var json = API.API_GET(sLink);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
-
-                if (Result == 1)//Login thành công
+                //var json = API.API_GET(sLink);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery("sp_extension_DeleteProduct");
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    XtraMessageBox.Show(Message, "Thông Báo");
-                    LoadInfoProduct();
-
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+                    if (Result == "1")//Login thành công
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo");
+                        LoadInfoProduct();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Xóa Dữ Liệu KHông Thành Công", "Thông Báo");
+                    }
+                    btnXoaAll.Enabled = true;
                 }
                 else
                 {
-                    XtraMessageBox.Show("Xóa Dữ Liệu KHông Thành Công", "Thông Báo");
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Product", "btnDeleteAll_Click", "Không có dữ liệu trả về"));
                 }
-                btnXoaAll.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -207,39 +220,51 @@ namespace IPC247
                 // OleDbDataReader dr = cmd.ExecuteReader();
                 OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
                 adapter.Fill(dt);
-                List<Product> lstnew = new List<Product>();
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+                if(dt!=null && dt.Rows.Count > 0)
                 {
-                    Product ob = new Product();
-					ob.ProductCode = dt.Rows[i]["ProductCode"].ToString().Replace("\"", "''");
-					if (string.IsNullOrEmpty(ob.ProductCode))
-					{
-						continue;
-					}
-					ob.ProductName = dt.Rows[i]["ProductName"].ToString().Replace("\"", "''");
-					ob.Description = dt.Rows[i]["Description"].ToString().Replace("\"", "''");
-					ob.CostPrice = decimal.Parse(dt.Rows[i]["CostPrice"].ToString());
-                    ob.Price = decimal.Parse(dt.Rows[i]["Price"].ToString());
-                    ob.UserID = Form_Main.user.Username;
-                    lstnew.Add(ob);
+                    System.Data.DataColumn newColumn = new System.Data.DataColumn("Id", typeof(System.String));
+                    newColumn.DefaultValue = Form_Main.user.Username;
+                    dt.Columns.Add(newColumn);
+
+                    string ERROR = "";
+                    ERROR =  SQLHelper.sp_extension_ImportProduct(dt, Form_Main.user.Username);
+                    if (ERROR != "")
+                    {
+                        API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Product", "Imort Dữ Liệu()", ERROR));
+                    }
+                    else
+                    {
+                        LoadInfoProduct();
+                        btnImport.Enabled = false;
+                    }
+                    //dynamic jsondata = JObject.Parse(jsonReturn);
+                    //var jsondataChild = jsondata.GetValue("Data");
+                    //var Result = jsondataChild.First.GetValue("Result").Value;
+                    //var Message = jsondataChild.First.GetValue("Message").Value;
                 }
-                var json = JsonConvert.SerializeObject(lstnew);
+
+                //List<Product> lstnew = new List<Product>();
+
+                //           for (int i = 0; i < dt.Rows.Count; i++)
+                //           {
+                //               Product ob = new Product();
+                //ob.ProductCode = dt.Rows[i]["ProductCode"].ToString().Replace("\"", "''");
+                //if (string.IsNullOrEmpty(ob.ProductCode))
+                //{
+                //	continue;
+                //}
+                //ob.ProductName = dt.Rows[i]["ProductName"].ToString().Replace("\"", "''");
+                //ob.Description = dt.Rows[i]["Description"].ToString().Replace("\"", "''");
+                //ob.CostPrice = decimal.Parse(dt.Rows[i]["CostPrice"].ToString());
+                //               ob.Price = decimal.Parse(dt.Rows[i]["Price"].ToString());
+                //               ob.UserID = Form_Main.user.Username;
+                //               lstnew.Add(ob);
+                //           }
+                //           var json = JsonConvert.SerializeObject(lstnew);
 
 
-                string sLink = Form_Main.URL_API+ "/api/IPC247/sp_extension_ImportProduct";
-				JavaScriptSerializer serializer = new JavaScriptSerializer();
-				serializer.MaxJsonLength = Int32.MaxValue;
-
-				json = serializer.Serialize(new { UserName = Form_Main.user.Username, Data = json });
-
-                var jsonReturn = API.API_POS(sLink, json);
-                dynamic jsondata = JObject.Parse(jsonReturn);
-                var jsondataChild = jsondata.GetValue("Data");
-                //var Result = jsondataChild.First.GetValue("Result").Value;
-                //var Message = jsondataChild.First.GetValue("Message").Value;
-                LoadInfoProduct();
-                btnImport.Enabled = false;
+              
             }
             catch (Exception ex)
             {
@@ -330,11 +355,12 @@ namespace IPC247
                     return;
                 }
 
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product_Export";
-                var json = API.API_GET(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product_Export";
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_Get_Product_Export");
                 string Folder = AppDomain.CurrentDomain.BaseDirectory + "/AppData";
                 if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "/AppData"))
                 {
@@ -419,44 +445,64 @@ namespace IPC247
 				product.Description = txtMoTa.Text;
 				product.Price = decimal.Parse(txtDonGia.EditValue.ToString());
 				product.CostPrice = decimal.Parse(txtGiaNhap.EditValue.ToString());
-				//string sql_Exect = string.Format("Exec sp_Product_Update @ID ={0},@ProductCode=N'{1}',@ProductName=N'{2}',@Description=N'{3}'," +
-				//    "@Price={4},@UserID='{5}',@CostPrice={6}", product.Id, product.ProductCode, product.ProductName, product.Description, product.Price, Form_Main.user.Username,product.CostPrice);
+                //string sql_Exect = string.Format("Exec sp_Product_Update @ID ={0},@ProductCode=N'{1}',@ProductName=N'{2}',@Description=N'{3}'," +
+                //    "@Price={4},@UserID='{5}',@CostPrice={6}", product.Id, product.ProductCode, product.ProductName, product.Description, product.Price, Form_Main.user.Username,product.CostPrice);
 
-				//string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-				string str = "[" +
-				  string.Format(@" {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},
-{{""Key"":""ProductCode"",""value"":""{1}"",""Type"":""string""}},
-{{""Key"":""ProductName"",""value"":""{2}"",""Type"":""string""}},
-{{""Key"":""Description"",""value"":""{3}"",""Type"":""string""}},
-{{""Key"":""Price"",""value"":""{4}"",""Type"":""string""}},
-{{""Key"":""UserID"",""value"":""{5}"",""Type"":""string""}},
-{{""Key"":""CostPrice"",""value"":""{6}"",""Type"":""string""}}"
-				 , product.Id //0
-				 , product.ProductCode //1
-				 , product.ProductName //2
-				 , product.Description //3
-				 , product.Price //4
-				 , Form_Main.user.Username //5
-				 , product.CostPrice) + "]"; //6
-											 //  JObject json = JObject.Parse(str);
-				var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Product_Update", Param = str });
-				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
-				json = API.API_POS(sLink, json);
-				dynamic jsondata = JObject.Parse(json);
-				//	var json = API.API_GET(sLink);
-				//   dynamic jsondata = JObject.Parse(json);
-				var jsondataChild = jsondata.GetValue("Data");
-				string result = jsondataChild.First.GetValue("Result").Value.ToString();
-				if (result != null && result == "1")
-				{
-					ID = jsondataChild.First.GetValue("ID").Value.ToString();
-					LoadInfoProduct();
-				}
-				else
-				{
-					string Message = jsondataChild.First.GetValue("Message").Value.ToString();
-					XtraMessageBox.Show(Message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //				string str = "[" +
+                //				  string.Format(@" {{""Key"":""ID"",""value"":""{0}"",""Type"":""string""}},
+                //{{""Key"":""ProductCode"",""value"":""{1}"",""Type"":""string""}},
+                //{{""Key"":""ProductName"",""value"":""{2}"",""Type"":""string""}},
+                //{{""Key"":""Description"",""value"":""{3}"",""Type"":""string""}},
+                //{{""Key"":""Price"",""value"":""{4}"",""Type"":""string""}},
+                //{{""Key"":""UserID"",""value"":""{5}"",""Type"":""string""}},
+                //{{""Key"":""CostPrice"",""value"":""{6}"",""Type"":""string""}}"
+                //				 , product.Id //0
+                //				 , product.ProductCode //1
+                //				 , product.ProductName //2
+                //				 , product.Description //3
+                //				 , product.Price //4
+                //				 , Form_Main.user.Username //5
+                //				 , product.CostPrice) + "]"; //6
+                //											 //  JObject json = JObject.Parse(str);
+                //				var json = new JavaScriptSerializer().Serialize(new { StoreProcedure = "sp_Product_Update", Param = str });
+                //				string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_SaveQuote";
+                //				json = API.API_POS(sLink, json);
+                //				dynamic jsondata = JObject.Parse(json);
+                //				//	var json = API.API_GET(sLink);
+                //				//   dynamic jsondata = JObject.Parse(json);
+                //				var jsondataChild = jsondata.GetValue("Data");
+                //				string result = jsondataChild.First.GetValue("Result").Value.ToString();
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("ID", product.Id); //0
+                param.Add("ProductCode", product.ProductCode); //1
+                param.Add("ProductName", product.ProductName); //2
+                param.Add("Description", product.Description); //3
+                param.Add("Price", product.Price); //4
+                param.Add("UserID", Form_Main.user.Username); //5
+                param.Add("CostPrice", product.CostPrice); //6
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Product_Update", param);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+                    
+                    if (Result == "1")
+                    {
+                        ID = dt.Rows[0]["ID"].ToString();
+                        LoadInfoProduct();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Product", "UpdateData()", "Không có kết quả trả về"));
+                }
             }
             catch (Exception ex)
             {
@@ -500,22 +546,31 @@ namespace IPC247
             {
                 string sql_Exect = string.Format("Exec sp_Product_Delete @ID ='{0}', @UserName='{1}'", MaSP,Form_Main.user.Username);
 
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
-				dynamic jsondata = JObject.Parse(json);
-				var jsondataChild = jsondata.GetValue("Data");
-				var Result = jsondataChild.First.GetValue("Result").Value;
-				var Message = jsondataChild.First.GetValue("Message").Value;
-
-				if (Result == 1)//Login thành công
-				{
-					XtraMessageBox.Show(Message, "Thông Báo");
-					LoadInfoProduct();
-				}
-				else
-				{
-					XtraMessageBox.Show(Message, "Thông Báo");
-				}
+                //            string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //            var json = API.API_GET(sLink);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+                    if (Result == "1")//Login thành công
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo");
+                        LoadInfoProduct();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo");
+                    }
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Product", "XoaDuLieu()", "Không có dữ liệu trả về"));
+                }
             }
             catch (Exception ex)
             {

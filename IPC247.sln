@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPC247", "IPC247\IPC247.csproj", "{9232A09D-52C1-4FBA-A67C-8BDC8A88F385}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoUpdate", "AutoUpdate\AutoUpdate\AutoUpdate.csproj", "{9EC025A5-AE57-478A-AE91-D3BF794B9B84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,20 +20,17 @@ Global
 		{9232A09D-52C1-4FBA-A67C-8BDC8A88F385}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9232A09D-52C1-4FBA-A67C-8BDC8A88F385}.Url_Connection|Any CPU.ActiveCfg = Url_Connection|Any CPU
 		{9232A09D-52C1-4FBA-A67C-8BDC8A88F385}.Url_Connection|Any CPU.Build.0 = Url_Connection|Any CPU
+		{9EC025A5-AE57-478A-AE91-D3BF794B9B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EC025A5-AE57-478A-AE91-D3BF794B9B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EC025A5-AE57-478A-AE91-D3BF794B9B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EC025A5-AE57-478A-AE91-D3BF794B9B84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EC025A5-AE57-478A-AE91-D3BF794B9B84}.Url_Connection|Any CPU.ActiveCfg = Release|Any CPU
+		{9EC025A5-AE57-478A-AE91-D3BF794B9B84}.Url_Connection|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79E853F3-EF0C-4030-B105-A62C046B20D2}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://dtson.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = IPC247\\IPC247.csproj
-		SccProjectName1 = IPC247
-		SccLocalPath1 = IPC247
 	EndGlobalSection
 EndGlobal

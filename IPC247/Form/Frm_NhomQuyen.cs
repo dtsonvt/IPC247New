@@ -22,14 +22,15 @@ namespace IPC247
         {
             try
             {
-                string sql_Exect = "Exec sp_GetDanhSachChucNang"; //11
+               // string sql_Exect = "Exec sp_GetDanhSachChucNang"; //11
 
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
+                //var jsondata = JObject.Parse(json).GetValue("Data");
 
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_GetDanhSachChucNang");
                 grc_NhomQuyen.DataSource = dt;
                 grv_NhomQuyen.BestFitColumns(true);
             }
@@ -42,14 +43,15 @@ namespace IPC247
         {
             try
             {
-                string sql_Exect = "Exec sp_GetNhomQuyen"; //11
+                //string sql_Exect = "Exec sp_GetNhomQuyen"; //11
 
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
+                //var jsondata = JObject.Parse(json).GetValue("Data");
 
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_GetNhomQuyen");
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -71,14 +73,15 @@ namespace IPC247
                     cbb_ThongTinNhom.MaskBox.AutoCompleteCustomSource = new AutoCompleteStringCollection();
                 }
 
-                sql_Exect = "Exec sp_GetNhomQuyen_header"; //11
+                //sql_Exect = "Exec sp_GetNhomQuyen_header"; //11
 
-                sLink =Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                json = API.API_GET(sLink);
+                //sLink =Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //json = API.API_GET(sLink);
 
-                jsondata = JObject.Parse(json).GetValue("Data");
+                //jsondata = JObject.Parse(json).GetValue("Data");
 
-                dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                dt = SQLHelper.ExecuteDataTable("sp_GetNhomQuyen_header");
                 cbbSearchNhom.Properties.DataSource = dt;
             }
             catch (Exception ex)
@@ -104,14 +107,15 @@ namespace IPC247
                         }
                     }
                 }
-                string sql_Exect = string.Format("Exec sp_CapNhatNhomQuyen @TenNhom='{0}',@CreateBy='{1}',@DSQuyen='{2}'", cbb_ThongTinNhom.Text, Form_Main.user.Username, DSNhomquyen); //11
+                string sql_Exect = string.Format("Exec sp_CapNhatNhomQuyen @TenNhom=N'{0}',@CreateBy='{1}',@DSQuyen='{2}'", cbb_ThongTinNhom.Text, Form_Main.user.Username, DSNhomquyen); //11
 
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
+                //var jsondata = JObject.Parse(json).GetValue("Data");
 
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     string Message = dt.Rows[0]["Message"].ToString();
@@ -148,14 +152,15 @@ namespace IPC247
         {
             try
             {
-                string sql_Exect = string.Format("Exec sp_GetDSChiTietPQ @TenNhom='{0}'", tennhom); //11
+                string sql_Exect = string.Format("Exec sp_GetDSChiTietPQ @TenNhom=N'{0}'", tennhom); //11
 
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-                var json = API.API_GET(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
+                //var jsondata = JObject.Parse(json).GetValue("Data");
 
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     string KEYLIST = dt.Rows[0]["IDChucNang"].ToString();
@@ -200,12 +205,13 @@ namespace IPC247
 			{
 				if (DialogResult.Yes == XtraMessageBox.Show("Bạn có muốn bỏ nhóm quyền này không?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
 				{
-					string sql_Exect = string.Format("Exec sp_NhomQuyen_Update @TenNhom='{0}'", cbb_ThongTinNhom.Text); //11
+					string sql_Exect = string.Format("Exec sp_NhomQuyen_Update @TenNhom=N'{0}'", cbb_ThongTinNhom.Text); //11
 
-					string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
-					var json = API.API_GET(sLink);
+                    //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_Exect;
+                    //var json = API.API_GET(sLink);
 
-					var jsondata = JObject.Parse(json).GetValue("Data");
+                    //var jsondata = JObject.Parse(json).GetValue("Data");
+                    SQLHelper.ExecuteDataTableByQuery(sql_Exect);
 				}
 			}
 			catch (Exception ex)

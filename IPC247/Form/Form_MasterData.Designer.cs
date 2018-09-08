@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.lctMain = new DevExpress.XtraLayout.LayoutControl();
+            this.ptbHinhPhai = new System.Windows.Forms.PictureBox();
+            this.ptbHinhTrai = new System.Windows.Forms.PictureBox();
             this.btnCapNhatThongTin = new DevExpress.XtraEditors.SimpleButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,13 +51,13 @@
             this.lctLableH1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.ptbHinhPhai = new System.Windows.Forms.PictureBox();
-            this.ptbHinhTrai = new System.Windows.Forms.PictureBox();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lctMain)).BeginInit();
             this.lctMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhPhai)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhTrai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNguoiGui.Properties)).BeginInit();
@@ -72,11 +74,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lctLableH1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhPhai)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhTrai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // lctMain
@@ -99,6 +99,28 @@
             this.lctMain.Size = new System.Drawing.Size(1071, 525);
             this.lctMain.TabIndex = 0;
             this.lctMain.Text = "layoutControl1";
+            // 
+            // ptbHinhPhai
+            // 
+            this.ptbHinhPhai.BackColor = System.Drawing.Color.White;
+            this.ptbHinhPhai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ptbHinhPhai.Location = new System.Drawing.Point(88, 361);
+            this.ptbHinhPhai.Name = "ptbHinhPhai";
+            this.ptbHinhPhai.Size = new System.Drawing.Size(450, 100);
+            this.ptbHinhPhai.TabIndex = 15;
+            this.ptbHinhPhai.TabStop = false;
+            this.ptbHinhPhai.Click += new System.EventHandler(this.ptbHinhPhai_Click);
+            // 
+            // ptbHinhTrai
+            // 
+            this.ptbHinhTrai.BackColor = System.Drawing.Color.White;
+            this.ptbHinhTrai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ptbHinhTrai.Location = new System.Drawing.Point(88, 257);
+            this.ptbHinhTrai.Name = "ptbHinhTrai";
+            this.ptbHinhTrai.Size = new System.Drawing.Size(350, 100);
+            this.ptbHinhTrai.TabIndex = 14;
+            this.ptbHinhTrai.TabStop = false;
+            this.ptbHinhTrai.Click += new System.EventHandler(this.ptbHinhTrai_Click);
             // 
             // btnCapNhatThongTin
             // 
@@ -297,40 +319,6 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.btnCapNhatThongTin;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 465);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(542, 40);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(542, 40);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(542, 40);
-            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // ptbHinhPhai
-            // 
-            this.ptbHinhPhai.BackColor = System.Drawing.Color.White;
-            this.ptbHinhPhai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ptbHinhPhai.Location = new System.Drawing.Point(88, 361);
-            this.ptbHinhPhai.Name = "ptbHinhPhai";
-            this.ptbHinhPhai.Size = new System.Drawing.Size(450, 100);
-            this.ptbHinhPhai.TabIndex = 15;
-            this.ptbHinhPhai.TabStop = false;
-            this.ptbHinhPhai.Click += new System.EventHandler(this.ptbHinhPhai_Click);
-            // 
-            // ptbHinhTrai
-            // 
-            this.ptbHinhTrai.BackColor = System.Drawing.Color.White;
-            this.ptbHinhTrai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ptbHinhTrai.Location = new System.Drawing.Point(88, 257);
-            this.ptbHinhTrai.Name = "ptbHinhTrai";
-            this.ptbHinhTrai.Size = new System.Drawing.Size(350, 100);
-            this.ptbHinhTrai.TabIndex = 14;
-            this.ptbHinhTrai.TabStop = false;
-            this.ptbHinhTrai.Click += new System.EventHandler(this.ptbHinhTrai_Click);
-            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.ptbHinhTrai;
@@ -355,6 +343,18 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.btnCapNhatThongTin;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 465);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(542, 40);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(542, 40);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(542, 40);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
             // Form_MasterData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,6 +366,8 @@
             this.Load += new System.EventHandler(this.Form_MasterData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lctMain)).EndInit();
             this.lctMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhPhai)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhTrai)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobile.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNguoiGui.Properties)).EndInit();
@@ -382,11 +384,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lctLableH1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhPhai)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbHinhTrai)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -23,11 +23,11 @@ namespace IPC247
         #region Khởi Tạo Tham Số
         private List<ProductGroupHeader> listHeader = new List<ProductGroupHeader>();
         private List<ProductGroupDetails> listdetails = new List<ProductGroupDetails>();
-		string IDGroup = "";
-		#endregion Khởi Tạo Tham Số
+        string IDGroup = "";
+        #endregion Khởi Tạo Tham Số
 
-		#region Function
-		bool cal(Int32 _Width, GridView _View)
+        #region Function
+        bool cal(Int32 _Width, GridView _View)
         {
             _View.IndicatorWidth = _View.IndicatorWidth < _Width ? _Width : _View.IndicatorWidth;
             return true;
@@ -109,17 +109,29 @@ namespace IPC247
         {
             try
             {
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product_Select";
-                var json = API.API_GET(sLink);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_Get_Product_Select";
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                var ds = JsonConvert.DeserializeObject<List<ProductSelect>>(jsondata.ToString());
-                searchSanPham.DataSource = ds;
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //var ds = JsonConvert.DeserializeObject<List<ProductSelect>>(jsondata.ToString());
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_Get_Product_Select");
+                List<ProductSelect> listob = new List<ProductSelect>();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string ID = dt.Rows[i]["ID"].ToString();
+                    string ProductCode = dt.Rows[i]["ProductCode"].ToString(); ;
+                    string ProductName = dt.Rows[i]["ProductName"].ToString(); ;
+                    string Description = dt.Rows[i]["Description"].ToString(); ;
+                    decimal Price = decimal.Parse(dt.Rows[i]["Price"].ToString());
+                    ProductSelect ob = new ProductSelect(ID,ProductCode,ProductName,Description,Price);
+                    listob.Add(ob);
+                }
+                searchSanPham.DataSource = listob;
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProduct()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProduct()", ex.ToString()));
+            }
         }
         /// <summary>
         /// Load Thông tin Nhóm Sản Phẩm
@@ -128,15 +140,32 @@ namespace IPC247
         {
             try
             {
-                string sLink =Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_ProductGroup_Getdata";
-                var json = API.API_GET(sLink);
+                //string sLink =Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByStore?sql_Exec=" + "sp_ProductGroup_Getdata";
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-                listHeader = JsonConvert.DeserializeObject<List<ProductGroupHeader>>(jsondata.ToString());
-              
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
+                DataTable dt = SQLHelper.ExecuteDataTable("sp_ProductGroup_Getdata");
+                // listHeader = JsonConvert.DeserializeObject<List<ProductGroupHeader>>(jsondata.ToString());
+                listHeader = new List<ProductGroupHeader>();
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string _ID = dt.Rows[i]["ID"].ToString();
+                        string _ProductGroupName = dt.Rows[i]["ProductGroupName"].ToString();
+                        string _ListProductCode = dt.Rows[i]["ListProductCode"].ToString();
+                        string _CreateBy = dt.Rows[i]["CreateBy"].ToString();
+                        string _CreateDate = dt.Rows[i]["CreateDate"].ToString();
+                        string _UpdateBy = dt.Rows[i]["UpdateBy"].ToString();
+                        string _UpdateDate = dt.Rows[i]["UpdateDate"].ToString();
+                        decimal _TongTien = decimal.Parse(dt.Rows[i]["TongTien"].ToString());
+                        ProductGroupHeader ob = new ProductGroupHeader(_ID, _ProductGroupName, _ListProductCode, _CreateBy, _CreateDate, _UpdateBy, _UpdateDate, _TongTien);
+                        listHeader.Add(ob);
+                    }
+                }
                 dgc_Main.DataSource = listHeader;
-                if(listHeader== null || listHeader.Count ==0)
+                if (listHeader == null || listHeader.Count == 0)
                 {
                     listdetails = new List<ProductGroupDetails>();
                     dgcDetails.DataSource = listdetails;
@@ -146,8 +175,8 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProductGroup()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProductGroup()", ex.ToString()));
+            }
         }
         /// <summary>
         /// lấy danh sách chi tiết nhóm sản phẩm
@@ -156,19 +185,34 @@ namespace IPC247
         {
             try
             {
-                string sqlQuery = string.Format("exec sp_ProductGroup_GetdataDetails @ID='{0}' ",ListID);
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sqlQuery;
-                var json = API.API_GET(sLink);
+                string sqlQuery = string.Format("exec sp_ProductGroup_GetdataDetails @ID='{0}' ", ListID);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sqlQuery;
+                //var json = API.API_GET(sLink);
 
-                var jsondata = JObject.Parse(json).GetValue("Data");
-                listdetails = JsonConvert.DeserializeObject<List<ProductGroupDetails>>(jsondata.ToString());
+                //var jsondata = JObject.Parse(json).GetValue("Data");
+                //listdetails = JsonConvert.DeserializeObject<List<ProductGroupDetails>>(jsondata.ToString());
+                listdetails = new List<ProductGroupDetails>();
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sqlQuery);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string ID = dt.Rows[i]["ID"].ToString();
+                        string ProductCode = dt.Rows[i]["ProductCode"].ToString();
+                        string ProductName = dt.Rows[i]["ProductName"].ToString();
+                        decimal Price = decimal.Parse(dt.Rows[i]["Price"].ToString());
+                        int SoLuong = int.Parse(dt.Rows[i]["SoLuong"].ToString());
+                        ProductGroupDetails ob = new ProductGroupDetails(ID,ProductCode,ProductName,Price,SoLuong);
+                        listdetails.Add(ob);
+                    }
+                }
                 dgcDetails.DataSource = listdetails;
                 dgvDetails.BestFitColumns(true);
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProductDetails()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProductDetails()", ex.ToString()));
+            }
         }
         /// <summary>
         /// xử lý load form và ActiveForm
@@ -191,8 +235,8 @@ namespace IPC247
             {
                 string TenNhom = txtTenNhom.Text;
                 string DSSanPham = "";
-                
-                if (listdetails== null || listdetails.Count ==0)
+
+                if (listdetails == null || listdetails.Count == 0)
                 {
                     XtraMessageBox.Show("Nhóm chưa có sản phẩm nào!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -209,24 +253,30 @@ namespace IPC247
                         }
                     }
                 }
-                
-                string sql_exec = string.Format("exec sp_ProductGroup_Update @ID='{0}',@ListProduct='{1}',@UserName=N'{2}',@ProductGroupName=N'{3}' ", IDGroup, DSSanPham, Form_Main.user.Username, TenNhom);
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_exec;
-                var json = API.API_GET(sLink);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
 
-                if(Result==1)
+                string sql_exec = string.Format("exec sp_ProductGroup_Update @ID='{0}',@ListProduct='{1}',@UserName=N'{2}',@ProductGroupName=N'{3}' ", IDGroup, DSSanPham, Form_Main.user.Username, TenNhom);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_exec;
+                //var json = API.API_GET(sLink);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_exec);
+                if(dt!=null && dt.Rows.Count> 0)
                 {
-                    LoadInfoProductGroup();
+                    var Result = dt.Rows[0]["Result"].ToString();//jsondataChild.First.GetValue("Result").Value;
+                    var Message = dt.Rows[0]["Message"].ToString(); // jsondataChild.First.GetValue("Message").Value;
+                    if (Result == "1")
+                    {
+                        LoadInfoProductGroup();
+                    }
                 }
+              
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "SaveProductGroup()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "SaveProductGroup()", ex.ToString()));
+            }
         }
         /// <summary>
         /// Sự kiện Selected Row
@@ -272,7 +322,7 @@ namespace IPC247
         {
             try
             {
-                if(IDGroup=="0")
+                if (IDGroup == "0")
                 {
                     XtraMessageBox.Show("Hãy chọn nhóm sản phẩm mà bạn muốn xóa", "Thông Báo", MessageBoxButtons.OK);
                     return;
@@ -283,26 +333,43 @@ namespace IPC247
                     return;
                 }
 
-                string sql_exec = string.Format("exec sp_ProductGroup_Delete @ID='{0}',@UserName='{1}'", IDGroup,Form_Main.user.Username);
-                string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_exec;
-                var json = API.API_GET(sLink);
-                dynamic jsondata = JObject.Parse(json);
-                var jsondataChild = jsondata.GetValue("Data");
-                var Result = jsondataChild.First.GetValue("Result").Value;
-                var Message = jsondataChild.First.GetValue("Message").Value;
-				if (Result == 1)
-				{
-					LoadInfoProductGroup();
-				}
-				else
-				{
-					XtraMessageBox.Show(Message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
+                string sql_exec = string.Format("exec sp_ProductGroup_Delete @ID='{0}',@UserName='{1}'", IDGroup, Form_Main.user.Username);
+                //string sLink = Form_Main.URL_API + "/api/IPC247/sp_extension_GetDataByQueryString?str_Query=" + sql_exec;
+                //var json = API.API_GET(sLink);
+                //dynamic jsondata = JObject.Parse(json);
+                //var jsondataChild = jsondata.GetValue("Data");
+                //var Result = jsondataChild.First.GetValue("Result").Value;
+                //var Message = jsondataChild.First.GetValue("Message").Value;
+                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_exec);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    var Result = dt.Rows[0]["Result"].ToString();//jsondataChild.First.GetValue("Result").Value;
+                    var Message = dt.Rows[0]["Message"].ToString(); // jsondataChild.First.GetValue("Message").Value;
+                    if (Result == "1")
+                    {
+                        LoadInfoProductGroup();
+                        listdetails = null;
+                        dgcDetails.DataSource = listdetails;
+                        dgvDetails.RefreshData();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(Message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                //if (Result == 1)
+                //{
+                //    LoadInfoProductGroup();
+                //}
+                //else
+                //{
+                //    XtraMessageBox.Show(Message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //}
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "DeleteGroup()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "DeleteGroup()", ex.ToString()));
+            }
         }
         /// <summary>
         /// xóa tay từng line
@@ -331,8 +398,8 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "DeleteDetails()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "DeleteDetails()", ex.ToString()));
+            }
         }
         /// <summary>
         /// Xóa nhiều dòng
@@ -373,8 +440,8 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "XoaNhieuLine()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "XoaNhieuLine()", ex.ToString()));
+            }
         }
         #endregion Function
 
@@ -387,21 +454,33 @@ namespace IPC247
 
         private void TaoMoi()
         {
-            IDGroup = "0";
-            ProductGroupHeader ob = new ProductGroupHeader();
-            ob.ProductGroupName = txtTenNhom.Text;
-            ob.CreateBy = Form_Main.user.Username;
-            listHeader.Add(ob);
-            dgc_Main.DataSource = listHeader;
-            dgv_Main.RefreshData();
-            dgv_Main.BestFitColumns(true);
-            ProductGroupDetails obd = new ProductGroupDetails();
-            listdetails = new List<ProductGroupDetails>();
-            obd.SoLuong = 1;
-            listdetails.Add(obd);
-            dgcDetails.DataSource = listdetails;
-            dgvDetails.RefreshData();
-            dgvDetails.BestFitColumns(true);
+            try
+            {
+                IDGroup = "0";
+                ProductGroupHeader ob = new ProductGroupHeader();
+                ob.ProductGroupName = txtTenNhom.Text;
+                ob.CreateBy = Form_Main.user.Username;
+                if(listHeader == null)
+                {
+                    listHeader = new List<ProductGroupHeader>();
+                }
+                listHeader.Add(ob);
+                dgc_Main.DataSource = listHeader;
+                dgv_Main.RefreshData();
+                dgv_Main.BestFitColumns(true);
+                ProductGroupDetails obd = new ProductGroupDetails();
+                listdetails = new List<ProductGroupDetails>();
+                obd.SoLuong = 1;
+                listdetails.Add(obd);
+                dgcDetails.DataSource = listdetails;
+                dgvDetails.RefreshData();
+                dgvDetails.BestFitColumns(true);
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "TaoMoi()", ex.ToString()));
+            }
+          
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
@@ -438,8 +517,8 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "thêmSảnPhẩmToolStripMenuItem_Click()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Login", "thêmSảnPhẩmToolStripMenuItem_Click()", ex.ToString()));
+            }
         }
 
         private void dgv_Main_RowClick(object sender, RowClickEventArgs e)
@@ -451,7 +530,7 @@ namespace IPC247
         {
             repositoryItemSearchLookUpEdit1View.BestFitColumns();
         }
-      
+
         private void searchSanPham_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
         {
             int focus = dgvDetails.FocusedRowHandle;
@@ -467,9 +546,9 @@ namespace IPC247
                     dgvDetails.SetFocusedRowCellValue("Price", row.Price.ToString());
 
                     focus = dgv_Main.FocusedRowHandle;
-                    if(focus>=0)
+                    if (focus >= 0)
                     {
-                        dgv_Main.SetFocusedRowCellValue("TongTien", listdetails.Sum(o=>o.ThanhTien));
+                        dgv_Main.SetFocusedRowCellValue("TongTien", listdetails.Sum(o => o.ThanhTien));
                         dgv_Main.BestFitColumns(true);
                     }
                     dgvDetails.BestFitColumns(true);
@@ -505,8 +584,8 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProductGroup()", ex.ToString()));
-			}
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_ProductGroup", "LoadInfoProductGroup()", ex.ToString()));
+            }
         }
 
         private void btnHuyNhom_Click(object sender, EventArgs e)
@@ -516,42 +595,42 @@ namespace IPC247
             //LoadInfoProductGroup();
         }
 
-		private void tạoBảnSaoToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			int focus = dgv_Main.FocusedRowHandle;
-			if (focus >= 0)
-			{
-				ProductGroupHeader ob = (ProductGroupHeader)dgv_Main.GetFocusedRow();
-				if (ob != null)
-				{
-					ProductGroupHeader ob1 = new ProductGroupHeader(ob);
-					ob1.ID = "0";
-					ob1.ProductGroupName = ob1.ProductGroupName + "-(Copy)";
-					ob1.CreateBy = Form_Main.user.Username;
-					ob1.CreateDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-					ob1.UpdateBy = "";
-					ob.CreateDate = "";
-					listHeader.Add(ob1);
-					dgv_Main.RefreshData();
-				}
-			}
-		}
+        private void tạoBảnSaoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int focus = dgv_Main.FocusedRowHandle;
+            if (focus >= 0)
+            {
+                ProductGroupHeader ob = (ProductGroupHeader)dgv_Main.GetFocusedRow();
+                if (ob != null)
+                {
+                    ProductGroupHeader ob1 = new ProductGroupHeader(ob);
+                    ob1.ID = "0";
+                    ob1.ProductGroupName = ob1.ProductGroupName + "-(Copy)";
+                    ob1.CreateBy = Form_Main.user.Username;
+                    ob1.CreateDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                    ob1.UpdateBy = "";
+                    ob.CreateDate = "";
+                    listHeader.Add(ob1);
+                    dgv_Main.RefreshData();
+                }
+            }
+        }
 
-		private void tạoNhómMớiToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			TaoMoi();
-		}
+        private void tạoNhómMớiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TaoMoi();
+        }
 
-		private void CậpNhậtNhóm_Click(object sender, EventArgs e)
-		{
-			SaveProductGroup();
-		}
+        private void CậpNhậtNhóm_Click(object sender, EventArgs e)
+        {
+            SaveProductGroup();
+        }
 
-		private void HủyNhóm_Click(object sender, EventArgs e)
-		{
-			DeleteGroup();
-		}
+        private void HủyNhóm_Click(object sender, EventArgs e)
+        {
+            DeleteGroup();
+        }
 
-		#endregion Event
-	}
+        #endregion Event
+    }
 }
