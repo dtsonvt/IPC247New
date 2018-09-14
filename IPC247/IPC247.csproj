@@ -159,6 +159,7 @@
     <Compile Include="Class\ProductGroup.cs" />
     <Compile Include="Class\Quote.cs" />
     <Compile Include="Class\SQLHelper.cs" />
+    <Compile Include="Class\StringCipher.cs" />
     <Compile Include="FormChild\Form_Add_Enquiry.cs">
       <SubType>Form</SubType>
     </Compile>

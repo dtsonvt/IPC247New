@@ -86,7 +86,7 @@ namespace IPC247
 					else
 					{
 						XtraMessageBox.Show(Message, "Thông Báo");
-						this.Show();
+						this.ShowDialog();
 					}
 				}
 				else

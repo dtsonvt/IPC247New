@@ -133,7 +133,17 @@ namespace IPC247
 					XtraMessageBox.Show("Trong báo giá có ít nhất một sản phẩm không còn bán!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 					return;
 				}
-
+                /// thêm ràng buộc: nếu đã chọn dự án thì bắt buộc phải có yêu cầu từ dự án đó
+                /// nếu đã đủ ràng buộc sẽ lưu thông tin Enquiry trước
+                if(txtDuAn.Text.Length > 0)
+                {
+                    if(txtEnquiry.Text.Length == 0 || dteDeadLine.Text.Length == 0)
+                    {
+                        XtraMessageBox.Show("Dự án phải có yêu cầu và DeadLine theo dự án đó", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
+                }
+               
 				var xEle = new XElement("line",
 				from emp in lst
 				select new XElement("item",
@@ -209,6 +219,9 @@ namespace IPC247
                 param.Add("ID_Enquiry", en.ID_Enquiry);//14
                 param.Add("IDCardCode", cus.ID);//15
                 param.Add("Company", com.ID);//16
+                param.Add("EnquiryName", txtDuAn.Text);//17
+                param.Add("EnquiryDetail", txtEnquiry.Text);//18
+                param.Add("DeadLine", dteDeadLine.DateTime.ToString("dd/MM/yyyy HH:mm:ss"));//19
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDataTableUndefine("sp_SaveQuote", param);
 

@@ -11,7 +11,7 @@ namespace IPC247
 {
     public class SQLHelper
     {
-        public static string str_connect = System.Configuration.ConfigurationManager.ConnectionStrings["IPC247ConnectionString"].ConnectionString;
+        public static string str_connect = StringCipher.Decrypt(System.Configuration.ConfigurationManager.ConnectionStrings["IPC247ConnectionString"].ConnectionString, "IPC247@2018");
         private static DataTable ExecuteNonQuery(SqlCommand cmd)
         {
             DataTable dtTemp = new DataTable();
@@ -32,7 +32,26 @@ namespace IPC247
                 return dtTemp;
             }
         }
+        private static DataSet ExecuteNonQuery_DataSet(SqlCommand cmd)
+        {
+            DataSet dtTemp = new DataSet();
+            try
+            {
+                using (SqlDataAdapter dt = new SqlDataAdapter(cmd))
+                {
+                    dt.SelectCommand = cmd;
+                    cmd.CommandTimeout = 100000;
 
+                    dt.Fill(dtTemp);
+                    return dtTemp;
+                }
+            }
+            catch (Exception ex)
+            {
+                SendMailERROR(string.Format("Lỗi rồi ExecuteNonQuery_DataSet: {0}", ex.ToString()));
+                return dtTemp;
+            }
+        }
         public static DataTable ExecuteDataTable(string sql_exec)
         {
             DataTable dt = new DataTable();
@@ -78,6 +97,29 @@ namespace IPC247
                 return dt;
             }
            
+        }
+        public static DataSet ExecuteDataSetByQuery(string sql_exec)
+        {
+            DataSet dt = new DataSet();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(str_connect))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql_exec, conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        conn.Open();
+                        dt = ExecuteNonQuery_DataSet(cmd);
+                    }
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                SendMailERROR(string.Format("Lỗi rồi ExecuteDataTableByQuery: {0}", ex.ToString()));
+                return dt;
+            }
+
         }
         public static DataTable ExecuteDataTableUndefine(string sql_exec, Dictionary<string, object> parameters)
         {
