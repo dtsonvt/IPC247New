@@ -194,7 +194,7 @@ namespace IPC247
                     SqlBulkCopy bulkInsert = new SqlBulkCopy(conn);
                     bulkInsert.DestinationTableName = "T_Product_temp";
                   //  dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-                    dtInput.Columns.Remove("Id");
+                   // dtInput.Columns.Remove("Id");
                     bulkInsert.WriteToServer(dtInput);
 
                 }

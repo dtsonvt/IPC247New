@@ -223,7 +223,7 @@ namespace IPC247
 
                 if(dt!=null && dt.Rows.Count > 0)
                 {
-                    System.Data.DataColumn newColumn = new System.Data.DataColumn("Id", typeof(System.String));
+                    System.Data.DataColumn newColumn = new System.Data.DataColumn("CreateBy", typeof(System.String));
                     newColumn.DefaultValue = Form_Main.user.Username;
                     dt.Columns.Add(newColumn);
 
@@ -235,6 +235,7 @@ namespace IPC247
                     }
                     else
                     {
+                        XtraMessageBox.Show("Dữ liệu đã được import!","Thông Báo");
                         LoadInfoProduct();
                         btnImport.Enabled = false;
                     }
