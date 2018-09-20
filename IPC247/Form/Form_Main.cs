@@ -15,6 +15,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Net;
+using System.Diagnostics;
 
 namespace IPC247
 {
@@ -28,6 +29,7 @@ namespace IPC247
         //public static string URL_Log = ConfigurationManager.AppSettings["URL_Log"].ToString();
         public static string IPAddress = "";
         bool exist = false;
+        int Time_Close = -1;
         #endregion Static Param
 
         #region Function 
@@ -60,6 +62,23 @@ namespace IPC247
                 else
                 {
                     version = dt.Rows[0][0].ToString();
+                    try
+                    {
+                        string filePath = AppDomain.CurrentDomain.BaseDirectory + "version.txt";
+                        if (File.Exists(filePath))
+                        {
+                            File.Delete(filePath);
+                        }
+                        using (StreamWriter sw = File.CreateText(filePath))
+                        {
+                            sw.WriteLine(version);
+                            sw.WriteLine(dt.Rows[0][1].ToString());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Main", "GetVersion() - write version", ex.ToString()));
+                    }
                 }
             }
 			catch (Exception ex)
@@ -254,18 +273,11 @@ namespace IPC247
         {
 			try
 			{
-				IPAddress = getIP();
-				/// check version:
-				/// 
-				string _version = System.Windows.Forms.Application.ProductVersion;
-                string ver = GetVersion(); 
-                if (_version != ver)
-				{
-					XtraMessageBox.Show(string.Format("Version Hiện Tại là {0}, Vui lòng cập nhật bản mới nhất!", ver), "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-					Flag_ExitNow = true;
-					Application.Exit();
-				}
-			}
+                //string a = @"Data Source=171.244.140.175;Initial Catalog=IPC247Test;Persist Security Info=True;User ID=sa;Password=123456a@";
+                //a = StringCipher.Encrypt(a,"IPC247@2018");
+                //a = StringCipher.Decrypt(a, "IPC247@2018");
+                IPAddress = getIP();
+            }
 			catch (Exception)
 			{
 				IPAddress = "";
@@ -273,6 +285,33 @@ namespace IPC247
 			if (!Flag_Login)
             {
                 this.Hide();
+
+                #region Xử lý update
+                string _version = System.Windows.Forms.Application.ProductVersion;
+                string ver = GetVersion();
+                if (_version != ver)
+                {
+                    Flag_ExitNow = true;
+                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "AutoUpdate.exe"))
+                    {
+                        try
+                        {
+                            Process.Start(AppDomain.CurrentDomain.BaseDirectory + "AutoUpdate.exe");
+                            Application.Exit();
+                        }
+                        catch (Exception)
+                        {
+                            Application.Exit();
+                        }
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Không tìm thấy File AutoUpdate!, liên hệ quản trị để được hỗ trợ", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        Application.Exit();
+                    }
+                }
+                #endregion
+
                 Form_Login frm = new Form_Login();
                 frm.FormClosed += Frm_FormClosed;
                 frm.ShowDialog();
@@ -552,18 +591,50 @@ namespace IPC247
 
                 //var jsondata = JObject.Parse(json).GetValue("Data");
                 //DataTable dt = (DataTable)JsonConvert.DeserializeObject(jsondata.ToString(), (typeof(DataTable)));
-                DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect); 
-                if(dt!=null && dt.Rows.Count > 0)
+                DataSet ds = SQLHelper.ExecuteDataSetByQuery(sql_Exect); 
+                if(ds!= null && ds.Tables.Count == 2)
                 {
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    DataTable dt = ds.Tables[0];
+                    if (dt != null && dt.Rows.Count > 0)
                     {
-                        string Caption = dt.Rows[i]["Caption"].ToString();
-                        string Body = dt.Rows[i]["Body"].ToString();
-                        int AutoFormDelay;
-                        int.TryParse(dt.Rows[i]["AutoFormDelay"].ToString(), out AutoFormDelay);
-                        alertControl1.AutoFormDelay = AutoFormDelay;
-                        alertControl1.Show(this, Caption, Body, "", Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image/switchtimescalesto_32x32.png"), null);
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            string Caption = dt.Rows[i]["Caption"].ToString();
+                            string Body = dt.Rows[i]["Body"].ToString();
+                            int AutoFormDelay;
+                            int.TryParse(dt.Rows[i]["AutoFormDelay"].ToString(), out AutoFormDelay);
+                            alertControl1.AutoFormDelay = AutoFormDelay;
+                            alertControl1.Show(this, Caption, Body, "", Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image/switchtimescalesto_32x32.png"), null);
+                        }
                     }
+                    #region Kiểm tra version sử dụng
+                    dt = ds.Tables[1];
+                    if(dt!=null && dt.Rows.Count > 0)
+                    {
+                        string _version = System.Windows.Forms.Application.ProductVersion;
+                        if(_version == dt.Rows[0][0].ToString())
+                        {
+                            Time_Close = -1;
+                        }
+                        else
+                        {
+                            //
+                            if(Time_Close == 0)
+                            {
+                                Application.Exit();
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show("Đã có version mới!, Vui lòng khởi động lại phần mềm. HOẶC PHẦN MỀM TỰ KHỞI ĐỘNG LẠI SAU 5 PHÚT", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                Time_Close = 0;
+                            }
+                        }
+                    }
+                    #endregion Kiểm tra version sử dụng
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Main", "Get_Push_Notify_Tick()", sql_Exect + "\r\n" + "Không có kết quả trả về"));
                 }
             }
             catch (Exception ex)

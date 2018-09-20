@@ -21,9 +21,35 @@ namespace AutoUpdate
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            try
+            {
+                do
+                {
+                    foreach (var process in Process.GetProcessesByName("IPC247"))
+                    {
+                        process.Kill();
+                    }
+                } while (Process.GetProcessesByName("IPC247").Count() > 0);
+            }
+            catch (Exception ex)
+            {
+              //  SendMailERROR(string.Format("Lỗi rồi Kill IPC247: {0}", ex.ToString()));
+            }
+            string path_FileVersion = AppDomain.CurrentDomain.BaseDirectory + "version.txt";
+            if(File.Exists(path_FileVersion))
+            {
+                string[] lines = System.IO.File.ReadAllLines(path_FileVersion);
+                if(lines.Count() == 2)
+                {
+                    lblCapNhat.Text = "AUTO UPDATE " + lines[0].ToString();
+                    string thongbao = lines[1].ToString();
+                    string[] row = thongbao.Split('-');
+                    this.Height = this.Height + 12 * (row.Count()-1);
+                    lblUpdateDetails.Text = thongbao.Replace("-", "\r\n");
+                }
+            }
         }
 
         private void startDownload(string Url, string Path_File)
@@ -40,7 +66,7 @@ namespace AutoUpdate
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Thông Báo", "Đã Phát sinh lỗi trong quá trình xử lý, Vui lòng liên hệ quản trị để được hỗ trợ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đã Phát sinh lỗi trong quá trình xử lý, Vui lòng liên hệ quản trị để được hỗ trợ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SendMailERROR(string.Format("Lỗi rồi startDownload: {0}", ex.ToString()));
                 Application.Exit();
             }
@@ -81,7 +107,7 @@ namespace AutoUpdate
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Thông Báo", "Đã Phát sinh lỗi trong quá trình xử lý, Vui lòng liên hệ quản trị để được hỗ trợ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đã Phát sinh lỗi trong quá trình xử lý, Vui lòng liên hệ quản trị để được hỗ trợ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SendMailERROR(string.Format("Lỗi rồi client_DownloadProgressChanged: {0}", ex.ToString()));
                 Application.Exit();
             }
@@ -111,22 +137,23 @@ namespace AutoUpdate
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Thông Báo", "Đã Phát sinh lỗi trong quá trình xử lý, Vui lòng liên hệ quản trị để được hỗ trợ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show( "Đã Phát sinh lỗi trong quá trình xử lý, Vui lòng liên hệ quản trị để được hỗ trợ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SendMailERROR(string.Format("Lỗi rồi client_DownloadFileCompleted: {0}", ex.ToString()));
                 Application.Exit();
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string Url = "http://171.244.140.175:2018/Uploads/Update/Update1_0_0_5.zip";
-            string Path_File = AppDomain.CurrentDomain.BaseDirectory + "Update.Zip";
-            startDownload(Url, Path_File);
-        }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string Url = "http://171.244.140.175:2018/Uploads/Update/Update.zip";
+            string Path_File = AppDomain.CurrentDomain.BaseDirectory + "Update.Zip";
+            startDownload(Url, Path_File);
         }
     }
 }

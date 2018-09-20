@@ -168,7 +168,7 @@ namespace IPC247
                 param.Add("ID", IDCardCode); //0
                 param.Add("CardName", txtTenKH.Text); //1
                 param.Add("Address", txtDiaChi.Text); //2
-                param.Add("Company", txtTenKH.Text); //3
+                param.Add("Company", txtCongTy.EditValue.ToString()); //3
                 param.Add("Phone", txtSDT.Text); //4
                 param.Add("Email", txtEmail.Text); //5
                 param.Add("Status", txtTrangThai.EditValue.ToString()); //6

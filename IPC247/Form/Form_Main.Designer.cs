@@ -214,7 +214,7 @@
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Show;
             this.ribbonControl1.ShowQatLocationSelector = false;
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(997, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(997, 148);
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             this.ribbonControl1.Click += new System.EventHandler(this.ribbonControl1_Click);
             // 
