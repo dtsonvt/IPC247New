@@ -178,6 +178,12 @@
     <Compile Include="FormChild\Form_Search_Customer.Designer.cs">
       <DependentUpon>Form_Search_Customer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Commission\Frm_Commission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Commission\Frm_Commission.Designer.cs">
+      <DependentUpon>Frm_Commission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Form_EnquiryReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +280,12 @@
     <Compile Include="FormChild\Form_Search_Company.Designer.cs">
       <DependentUpon>Form_Search_Company.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Commission\MasterData_Commission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Commission\MasterData_Commission.Designer.cs">
+      <DependentUpon>MasterData_Commission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\User.cs" />
@@ -294,6 +306,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormChild\Form_Search_Customer.resx">
       <DependentUpon>Form_Search_Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Commission\Frm_Commission.resx">
+      <DependentUpon>Frm_Commission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Commission\MasterData_Commission.resx">
+      <DependentUpon>MasterData_Commission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form_EnquiryReport.resx">
       <DependentUpon>Form_EnquiryReport.cs</DependentUpon>
@@ -397,6 +415,8 @@
     <Content Include="icon.ico" />
     <Content Include="icon_b_5FE_icon.ico" />
     <Content Include="ipc247_370x471_SjF_icon.ico" />
+    <None Include="Resources\financial_16x16.png" />
+    <None Include="Resources\financial_32x32.png" />
     <None Include="Resources\managerules_16x16.png" />
     <None Include="Resources\managerules_32x32.png" />
     <None Include="Resources\switchtimescalesto_32x32.png" />

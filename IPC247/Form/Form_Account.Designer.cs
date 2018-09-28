@@ -153,7 +153,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(769, 289);
+            this.labelControl2.Location = new System.Drawing.Point(769, 288);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(79, 19);
             this.labelControl2.StyleController = this.lct_Main;
@@ -162,7 +162,7 @@
             // 
             // lblTrangThai
             // 
-            this.lblTrangThai.Location = new System.Drawing.Point(769, 266);
+            this.lblTrangThai.Location = new System.Drawing.Point(769, 265);
             this.lblTrangThai.Name = "lblTrangThai";
             this.lblTrangThai.Size = new System.Drawing.Size(51, 19);
             this.lblTrangThai.StyleController = this.lct_Main;
@@ -171,7 +171,7 @@
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(769, 312);
+            this.btnCapNhat.Location = new System.Drawing.Point(769, 311);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(134, 22);
             this.btnCapNhat.StyleController = this.lct_Main;
@@ -181,7 +181,7 @@
             // 
             // btnHuyTK
             // 
-            this.btnHuyTK.Location = new System.Drawing.Point(907, 312);
+            this.btnHuyTK.Location = new System.Drawing.Point(907, 311);
             this.btnHuyTK.Name = "btnHuyTK";
             this.btnHuyTK.Size = new System.Drawing.Size(117, 22);
             this.btnHuyTK.StyleController = this.lct_Main;
@@ -191,7 +191,7 @@
             // 
             // txtNhapLaiMatKhau
             // 
-            this.txtNhapLaiMatKhau.Location = new System.Drawing.Point(861, 94);
+            this.txtNhapLaiMatKhau.Location = new System.Drawing.Point(861, 92);
             this.txtNhapLaiMatKhau.Name = "txtNhapLaiMatKhau";
             this.txtNhapLaiMatKhau.Properties.PasswordChar = '*';
             this.txtNhapLaiMatKhau.Size = new System.Drawing.Size(163, 20);
@@ -200,7 +200,7 @@
             // 
             // btnTao
             // 
-            this.btnTao.Location = new System.Drawing.Point(976, 44);
+            this.btnTao.Location = new System.Drawing.Point(976, 42);
             this.btnTao.Name = "btnTao";
             this.btnTao.Size = new System.Drawing.Size(48, 22);
             this.btnTao.StyleController = this.lct_Main;
@@ -210,7 +210,7 @@
             // 
             // txtSDT
             // 
-            this.txtSDT.Location = new System.Drawing.Point(861, 242);
+            this.txtSDT.Location = new System.Drawing.Point(861, 241);
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(163, 20);
             this.txtSDT.StyleController = this.lct_Main;
@@ -218,7 +218,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(861, 218);
+            this.txtEmail.Location = new System.Drawing.Point(861, 217);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(163, 20);
             this.txtEmail.StyleController = this.lct_Main;
@@ -226,7 +226,7 @@
             // 
             // txtTenUser
             // 
-            this.txtTenUser.Location = new System.Drawing.Point(861, 118);
+            this.txtTenUser.Location = new System.Drawing.Point(861, 116);
             this.txtTenUser.Name = "txtTenUser";
             this.txtTenUser.Size = new System.Drawing.Size(163, 20);
             this.txtTenUser.StyleController = this.lct_Main;
@@ -234,7 +234,7 @@
             // 
             // txtMatKhau
             // 
-            this.txtMatKhau.Location = new System.Drawing.Point(861, 70);
+            this.txtMatKhau.Location = new System.Drawing.Point(861, 68);
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Properties.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(163, 20);
@@ -243,7 +243,7 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(861, 44);
+            this.txtUserName.Location = new System.Drawing.Point(861, 42);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(111, 20);
             this.txtUserName.StyleController = this.lct_Main;
@@ -251,10 +251,10 @@
             // 
             // dgc_Main
             // 
-            this.dgc_Main.Location = new System.Drawing.Point(24, 44);
+            this.dgc_Main.Location = new System.Drawing.Point(24, 42);
             this.dgc_Main.MainView = this.dgv_Main;
             this.dgc_Main.Name = "dgc_Main";
-            this.dgc_Main.Size = new System.Drawing.Size(717, 436);
+            this.dgc_Main.Size = new System.Drawing.Size(717, 438);
             this.dgc_Main.TabIndex = 4;
             this.dgc_Main.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dgv_Main});
@@ -421,7 +421,7 @@
             // 
             // cbbNhomQuyen
             // 
-            this.cbbNhomQuyen.Location = new System.Drawing.Point(861, 142);
+            this.cbbNhomQuyen.Location = new System.Drawing.Point(861, 140);
             this.cbbNhomQuyen.Name = "cbbNhomQuyen";
             this.cbbNhomQuyen.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -442,31 +442,31 @@
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.Location = new System.Drawing.Point(861, 166);
+            this.txtDiaChi.Location = new System.Drawing.Point(861, 164);
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(163, 48);
+            this.txtDiaChi.Size = new System.Drawing.Size(163, 49);
             this.txtDiaChi.StyleController = this.lct_Main;
             this.txtDiaChi.TabIndex = 19;
             // 
             // cbbTrangThaiDangNhap
             // 
             this.cbbTrangThaiDangNhap.EditValue = null;
-            this.cbbTrangThaiDangNhap.Location = new System.Drawing.Point(862, 289);
+            this.cbbTrangThaiDangNhap.Location = new System.Drawing.Point(862, 288);
             this.cbbTrangThaiDangNhap.Name = "cbbTrangThaiDangNhap";
             this.cbbTrangThaiDangNhap.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.cbbTrangThaiDangNhap.Properties.Caption = "Đang Login";
-            this.cbbTrangThaiDangNhap.Size = new System.Drawing.Size(162, 20);
+            this.cbbTrangThaiDangNhap.Size = new System.Drawing.Size(162, 19);
             this.cbbTrangThaiDangNhap.StyleController = this.lct_Main;
             this.cbbTrangThaiDangNhap.TabIndex = 5;
             // 
             // txtTrangThai
             // 
             this.txtTrangThai.EditValue = null;
-            this.txtTrangThai.Location = new System.Drawing.Point(861, 266);
+            this.txtTrangThai.Location = new System.Drawing.Point(861, 265);
             this.txtTrangThai.Name = "txtTrangThai";
             this.txtTrangThai.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Default;
             this.txtTrangThai.Properties.Caption = "Được Sử Dụng";
-            this.txtTrangThai.Size = new System.Drawing.Size(163, 20);
+            this.txtTrangThai.Size = new System.Drawing.Size(163, 19);
             this.txtTrangThai.StyleController = this.lct_Main;
             this.txtTrangThai.TabIndex = 13;
             // 
@@ -510,7 +510,7 @@
             // lctTrangThaiLogin
             // 
             this.lctTrangThaiLogin.Control = this.cbbTrangThaiDangNhap;
-            this.lctTrangThaiLogin.Location = new System.Drawing.Point(93, 245);
+            this.lctTrangThaiLogin.Location = new System.Drawing.Point(93, 246);
             this.lctTrangThaiLogin.MaxSize = new System.Drawing.Size(166, 23);
             this.lctTrangThaiLogin.MinSize = new System.Drawing.Size(166, 23);
             this.lctTrangThaiLogin.Name = "lctTrangThaiLogin";
@@ -559,7 +559,7 @@
             // lctEmail
             // 
             this.lctEmail.Control = this.txtEmail;
-            this.lctEmail.Location = new System.Drawing.Point(0, 174);
+            this.lctEmail.Location = new System.Drawing.Point(0, 175);
             this.lctEmail.Name = "lctEmail";
             this.lctEmail.Size = new System.Drawing.Size(259, 24);
             this.lctEmail.Text = "Email";
@@ -568,7 +568,7 @@
             // lctSDT
             // 
             this.lctSDT.Control = this.txtSDT;
-            this.lctSDT.Location = new System.Drawing.Point(0, 198);
+            this.lctSDT.Location = new System.Drawing.Point(0, 199);
             this.lctSDT.Name = "lctSDT";
             this.lctSDT.Size = new System.Drawing.Size(259, 24);
             this.lctSDT.Text = "SĐT";
@@ -577,7 +577,7 @@
             // lctTrangThai
             // 
             this.lctTrangThai.Control = this.txtTrangThai;
-            this.lctTrangThai.Location = new System.Drawing.Point(92, 222);
+            this.lctTrangThai.Location = new System.Drawing.Point(92, 223);
             this.lctTrangThai.MaxSize = new System.Drawing.Size(167, 23);
             this.lctTrangThai.MinSize = new System.Drawing.Size(167, 23);
             this.lctTrangThai.Name = "lctTrangThai";
@@ -590,9 +590,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 294);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 295);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(259, 146);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(259, 147);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
@@ -619,7 +619,7 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnHuyTK;
-            this.layoutControlItem4.Location = new System.Drawing.Point(138, 268);
+            this.layoutControlItem4.Location = new System.Drawing.Point(138, 269);
             this.layoutControlItem4.MaxSize = new System.Drawing.Size(121, 26);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(121, 26);
             this.layoutControlItem4.Name = "layoutControlItem4";
@@ -631,7 +631,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCapNhat;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 268);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 269);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(138, 26);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(138, 26);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -646,14 +646,14 @@
             this.lctDiaChi.CustomizationFormText = "Địa Chỉ";
             this.lctDiaChi.Location = new System.Drawing.Point(0, 122);
             this.lctDiaChi.Name = "lctDiaChi";
-            this.lctDiaChi.Size = new System.Drawing.Size(259, 52);
+            this.lctDiaChi.Size = new System.Drawing.Size(259, 53);
             this.lctDiaChi.Text = "Địa Chỉ";
             this.lctDiaChi.TextSize = new System.Drawing.Size(89, 13);
             // 
             // lctTrangThaiUser
             // 
             this.lctTrangThaiUser.Control = this.lblTrangThai;
-            this.lctTrangThaiUser.Location = new System.Drawing.Point(0, 222);
+            this.lctTrangThaiUser.Location = new System.Drawing.Point(0, 223);
             this.lctTrangThaiUser.MaxSize = new System.Drawing.Size(55, 23);
             this.lctTrangThaiUser.MinSize = new System.Drawing.Size(55, 23);
             this.lctTrangThaiUser.Name = "lctTrangThaiUser";
@@ -668,7 +668,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.labelControl2;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 245);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 246);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(83, 23);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(83, 23);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -680,7 +680,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(55, 222);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(55, 223);
             this.emptySpaceItem2.MaxSize = new System.Drawing.Size(37, 23);
             this.emptySpaceItem2.MinSize = new System.Drawing.Size(37, 23);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
@@ -691,7 +691,7 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(83, 245);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(83, 246);
             this.emptySpaceItem3.MaxSize = new System.Drawing.Size(10, 23);
             this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 23);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
@@ -713,7 +713,7 @@
             this.layoutControlItem1.Control = this.dgc_Main;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(721, 440);
+            this.layoutControlItem1.Size = new System.Drawing.Size(721, 442);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 

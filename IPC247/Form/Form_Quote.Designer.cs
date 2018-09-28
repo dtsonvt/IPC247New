@@ -248,7 +248,7 @@
             // dteDeadLine
             // 
             this.dteDeadLine.EditValue = null;
-            this.dteDeadLine.Location = new System.Drawing.Point(272, 164);
+            this.dteDeadLine.Location = new System.Drawing.Point(272, 162);
             this.dteDeadLine.Name = "dteDeadLine";
             this.dteDeadLine.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -265,7 +265,7 @@
             // 
             // txtDuAn
             // 
-            this.txtDuAn.Location = new System.Drawing.Point(106, 164);
+            this.txtDuAn.Location = new System.Drawing.Point(106, 162);
             this.txtDuAn.Name = "txtDuAn";
             this.txtDuAn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
@@ -276,7 +276,7 @@
             // 
             // btnLamMoi
             // 
-            this.btnLamMoi.Location = new System.Drawing.Point(1184, 122);
+            this.btnLamMoi.Location = new System.Drawing.Point(1184, 120);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(103, 22);
             this.btnLamMoi.StyleController = this.lctMain;
@@ -288,7 +288,7 @@
             // 
             this.txtDieuKhoan.EditValue = "+ Thanh toán 100% trước khi giao hàng.\r\n+ Thanh toán bằng VNĐ theo tỷ giá USD tại" +
     " Vietcombank tại ngày xuất hóa đơn.";
-            this.txtDieuKhoan.Location = new System.Drawing.Point(106, 245);
+            this.txtDieuKhoan.Location = new System.Drawing.Point(106, 243);
             this.txtDieuKhoan.Name = "txtDieuKhoan";
             this.txtDieuKhoan.Size = new System.Drawing.Size(263, 74);
             this.txtDieuKhoan.StyleController = this.lctMain;
@@ -300,7 +300,7 @@
             this.btnCapNhat.Appearance.ForeColor = System.Drawing.Color.Red;
             this.btnCapNhat.Appearance.Options.UseFont = true;
             this.btnCapNhat.Appearance.Options.UseForeColor = true;
-            this.btnCapNhat.Location = new System.Drawing.Point(979, 297);
+            this.btnCapNhat.Location = new System.Drawing.Point(979, 295);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(86, 22);
             this.btnCapNhat.StyleController = this.lctMain;
@@ -314,7 +314,7 @@
             this.btnAdd.Appearance.ForeColor = System.Drawing.Color.Green;
             this.btnAdd.Appearance.Options.UseFont = true;
             this.btnAdd.Appearance.Options.UseForeColor = true;
-            this.btnAdd.Location = new System.Drawing.Point(884, 297);
+            this.btnAdd.Location = new System.Drawing.Point(884, 295);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(91, 22);
             this.btnAdd.StyleController = this.lctMain;
@@ -324,7 +324,7 @@
             // 
             // btnTaoBaoGia
             // 
-            this.btnTaoBaoGia.Location = new System.Drawing.Point(1184, 44);
+            this.btnTaoBaoGia.Location = new System.Drawing.Point(1184, 42);
             this.btnTaoBaoGia.Name = "btnTaoBaoGia";
             this.btnTaoBaoGia.Size = new System.Drawing.Size(103, 22);
             this.btnTaoBaoGia.StyleController = this.lctMain;
@@ -334,7 +334,7 @@
             // 
             // btnTimBaoGia
             // 
-            this.btnTimBaoGia.Location = new System.Drawing.Point(1184, 70);
+            this.btnTimBaoGia.Location = new System.Drawing.Point(1184, 68);
             this.btnTimBaoGia.Name = "btnTimBaoGia";
             this.btnTimBaoGia.Size = new System.Drawing.Size(103, 22);
             this.btnTimBaoGia.StyleController = this.lctMain;
@@ -344,7 +344,7 @@
             // 
             // btnInBaoGia
             // 
-            this.btnInBaoGia.Location = new System.Drawing.Point(1184, 96);
+            this.btnInBaoGia.Location = new System.Drawing.Point(1184, 94);
             this.btnInBaoGia.Name = "btnInBaoGia";
             this.btnInBaoGia.Size = new System.Drawing.Size(103, 22);
             this.btnInBaoGia.StyleController = this.lctMain;
@@ -354,7 +354,7 @@
             // 
             // txtMaSP
             // 
-            this.txtMaSP.Location = new System.Drawing.Point(946, 44);
+            this.txtMaSP.Location = new System.Drawing.Point(946, 42);
             this.txtMaSP.Name = "txtMaSP";
             this.txtMaSP.Size = new System.Drawing.Size(210, 20);
             this.txtMaSP.StyleController = this.lctMain;
@@ -363,7 +363,7 @@
             // searchSP
             // 
             this.searchSP.EditValue = "[Tìm Kiếm Sản Phẩm]";
-            this.searchSP.Location = new System.Drawing.Point(479, 44);
+            this.searchSP.Location = new System.Drawing.Point(479, 42);
             this.searchSP.Name = "searchSP";
             this.searchSP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
@@ -476,7 +476,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(106, 140);
+            this.txtEmail.Location = new System.Drawing.Point(106, 138);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(138, 20);
             this.txtEmail.StyleController = this.lctMain;
@@ -484,7 +484,7 @@
             // 
             // txtTel
             // 
-            this.txtTel.Location = new System.Drawing.Point(232, 116);
+            this.txtTel.Location = new System.Drawing.Point(232, 114);
             this.txtTel.Name = "txtTel";
             this.txtTel.Size = new System.Drawing.Size(137, 20);
             this.txtTel.StyleController = this.lctMain;
@@ -492,7 +492,7 @@
             // 
             // txtSDT
             // 
-            this.txtSDT.Location = new System.Drawing.Point(106, 116);
+            this.txtSDT.Location = new System.Drawing.Point(106, 114);
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(103, 20);
             this.txtSDT.StyleController = this.lctMain;
@@ -500,7 +500,7 @@
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.Location = new System.Drawing.Point(106, 92);
+            this.txtDiaChi.Location = new System.Drawing.Point(106, 90);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(263, 20);
             this.txtDiaChi.StyleController = this.lctMain;
@@ -509,13 +509,13 @@
             // dgc_BaoGia
             // 
             this.dgc_BaoGia.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgc_BaoGia.Location = new System.Drawing.Point(12, 335);
+            this.dgc_BaoGia.Location = new System.Drawing.Point(12, 333);
             this.dgc_BaoGia.MainView = this.dgv_BaoGia;
             this.dgc_BaoGia.Name = "dgc_BaoGia";
             this.dgc_BaoGia.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.memoTenSP,
             this.memoMoTa});
-            this.dgc_BaoGia.Size = new System.Drawing.Size(1287, 300);
+            this.dgc_BaoGia.Size = new System.Drawing.Size(1287, 302);
             this.dgc_BaoGia.TabIndex = 6;
             this.dgc_BaoGia.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dgv_BaoGia});
@@ -756,7 +756,7 @@
             // 
             // txtTenBaoGia
             // 
-            this.txtTenBaoGia.Location = new System.Drawing.Point(106, 44);
+            this.txtTenBaoGia.Location = new System.Drawing.Point(106, 42);
             this.txtTenBaoGia.Name = "txtTenBaoGia";
             this.txtTenBaoGia.Properties.ReadOnly = true;
             this.txtTenBaoGia.Size = new System.Drawing.Size(103, 20);
@@ -765,7 +765,7 @@
             // 
             // txtTenSanPham
             // 
-            this.txtTenSanPham.Location = new System.Drawing.Point(479, 68);
+            this.txtTenSanPham.Location = new System.Drawing.Point(479, 66);
             this.txtTenSanPham.Name = "txtTenSanPham";
             this.txtTenSanPham.Size = new System.Drawing.Size(677, 36);
             this.txtTenSanPham.StyleController = this.lctMain;
@@ -773,7 +773,7 @@
             // 
             // txtMoTa
             // 
-            this.txtMoTa.Location = new System.Drawing.Point(479, 108);
+            this.txtMoTa.Location = new System.Drawing.Point(479, 106);
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(677, 159);
             this.txtMoTa.StyleController = this.lctMain;
@@ -786,7 +786,7 @@
             0,
             0,
             0});
-            this.txtVAT.Location = new System.Drawing.Point(272, 140);
+            this.txtVAT.Location = new System.Drawing.Point(272, 138);
             this.txtVAT.Name = "txtVAT";
             this.txtVAT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -813,7 +813,7 @@
             0,
             0,
             0});
-            this.txtSoLuong.Location = new System.Drawing.Point(725, 271);
+            this.txtSoLuong.Location = new System.Drawing.Point(725, 269);
             this.txtSoLuong.Name = "txtSoLuong";
             this.txtSoLuong.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSoLuong.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -833,7 +833,7 @@
             0,
             0,
             0});
-            this.txtThanhTien.Location = new System.Drawing.Point(942, 271);
+            this.txtThanhTien.Location = new System.Drawing.Point(942, 269);
             this.txtThanhTien.Name = "txtThanhTien";
             this.txtThanhTien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.txtThanhTien.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
@@ -859,7 +859,7 @@
             0,
             0,
             0});
-            this.txtTienChietKhau.Location = new System.Drawing.Point(548, 297);
+            this.txtTienChietKhau.Location = new System.Drawing.Point(548, 295);
             this.txtTienChietKhau.Name = "txtTienChietKhau";
             this.txtTienChietKhau.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -880,7 +880,7 @@
             0,
             0,
             0});
-            this.txtDonGia.Location = new System.Drawing.Point(479, 271);
+            this.txtDonGia.Location = new System.Drawing.Point(479, 269);
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -899,7 +899,7 @@
             0,
             0,
             0});
-            this.txtProfit.Location = new System.Drawing.Point(798, 271);
+            this.txtProfit.Location = new System.Drawing.Point(798, 269);
             this.txtProfit.Name = "txtProfit";
             this.txtProfit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -923,7 +923,7 @@
             0,
             0,
             0});
-            this.txtPTChietKhau.Location = new System.Drawing.Point(479, 297);
+            this.txtPTChietKhau.Location = new System.Drawing.Point(479, 295);
             this.txtPTChietKhau.Name = "txtPTChietKhau";
             this.txtPTChietKhau.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -952,7 +952,7 @@
             0,
             0,
             0});
-            this.txtDonGiaNew.Location = new System.Drawing.Point(725, 297);
+            this.txtDonGiaNew.Location = new System.Drawing.Point(725, 295);
             this.txtDonGiaNew.Name = "txtDonGiaNew";
             this.txtDonGiaNew.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -970,7 +970,7 @@
             // 
             // txtTenKH
             // 
-            this.txtTenKH.Location = new System.Drawing.Point(106, 68);
+            this.txtTenKH.Location = new System.Drawing.Point(106, 66);
             this.txtTenKH.Name = "txtTenKH";
             this.txtTenKH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
@@ -982,7 +982,7 @@
             // 
             // txtToKH
             // 
-            this.txtToKH.Location = new System.Drawing.Point(234, 44);
+            this.txtToKH.Location = new System.Drawing.Point(234, 42);
             this.txtToKH.Name = "txtToKH";
             this.txtToKH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
@@ -994,7 +994,7 @@
             // 
             // txtEnquiry
             // 
-            this.txtEnquiry.Location = new System.Drawing.Point(106, 188);
+            this.txtEnquiry.Location = new System.Drawing.Point(106, 186);
             this.txtEnquiry.Name = "txtEnquiry";
             this.txtEnquiry.Size = new System.Drawing.Size(263, 53);
             this.txtEnquiry.StyleController = this.lctMain;
@@ -1030,7 +1030,7 @@
             this.lctDeadLine});
             this.lcg_ThongTin.Location = new System.Drawing.Point(0, 0);
             this.lcg_ThongTin.Name = "lcg_ThongTin";
-            this.lcg_ThongTin.Size = new System.Drawing.Size(373, 323);
+            this.lcg_ThongTin.Size = new System.Drawing.Size(373, 321);
             this.lcg_ThongTin.Text = "THÔNG TIN KHÁCH HÀNG";
             // 
             // lctTenBaoGia
@@ -1162,10 +1162,10 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dgc_BaoGia;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 323);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 321);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(104, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(1291, 304);
+            this.layoutControlItem3.Size = new System.Drawing.Size(1291, 306);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -1190,7 +1190,7 @@
             this.emptySpaceItem3});
             this.lcg_NhomSP.Location = new System.Drawing.Point(373, 0);
             this.lcg_NhomSP.Name = "lcg_NhomSP";
-            this.lcg_NhomSP.Size = new System.Drawing.Size(787, 323);
+            this.lcg_NhomSP.Size = new System.Drawing.Size(787, 321);
             this.lcg_NhomSP.Text = "THÔNG TIN SẢN PHẨM";
             // 
             // lctTenSAP
@@ -1378,7 +1378,7 @@
             this.layoutControlItem9});
             this.lcg_NhomChucNang.Location = new System.Drawing.Point(1160, 0);
             this.lcg_NhomChucNang.Name = "lcg_NhomChucNang";
-            this.lcg_NhomChucNang.Size = new System.Drawing.Size(131, 323);
+            this.lcg_NhomChucNang.Size = new System.Drawing.Size(131, 321);
             this.lcg_NhomChucNang.Text = "NHÓM CHỨC NĂNG";
             // 
             // layoutControlItem6

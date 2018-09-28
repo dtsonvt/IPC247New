@@ -660,5 +660,23 @@ namespace IPC247
             }
             SplashScreenManager.CloseDefaultWaitForm();
         }
+
+        private void btnLuongTheoDS_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowDefaultWaitForm("Vui Lòng Chờ...", "Đang tải dữ liệu...");
+            System.Windows.Forms.Form f = GetChildFormByName("MasterData_Commission");
+            if (f == null)
+            {
+                f = new MasterData_Commission();
+                f.Name = "MasterData_Commission";
+                f.MdiParent = this;
+                f.Show();
+            }
+            else
+            {
+                f.Activate();
+            }
+            SplashScreenManager.CloseDefaultWaitForm();
+        }
     }
 }

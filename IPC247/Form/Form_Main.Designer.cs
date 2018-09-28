@@ -52,8 +52,10 @@
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+            this.btnLuongTheoDS = new DevExpress.XtraBars.BarButtonItem();
             this.rbp_NhanSu = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpg_TaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpg_Master_Commission = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbb_Masterdata = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpg_ThongTin = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbp_ThayDoiGiaoDien = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -196,9 +198,10 @@
             this.btn_DoanhNghiep,
             this.btn_Customer,
             this.btn_Enquiry,
-            this.btn_EnquiryDetails});
+            this.btn_EnquiryDetails,
+            this.btnLuongTheoDS});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 18;
+            this.ribbonControl1.MaxItemId = 19;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barheader_text);
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barButtonItem2);
@@ -214,7 +217,7 @@
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Show;
             this.ribbonControl1.ShowQatLocationSelector = false;
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(997, 148);
+            this.ribbonControl1.Size = new System.Drawing.Size(997, 143);
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             this.ribbonControl1.Click += new System.EventHandler(this.ribbonControl1_Click);
             // 
@@ -292,10 +295,21 @@
             this.skinRibbonGalleryBarItem1.Id = 13;
             this.skinRibbonGalleryBarItem1.Name = "skinRibbonGalleryBarItem1";
             // 
+            // btnLuongTheoDS
+            // 
+            this.btnLuongTheoDS.Caption = "Lương Theo DS";
+            this.btnLuongTheoDS.Enabled = false;
+            this.btnLuongTheoDS.Id = 18;
+            this.btnLuongTheoDS.ImageOptions.Image = global::IPC247.Properties.Resources.financial_16x16;
+            this.btnLuongTheoDS.ImageOptions.LargeImage = global::IPC247.Properties.Resources.financial_32x32;
+            this.btnLuongTheoDS.Name = "btnLuongTheoDS";
+            this.btnLuongTheoDS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLuongTheoDS_ItemClick);
+            // 
             // rbp_NhanSu
             // 
             this.rbp_NhanSu.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rpg_TaiKhoan});
+            this.rpg_TaiKhoan,
+            this.rpg_Master_Commission});
             this.rbp_NhanSu.Name = "rbp_NhanSu";
             this.rbp_NhanSu.Text = "Nhân Sự";
             // 
@@ -305,6 +319,12 @@
             this.rpg_TaiKhoan.ItemLinks.Add(this.btn_NhomQuyen);
             this.rpg_TaiKhoan.Name = "rpg_TaiKhoan";
             this.rpg_TaiKhoan.Text = "Tài khoản";
+            // 
+            // rpg_Master_Commission
+            // 
+            this.rpg_Master_Commission.ItemLinks.Add(this.btnLuongTheoDS);
+            this.rpg_Master_Commission.Name = "rpg_Master_Commission";
+            this.rpg_Master_Commission.Text = "Cấu Hình Lương Theo Doanh Số";
             // 
             // rbb_Masterdata
             // 
@@ -433,5 +453,7 @@
         private System.Windows.Forms.Timer Get_Push_Notify;
         private DevExpress.XtraBars.Alerter.AlertControl alertControl1;
         private DevExpress.XtraBars.BarButtonItem btn_EnquiryDetails;
+        private DevExpress.XtraBars.BarButtonItem btnLuongTheoDS;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpg_Master_Commission;
     }
 }

@@ -910,7 +910,7 @@ namespace IPC247
         private void Search_Enquiry_FormClosed(object sender, FormClosedEventArgs e)
         {
             en = new Enquiry(Form_Search_Enquiry.en);
-            if (en != null)
+            if (en != null && en.EnquiryName != "")
             {
                 txtDuAn.Text = en.EnquiryName;
                 flag_edit_Customer = true;

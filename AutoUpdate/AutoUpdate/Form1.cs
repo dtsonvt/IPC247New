@@ -50,6 +50,10 @@ namespace AutoUpdate
                     lblUpdateDetails.Text = thongbao.Replace("-", "\r\n");
                 }
             }
+            else
+            {
+                MessageBox.Show("Mày đã làm gì");
+            }
         }
 
         private void startDownload(string Url, string Path_File)
