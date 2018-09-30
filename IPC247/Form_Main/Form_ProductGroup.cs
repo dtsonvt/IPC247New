@@ -268,6 +268,7 @@ namespace IPC247
                     var Message = dt.Rows[0]["Message"].ToString(); // jsondataChild.First.GetValue("Message").Value;
                     if (Result == "1")
                     {
+                        XtraMessageBox.Show(Message, "Thông Báo");
                         LoadInfoProductGroup();
                     }
                 }

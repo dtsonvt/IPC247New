@@ -120,10 +120,10 @@
             // dgc_Main
             // 
             this.dgc_Main.ContextMenuStrip = this.contextMenuStrip2;
-            this.dgc_Main.Location = new System.Drawing.Point(12, 82);
+            this.dgc_Main.Location = new System.Drawing.Point(12, 80);
             this.dgc_Main.MainView = this.dgv_Main;
             this.dgc_Main.Name = "dgc_Main";
-            this.dgc_Main.Size = new System.Drawing.Size(464, 394);
+            this.dgc_Main.Size = new System.Drawing.Size(464, 396);
             this.dgc_Main.TabIndex = 5;
             this.dgc_Main.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dgv_Main});
@@ -290,14 +290,14 @@
             // dgcDetails
             // 
             this.dgcDetails.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgcDetails.Location = new System.Drawing.Point(480, 82);
+            this.dgcDetails.Location = new System.Drawing.Point(480, 80);
             this.dgcDetails.MainView = this.dgvDetails;
             this.dgcDetails.Name = "dgcDetails";
             this.dgcDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnXoa,
             this.searchSanPham,
             this.repositoryItemSpinEdit1});
-            this.dgcDetails.Size = new System.Drawing.Size(545, 394);
+            this.dgcDetails.Size = new System.Drawing.Size(545, 396);
             this.dgcDetails.TabIndex = 6;
             this.dgcDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dgvDetails});
@@ -483,17 +483,17 @@
             // 
             // btnTaoMoi
             // 
-            this.btnTaoMoi.Location = new System.Drawing.Point(370, 44);
+            this.btnTaoMoi.Location = new System.Drawing.Point(370, 42);
             this.btnTaoMoi.Name = "btnTaoMoi";
             this.btnTaoMoi.Size = new System.Drawing.Size(92, 22);
             this.btnTaoMoi.StyleController = this.layoutControl1;
             this.btnTaoMoi.TabIndex = 2;
-            this.btnTaoMoi.Text = "Tạo Mới";
+            this.btnTaoMoi.Text = "Thêm Nhóm";
             this.btnTaoMoi.Click += new System.EventHandler(this.btnTaoMoi_Click);
             // 
             // btnHuyNhom
             // 
-            this.btnHuyNhom.Location = new System.Drawing.Point(558, 44);
+            this.btnHuyNhom.Location = new System.Drawing.Point(558, 42);
             this.btnHuyNhom.Name = "btnHuyNhom";
             this.btnHuyNhom.Size = new System.Drawing.Size(92, 22);
             this.btnHuyNhom.StyleController = this.layoutControl1;
@@ -503,7 +503,7 @@
             // 
             // btnCapNhat
             // 
-            this.btnCapNhat.Location = new System.Drawing.Point(466, 44);
+            this.btnCapNhat.Location = new System.Drawing.Point(466, 42);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(88, 22);
             this.btnCapNhat.StyleController = this.layoutControl1;
@@ -513,7 +513,7 @@
             // 
             // txtTenNhom
             // 
-            this.txtTenNhom.Location = new System.Drawing.Point(76, 44);
+            this.txtTenNhom.Location = new System.Drawing.Point(76, 42);
             this.txtTenNhom.Name = "txtTenNhom";
             this.txtTenNhom.Size = new System.Drawing.Size(290, 20);
             this.txtTenNhom.StyleController = this.layoutControl1;
@@ -541,7 +541,7 @@
             this.layoutControlItem5});
             this.lcg_ThongTin.Location = new System.Drawing.Point(0, 0);
             this.lcg_ThongTin.Name = "lcg_ThongTin";
-            this.lcg_ThongTin.Size = new System.Drawing.Size(1017, 70);
+            this.lcg_ThongTin.Size = new System.Drawing.Size(1017, 68);
             this.lcg_ThongTin.Text = "THÔNG TIN NHÓM";
             // 
             // lct_nhomsp
@@ -605,18 +605,18 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dgcDetails;
-            this.layoutControlItem4.Location = new System.Drawing.Point(468, 70);
+            this.layoutControlItem4.Location = new System.Drawing.Point(468, 68);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(549, 398);
+            this.layoutControlItem4.Size = new System.Drawing.Size(549, 400);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.dgc_Main;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 70);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 68);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(468, 398);
+            this.layoutControlItem6.Size = new System.Drawing.Size(468, 400);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 

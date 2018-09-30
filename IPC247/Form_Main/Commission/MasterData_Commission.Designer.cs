@@ -39,6 +39,9 @@
             this.chk_Minimum = new DevExpress.XtraEditors.CheckEdit();
             this.txtLuongTheoDS = new DevExpress.XtraEditors.TextEdit();
             this.dgc_Main = new DevExpress.XtraGrid.GridControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cậpNhâtThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv_Main = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gclMuc = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -60,10 +63,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cậpNhâtThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
-            this.xóaThôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chk_Maximum.Properties)).BeginInit();
@@ -72,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chk_Minimum.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongTheoDS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgc_Main)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Main)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Maiin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -85,7 +86,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -223,6 +223,30 @@
             this.dgc_Main.TabIndex = 4;
             this.dgc_Main.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dgv_Main});
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cậpNhâtThôngTinToolStripMenuItem,
+            this.xóaThôngTinToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(223, 48);
+            // 
+            // cậpNhâtThôngTinToolStripMenuItem
+            // 
+            this.cậpNhâtThôngTinToolStripMenuItem.Name = "cậpNhâtThôngTinToolStripMenuItem";
+            this.cậpNhâtThôngTinToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.cậpNhâtThôngTinToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.cậpNhâtThôngTinToolStripMenuItem.Text = "Cập Nhât Thông Tin";
+            this.cậpNhâtThôngTinToolStripMenuItem.Click += new System.EventHandler(this.btnCapNhat_Click);
+            // 
+            // xóaThôngTinToolStripMenuItem
+            // 
+            this.xóaThôngTinToolStripMenuItem.Name = "xóaThôngTinToolStripMenuItem";
+            this.xóaThôngTinToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.xóaThôngTinToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.xóaThôngTinToolStripMenuItem.Text = "Xóa Thông Tin";
+            this.xóaThôngTinToolStripMenuItem.Click += new System.EventHandler(this.xóaThôngTinToolStripMenuItem_Click);
             // 
             // dgv_Main
             // 
@@ -466,36 +490,12 @@
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cậpNhâtThôngTinToolStripMenuItem,
-            this.xóaThôngTinToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(223, 48);
-            // 
-            // cậpNhâtThôngTinToolStripMenuItem
-            // 
-            this.cậpNhâtThôngTinToolStripMenuItem.Name = "cậpNhâtThôngTinToolStripMenuItem";
-            this.cậpNhâtThôngTinToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.cậpNhâtThôngTinToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.cậpNhâtThôngTinToolStripMenuItem.Text = "Cập Nhât Thông Tin";
-            this.cậpNhâtThôngTinToolStripMenuItem.Click += new System.EventHandler(this.btnCapNhat_Click);
-            // 
             // simpleSeparator1
             // 
             this.simpleSeparator1.AllowHotTrack = false;
             this.simpleSeparator1.Location = new System.Drawing.Point(0, 50);
             this.simpleSeparator1.Name = "simpleSeparator1";
             this.simpleSeparator1.Size = new System.Drawing.Size(534, 2);
-            // 
-            // xóaThôngTinToolStripMenuItem
-            // 
-            this.xóaThôngTinToolStripMenuItem.Name = "xóaThôngTinToolStripMenuItem";
-            this.xóaThôngTinToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.xóaThôngTinToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.xóaThôngTinToolStripMenuItem.Text = "Xóa Thông Tin";
-            this.xóaThôngTinToolStripMenuItem.Click += new System.EventHandler(this.xóaThôngTinToolStripMenuItem_Click);
             // 
             // MasterData_Commission
             // 
@@ -515,6 +515,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chk_Minimum.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuongTheoDS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgc_Main)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Main)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Maiin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -528,7 +529,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             this.ResumeLayout(false);
 

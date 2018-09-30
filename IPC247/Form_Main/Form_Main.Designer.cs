@@ -41,6 +41,8 @@
             this.btn_Customer = new DevExpress.XtraBars.BarButtonItem();
             this.btn_Enquiry = new DevExpress.XtraBars.BarButtonItem();
             this.btn_EnquiryDetails = new DevExpress.XtraBars.BarButtonItem();
+            this.rpg_Docentry = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btn_CreateDocEntry = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barheader_text = new DevExpress.XtraBars.BarHeaderItem();
@@ -53,6 +55,7 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.btnLuongTheoDS = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_CommissionEpl = new DevExpress.XtraBars.BarButtonItem();
             this.rbp_NhanSu = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpg_TaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpg_Master_Commission = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -78,7 +81,8 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rpg_SanPham,
             this.rpg_BaoGia,
-            this.rpg_YeuCau});
+            this.rpg_YeuCau,
+            this.rpg_Docentry});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Báo Giá";
             // 
@@ -173,6 +177,21 @@
             this.btn_EnquiryDetails.Name = "btn_EnquiryDetails";
             this.btn_EnquiryDetails.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_EnquiryDetails_ItemClick);
             // 
+            // rpg_Docentry
+            // 
+            this.rpg_Docentry.ItemLinks.Add(this.btn_CreateDocEntry);
+            this.rpg_Docentry.Name = "rpg_Docentry";
+            this.rpg_Docentry.Text = "Đơn Hàng";
+            // 
+            // btn_CreateDocEntry
+            // 
+            this.btn_CreateDocEntry.Caption = "Tạo Đơn Hàng";
+            this.btn_CreateDocEntry.Id = 20;
+            this.btn_CreateDocEntry.ImageOptions.Image = global::IPC247.Properties.Resources.botask_16x16;
+            this.btn_CreateDocEntry.ImageOptions.LargeImage = global::IPC247.Properties.Resources.botask_32x32;
+            this.btn_CreateDocEntry.Name = "btn_CreateDocEntry";
+            this.btn_CreateDocEntry.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_CreateDocEntry_ItemClick);
+            // 
             // ribbonControl1
             // 
             this.ribbonControl1.AllowKeyTips = false;
@@ -199,9 +218,11 @@
             this.btn_Customer,
             this.btn_Enquiry,
             this.btn_EnquiryDetails,
-            this.btnLuongTheoDS});
+            this.btnLuongTheoDS,
+            this.btn_CommissionEpl,
+            this.btn_CreateDocEntry});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 19;
+            this.ribbonControl1.MaxItemId = 21;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barheader_text);
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barButtonItem2);
@@ -297,13 +318,23 @@
             // 
             // btnLuongTheoDS
             // 
-            this.btnLuongTheoDS.Caption = "Lương Theo DS";
+            this.btnLuongTheoDS.Caption = "Lương Theo Doanh Số";
             this.btnLuongTheoDS.Enabled = false;
             this.btnLuongTheoDS.Id = 18;
             this.btnLuongTheoDS.ImageOptions.Image = global::IPC247.Properties.Resources.financial_16x16;
             this.btnLuongTheoDS.ImageOptions.LargeImage = global::IPC247.Properties.Resources.financial_32x32;
             this.btnLuongTheoDS.Name = "btnLuongTheoDS";
             this.btnLuongTheoDS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLuongTheoDS_ItemClick);
+            // 
+            // btn_CommissionEpl
+            // 
+            this.btn_CommissionEpl.Caption = "Bảng Hoa Hồng Nhân Viên";
+            this.btn_CommissionEpl.Enabled = false;
+            this.btn_CommissionEpl.Id = 19;
+            this.btn_CommissionEpl.ImageOptions.Image = global::IPC247.Properties.Resources.conditionalformatting_16x16;
+            this.btn_CommissionEpl.ImageOptions.LargeImage = global::IPC247.Properties.Resources.conditionalformatting_32x32;
+            this.btn_CommissionEpl.Name = "btn_CommissionEpl";
+            this.btn_CommissionEpl.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_CommissionEpl_ItemClick);
             // 
             // rbp_NhanSu
             // 
@@ -323,6 +354,7 @@
             // rpg_Master_Commission
             // 
             this.rpg_Master_Commission.ItemLinks.Add(this.btnLuongTheoDS);
+            this.rpg_Master_Commission.ItemLinks.Add(this.btn_CommissionEpl);
             this.rpg_Master_Commission.Name = "rpg_Master_Commission";
             this.rpg_Master_Commission.Text = "Cấu Hình Lương Theo Doanh Số";
             // 
@@ -455,5 +487,8 @@
         private DevExpress.XtraBars.BarButtonItem btn_EnquiryDetails;
         private DevExpress.XtraBars.BarButtonItem btnLuongTheoDS;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpg_Master_Commission;
+        private DevExpress.XtraBars.BarButtonItem btn_CommissionEpl;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpg_Docentry;
+        private DevExpress.XtraBars.BarButtonItem btn_CreateDocEntry;
     }
 }

@@ -98,6 +98,29 @@ namespace IPC247
             }
            
         }
+        public static DataSet ExecuteDataSetByStore(string sql_exec)
+        {
+            DataSet dt = new DataSet();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(str_connect))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql_exec, conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        conn.Open();
+                        dt = ExecuteNonQuery_DataSet(cmd);
+                    }
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                SendMailERROR(string.Format("Lỗi rồi ExecuteDataSetByStore: {0}", ex.ToString()));
+                return dt;
+            }
+
+        }
         public static DataSet ExecuteDataSetByQuery(string sql_exec)
         {
             DataSet dt = new DataSet();

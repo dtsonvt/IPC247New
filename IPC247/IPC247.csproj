@@ -178,100 +178,100 @@
     <Compile Include="FormChild\Form_Search_Customer.Designer.cs">
       <DependentUpon>Form_Search_Customer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Commission\Frm_Commission.cs">
+    <Compile Include="Form_Main\Commission\Frm_Commission.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Commission\Frm_Commission.Designer.cs">
+    <Compile Include="Form_Main\Commission\Frm_Commission.Designer.cs">
       <DependentUpon>Frm_Commission.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_EnquiryReport.cs">
+    <Compile Include="Form_Main\Form_EnquiryReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_EnquiryReport.Designer.cs">
+    <Compile Include="Form_Main\Form_EnquiryReport.Designer.cs">
       <DependentUpon>Form_EnquiryReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Login.cs">
+    <Compile Include="Form_Main\Form_Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Login.Designer.cs">
+    <Compile Include="Form_Main\Form_Login.Designer.cs">
       <DependentUpon>Form_Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Main.cs">
+    <Compile Include="Form_Main\Form_Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Main.Designer.cs">
+    <Compile Include="Form_Main\Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_MasterData.cs">
+    <Compile Include="Form_Main\Form_MasterData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_MasterData.Designer.cs">
+    <Compile Include="Form_Main\Form_MasterData.Designer.cs">
       <DependentUpon>Form_MasterData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Product.cs">
+    <Compile Include="Form_Main\Form_Product.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Product.Designer.cs">
+    <Compile Include="Form_Main\Form_Product.Designer.cs">
       <DependentUpon>Form_Product.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_TimKiemBaoG.cs">
+    <Compile Include="Form_Main\Form_TimKiemBaoG.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_TimKiemBaoG.Designer.cs">
+    <Compile Include="Form_Main\Form_TimKiemBaoG.Designer.cs">
       <DependentUpon>Form_TimKiemBaoG.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Wait.cs">
+    <Compile Include="Form_Main\Form_Wait.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Wait.Designer.cs">
+    <Compile Include="Form_Main\Form_Wait.Designer.cs">
       <DependentUpon>Form_Wait.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Frm_NhomQuyen.cs">
+    <Compile Include="Form_Main\Frm_NhomQuyen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Frm_NhomQuyen.Designer.cs">
+    <Compile Include="Form_Main\Frm_NhomQuyen.Designer.cs">
       <DependentUpon>Frm_NhomQuyen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Frm_Print.cs">
+    <Compile Include="Form_Main\Frm_Print.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Frm_Print.Designer.cs">
+    <Compile Include="Form_Main\Frm_Print.Designer.cs">
       <DependentUpon>Frm_Print.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_ProductGroup.cs">
+    <Compile Include="Form_Main\Form_ProductGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_ProductGroup.Designer.cs">
+    <Compile Include="Form_Main\Form_ProductGroup.Designer.cs">
       <DependentUpon>Form_ProductGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Quote.cs">
+    <Compile Include="Form_Main\Form_Quote.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Quote.Designer.cs">
+    <Compile Include="Form_Main\Form_Quote.Designer.cs">
       <DependentUpon>Form_Quote.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Account.cs">
+    <Compile Include="Form_Main\Form_Account.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Account.Designer.cs">
+    <Compile Include="Form_Main\Form_Account.Designer.cs">
       <DependentUpon>Form_Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_DoanhNghiep.cs">
+    <Compile Include="Form_Main\Form_DoanhNghiep.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_DoanhNghiep.Designer.cs">
+    <Compile Include="Form_Main\Form_DoanhNghiep.Designer.cs">
       <DependentUpon>Form_DoanhNghiep.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Customer.cs">
+    <Compile Include="Form_Main\Form_Customer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Customer.Designer.cs">
+    <Compile Include="Form_Main\Form_Customer.Designer.cs">
       <DependentUpon>Form_Customer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Form_Enquiry.cs">
+    <Compile Include="Form_Main\Form_Enquiry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form_Enquiry.Designer.cs">
+    <Compile Include="Form_Main\Form_Enquiry.Designer.cs">
       <DependentUpon>Form_Enquiry.cs</DependentUpon>
     </Compile>
     <Compile Include="FormChild\Form_Search_Company.cs">
@@ -280,10 +280,10 @@
     <Compile Include="FormChild\Form_Search_Company.Designer.cs">
       <DependentUpon>Form_Search_Company.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Commission\MasterData_Commission.cs">
+    <Compile Include="Form_Main\Commission\MasterData_Commission.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Commission\MasterData_Commission.Designer.cs">
+    <Compile Include="Form_Main\Commission\MasterData_Commission.Designer.cs">
       <DependentUpon>MasterData_Commission.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -307,55 +307,55 @@
     <EmbeddedResource Include="FormChild\Form_Search_Customer.resx">
       <DependentUpon>Form_Search_Customer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Commission\Frm_Commission.resx">
+    <EmbeddedResource Include="Form_Main\Commission\Frm_Commission.resx">
       <DependentUpon>Frm_Commission.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Commission\MasterData_Commission.resx">
+    <EmbeddedResource Include="Form_Main\Commission\MasterData_Commission.resx">
       <DependentUpon>MasterData_Commission.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_EnquiryReport.resx">
+    <EmbeddedResource Include="Form_Main\Form_EnquiryReport.resx">
       <DependentUpon>Form_EnquiryReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Login.resx">
+    <EmbeddedResource Include="Form_Main\Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Main.resx">
+    <EmbeddedResource Include="Form_Main\Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_MasterData.resx">
+    <EmbeddedResource Include="Form_Main\Form_MasterData.resx">
       <DependentUpon>Form_MasterData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Product.resx">
+    <EmbeddedResource Include="Form_Main\Form_Product.resx">
       <DependentUpon>Form_Product.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_ProductGroup.resx">
+    <EmbeddedResource Include="Form_Main\Form_ProductGroup.resx">
       <DependentUpon>Form_ProductGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_TimKiemBaoG.resx">
+    <EmbeddedResource Include="Form_Main\Form_TimKiemBaoG.resx">
       <DependentUpon>Form_TimKiemBaoG.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Wait.resx">
+    <EmbeddedResource Include="Form_Main\Form_Wait.resx">
       <DependentUpon>Form_Wait.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Frm_NhomQuyen.resx">
+    <EmbeddedResource Include="Form_Main\Frm_NhomQuyen.resx">
       <DependentUpon>Frm_NhomQuyen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Frm_Print.resx">
+    <EmbeddedResource Include="Form_Main\Frm_Print.resx">
       <DependentUpon>Frm_Print.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Quote.resx">
+    <EmbeddedResource Include="Form_Main\Form_Quote.resx">
       <DependentUpon>Form_Quote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Account.resx">
+    <EmbeddedResource Include="Form_Main\Form_Account.resx">
       <DependentUpon>Form_Account.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_DoanhNghiep.resx">
+    <EmbeddedResource Include="Form_Main\Form_DoanhNghiep.resx">
       <DependentUpon>Form_DoanhNghiep.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Customer.resx">
+    <EmbeddedResource Include="Form_Main\Form_Customer.resx">
       <DependentUpon>Form_Customer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Form_Enquiry.resx">
+    <EmbeddedResource Include="Form_Main\Form_Enquiry.resx">
       <DependentUpon>Form_Enquiry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChild\Form_Search_Company.resx">
@@ -409,12 +409,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="File\" />
+    <Folder Include="Form_Main\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppData\icon_b_5FE_icon.ico" />
     <Content Include="icon.ico" />
     <Content Include="icon_b_5FE_icon.ico" />
     <Content Include="ipc247_370x471_SjF_icon.ico" />
+    <None Include="Resources\botask_16x16.png" />
+    <None Include="Resources\botask_32x32.png" />
+    <None Include="Resources\conditionalformatting_16x16.png" />
+    <None Include="Resources\conditionalformatting_32x32.png" />
     <None Include="Resources\financial_16x16.png" />
     <None Include="Resources\financial_32x32.png" />
     <None Include="Resources\managerules_16x16.png" />
