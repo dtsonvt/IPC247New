@@ -502,3 +502,5 @@ D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.csproj.CoreCompileInp
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.csproj.CopyComplete
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.exe
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.pdb
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.MasterData_Commission.resources
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.csprojAssemblyReference.cache
