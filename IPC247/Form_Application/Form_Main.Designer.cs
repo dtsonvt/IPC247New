@@ -43,6 +43,7 @@
             this.btn_EnquiryDetails = new DevExpress.XtraBars.BarButtonItem();
             this.rpg_Docentry = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.btn_CreateDocEntry = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_Config_MasterData_Order = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barheader_text = new DevExpress.XtraBars.BarHeaderItem();
@@ -180,6 +181,7 @@
             // rpg_Docentry
             // 
             this.rpg_Docentry.ItemLinks.Add(this.btn_CreateDocEntry);
+            this.rpg_Docentry.ItemLinks.Add(this.btn_Config_MasterData_Order);
             this.rpg_Docentry.Name = "rpg_Docentry";
             this.rpg_Docentry.Text = "Đơn Hàng";
             // 
@@ -191,6 +193,16 @@
             this.btn_CreateDocEntry.ImageOptions.LargeImage = global::IPC247.Properties.Resources.botask_32x32;
             this.btn_CreateDocEntry.Name = "btn_CreateDocEntry";
             this.btn_CreateDocEntry.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_CreateDocEntry_ItemClick);
+            // 
+            // btn_Config_MasterData_Order
+            // 
+            this.btn_Config_MasterData_Order.Caption = "Thông Tin Chung";
+            this.btn_Config_MasterData_Order.Enabled = false;
+            this.btn_Config_MasterData_Order.Id = 21;
+            this.btn_Config_MasterData_Order.ImageOptions.Image = global::IPC247.Properties.Resources.bonote_16x16;
+            this.btn_Config_MasterData_Order.ImageOptions.LargeImage = global::IPC247.Properties.Resources.bonote_32x32;
+            this.btn_Config_MasterData_Order.Name = "btn_Config_MasterData_Order";
+            this.btn_Config_MasterData_Order.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Config_MasterData_Order_ItemClick);
             // 
             // ribbonControl1
             // 
@@ -220,9 +232,10 @@
             this.btn_EnquiryDetails,
             this.btnLuongTheoDS,
             this.btn_CommissionEpl,
-            this.btn_CreateDocEntry});
+            this.btn_CreateDocEntry,
+            this.btn_Config_MasterData_Order});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 21;
+            this.ribbonControl1.MaxItemId = 22;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barheader_text);
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barButtonItem2);
@@ -490,5 +503,6 @@
         private DevExpress.XtraBars.BarButtonItem btn_CommissionEpl;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpg_Docentry;
         private DevExpress.XtraBars.BarButtonItem btn_CreateDocEntry;
+        private DevExpress.XtraBars.BarButtonItem btn_Config_MasterData_Order;
     }
 }

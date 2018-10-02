@@ -538,7 +538,7 @@
             this.che_XemALL.Location = new System.Drawing.Point(1087, 12);
             this.che_XemALL.Name = "che_XemALL";
             this.che_XemALL.Properties.Caption = "Xem ALL";
-            this.che_XemALL.Size = new System.Drawing.Size(63, 20);
+            this.che_XemALL.Size = new System.Drawing.Size(63, 19);
             this.che_XemALL.StyleController = this.layoutControl1;
             this.che_XemALL.TabIndex = 6;
             this.che_XemALL.CheckedChanged += new System.EventHandler(this.che_XemALL_CheckedChanged);
@@ -554,7 +554,6 @@
             this.slk_BaoGia.Properties.PopupView = this.searchLookUpEdit1View;
             this.slk_BaoGia.Properties.ValueMember = "ID";
             this.slk_BaoGia.Size = new System.Drawing.Size(979, 20);
-            this.slk_BaoGia.StyleController = this.layoutControl1;
             this.slk_BaoGia.TabIndex = 4;
             this.slk_BaoGia.EditValueChanged += new System.EventHandler(this.slk_BaoGia_EditValueChanged);
             // 
@@ -625,7 +624,7 @@
             this.layoutControlItem2,
             this.layoutControlItem1,
             this.layoutControlItem3});
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1233, 572);
             this.layoutControlGroup1.TextVisible = false;
             // 

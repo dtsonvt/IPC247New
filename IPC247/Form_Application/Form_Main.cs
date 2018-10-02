@@ -700,11 +700,29 @@ namespace IPC247
         private void btn_CreateDocEntry_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             SplashScreenManager.ShowDefaultWaitForm("Vui Lòng Chờ...", "Đang tải dữ liệu...");
-            System.Windows.Forms.Form f = GetChildFormByName("Frm_Commission");
+            System.Windows.Forms.Form f = GetChildFormByName("Frm_Manage_Order");
             if (f == null)
             {
-                f = new Frm_Commission();
-                f.Name = "Frm_Commission";
+                f = new Frm_Manage_Order();
+                f.Name = "Frm_Manage_Order";
+                f.MdiParent = this;
+                f.Show();
+            }
+            else
+            {
+                f.Activate();
+            }
+            SplashScreenManager.CloseDefaultWaitForm();
+        }
+
+        private void btn_Config_MasterData_Order_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowDefaultWaitForm("Vui Lòng Chờ...", "Đang tải dữ liệu...");
+            System.Windows.Forms.Form f = GetChildFormByName("Frm_Config_Order");
+            if (f == null)
+            {
+                f = new Frm_Config_Order();
+                f.Name = "Frm_Config_Order";
                 f.MdiParent = this;
                 f.Show();
             }
