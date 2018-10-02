@@ -16,7 +16,10 @@ namespace IPC247
     {
         List<InfoCustomer> listob = new List<InfoCustomer>();
         decimal Profit = 0;
+        string ID_CardCode = "0";
+        string IDQuote = "0";
         bool Check_Save = true;
+
         public Frm_Manage_Order()
         {
             InitializeComponent();
@@ -107,6 +110,7 @@ namespace IPC247
                     slu_Vendor.EditValue = dt.Rows[0]["VendorCode"];
                     txt_PayNote.EditValue = dt.Rows[0]["PayNote"].ToString();
                     txt_SaleNote.EditValue = dt.Rows[0]["SalesNote"].ToString();
+                    ID_CardCode =  dt.Rows[0]["IDCardCode"].ToString();
                     decimal.TryParse(dt.Rows[0]["Profit"].ToString(),out Profit);
                     txt_Profit.EditValue = Profit;
                 }
@@ -123,6 +127,7 @@ namespace IPC247
             dte_FromDate.DateTime = DateTime.Today.AddDays(-(DateTime.Today.Day - 1));
             dte_ToDate.DateTime = DateTime.Today;
             dte_CreateOrder.DateTime = DateTime.Now;
+            dte_ShipDate.DateTime = DateTime.Now;
             LoadMaster_Quote();
             LoadComboboxUser();
             LoadComboboxVendor();
@@ -142,7 +147,7 @@ namespace IPC247
                 }
                 else
                 {
-                    dte_DayofPlank.DateTime = dte_CreateOrder.DateTime.AddDays(songay);
+                    dte_DayofPlank.DateTime = dte_ShipDate.DateTime.AddDays(songay);
                     dxErrorProvider1.SetError(txt_DayDebt, null);
                     Check_Save = true;
                 }
@@ -159,8 +164,8 @@ namespace IPC247
             {
                 int rowHandle = slk_BaoGia.Properties.GetIndexByKeyValue(slk_BaoGia.EditValue);
                 object row = slk_BaoGia.Properties.View.GetRow(rowHandle);
-                string ID = (row as DataRowView).Row["ID"].ToString();
-                LoadBaoGiaAll(ID);
+                IDQuote = (row as DataRowView).Row["ID"].ToString();
+                LoadBaoGiaAll(IDQuote);
             }
             catch (Exception ex)
             {
@@ -175,7 +180,7 @@ namespace IPC247
             {
                 int dayoflate = (dte_PayOffDate.DateTime.Date - dte_DayofPlank.DateTime.Date).Days;
                 txtDayLate.EditValue = dayoflate > 0 ? dayoflate : 0;
-                if (dte_PayOffDate.DateTime <= dte_CreateOrder.DateTime && dte_PayOffDate.Text != "")
+                if (dte_PayOffDate.DateTime.Date <= dte_CreateOrder.DateTime.Date && dte_PayOffDate.Text != "")
                 {
                     dxErrorProvider1.SetError(dte_PayOffDate, "Ngày thực tế thanh toán không được nhỏ hơn ngày tạo đơn hàng");
                     Check_Save = false;
@@ -195,19 +200,19 @@ namespace IPC247
 
         private void dte_CreateOrder_EditValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                int songay = 0;
-                if (txt_DayDebt.EditValue != null)
-                {
-                    int.TryParse(txt_DayDebt.EditValue.ToString(), out songay);
-                }
-                dte_DayofPlank.DateTime = dte_CreateOrder.DateTime.AddDays(songay);
-            }
-            catch (Exception ex)
-            {
-                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "dte_CreateOrder_EditValueChanged()", ex.ToString()));
-            }
+            //try
+            //{
+            //    int songay = 0;
+            //    if (txt_DayDebt.EditValue != null)
+            //    {
+            //        int.TryParse(txt_DayDebt.EditValue.ToString(), out songay);
+            //    }
+            //    dte_DayofPlank.DateTime = dte_CreateOrder.DateTime.AddDays(songay);
+            //}
+            //catch (Exception ex)
+            //{
+            //    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "dte_CreateOrder_EditValueChanged()", ex.ToString()));
+            //}
         }
 
         private void txtDeposit_EditValueChanged(object sender, EventArgs e)
@@ -294,36 +299,46 @@ namespace IPC247
                     return;
                 }
 
+                int rowHandle = slu_Vendor.Properties.GetIndexByKeyValue(slk_BaoGia.EditValue);
+                object row = slu_Vendor.Properties.View.GetRow(rowHandle);
+                string ShortVendor = "";
+                if (row!= null)
+                {
+                    ShortVendor = (row as DataRowView).Row["ShortName"].ToString();
+                }
+
                 Dictionary<string, object> param = new Dictionary<string, object>();
-                param.Add("ID", ID_Header); //0
-                param.Add("SoBaoGia", txtTenBaoGia.Text); //1
-                param.Add("ToKhachHang", txtToKH.Text); //2
-                param.Add("NguoiNhan", txtTenKH.Text); //3
-                param.Add("Mobile_NguoiNhan", txtSDT.Text); //4
-                param.Add("Tel_NguoiNhan", txtTel.Text); //5
-                param.Add("NgayBaoGia", NgayBaoGia.ToString("dd/MM/yyyy")); //6
-                param.Add("Email_NguoiNhan", txtEmail.Text); //7
-                param.Add("VAT", txtVAT.EditValue.ToString()); //8
-                param.Add("XMLSanPham", xEle.ToString());//9
-                param.Add("TongTien", lst.Sum(o => o.ThanhTien).ToString());//10
-                param.Add("UserID", Form_Main.user.Username);//11
-                param.Add("DiaChi", txtDiaChi.Text);//12
-                param.Add("DieuKhoan", txtDieuKhoan.Text);//13
-                param.Add("ID_Enquiry", en.ID_Enquiry);//14
-                param.Add("IDCardCode", cus.ID);//15
-                param.Add("Company", com.ID);//16
-                param.Add("EnquiryName", txtDuAn.Text);//17
-                param.Add("EnquiryDetail", txtEnquiry.Text);//18
-                param.Add("DeadLine", dteDeadLine.DateTime.ToString("dd/MM/yyyy HH:mm:ss"));//19
+                param.Add("CardCode", ID_CardCode); //0
+                param.Add("CardName", txtCardName.Text); //1
+                param.Add("Address", txtAddress.Text); //2
+                param.Add("ContractNum", txtContractNum.Text); //3
+                param.Add("ContractPerson", txtContactPerson.Text); //4
+                param.Add("QuoteNum", slk_BaoGia.Text); //5
+                param.Add("ProductCode", txt_ProductCode.Text); //6
+                param.Add("SumCostPrice", txtSum_CostPrice.EditValue); //7
+                param.Add("SumPrice", txtSum_Price.EditValue); //8
+                param.Add("Deposit", txtDeposit.EditValue); //9
+                param.Add("p_ShipDate", dte_ShipDate.Text); //10
+                param.Add("DayDebt", txt_DayDebt.EditValue); //11
+                param.Add("p_DayofPlank", dte_DayofPlank.Text); //12
+                param.Add("p_PayOffDate", dte_PayOffDate.Text); //13
+                param.Add("PayStatus", slu_Paystatus.EditValue); //14
+                param.Add("PayNote", txt_PayNote.Text); //15
+                param.Add("Sales", slu_Saler.EditValue); //16
+                param.Add("VendorCode", slu_Vendor.EditValue); //17
+                param.Add("ShortVendor", ShortVendor); //18
+                param.Add("Profit", Profit); //19
+                param.Add("SalesNote", txt_SaleNote.Text); //20
+                param.Add("UserID", Form_Main.user.Username); //21
+                param.Add("Policy", txt_Policy.Text); //22
+                param.Add("QuoteID", IDQuote); //23
                 DataTable dt = new DataTable();
-                dt = SQLHelper.ExecuteDataTableUndefine("sp_SaveQuote", param);
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Save_Order", param);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     var Result = dt.Rows[0]["Result"].ToString();
                     var Message = dt.Rows[0]["Message"].ToString();
-                    cus.ID = dt.Rows[0]["IDCardCode"].ToString();
-                    com.ID = dt.Rows[0]["IDCompany"].ToString();
                     if (Result == "1")//Login thành công
                     {
                         XtraMessageBox.Show(Message, "Thông Báo");
@@ -335,7 +350,7 @@ namespace IPC247
                 }
                 else
                 {
-                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "SaveQuote()", "Không có dữ liệu trả về!"));
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "btn_Save_Click()", "Không có dữ liệu trả về!"));
                 }
 
             }
@@ -343,8 +358,24 @@ namespace IPC247
             {
                 API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "btn_Save_Click()", ex.ToString()));
             }
-           
 
+        }
+
+        private void dte_ShipDate_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int songay = 0;
+                if (txt_DayDebt.EditValue != null)
+                {
+                    int.TryParse(txt_DayDebt.EditValue.ToString(), out songay);
+                }
+                dte_DayofPlank.DateTime = dte_ShipDate.DateTime.AddDays(songay);
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "txt_Remainder_EditValueChanged()", ex.ToString()));
+            }
         }
     }
 }
