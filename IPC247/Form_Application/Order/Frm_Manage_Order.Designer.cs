@@ -582,6 +582,7 @@
             this.txtSum_CostPrice.Size = new System.Drawing.Size(118, 20);
             this.txtSum_CostPrice.StyleController = this.lct_Main;
             this.txtSum_CostPrice.TabIndex = 13;
+            this.txtSum_CostPrice.EditValueChanged += new System.EventHandler(this.txtSum_CostPrice_EditValueChanged);
             // 
             // txtSum_Price
             // 
@@ -603,6 +604,7 @@
             this.txtSum_Price.Size = new System.Drawing.Size(132, 20);
             this.txtSum_Price.StyleController = this.lct_Main;
             this.txtSum_Price.TabIndex = 14;
+            this.txtSum_Price.EditValueChanged += new System.EventHandler(this.txtSum_Price_EditValueChanged);
             // 
             // txt_DayDebt
             // 
@@ -1110,7 +1112,7 @@
             this.lct_SumCostPrice.Location = new System.Drawing.Point(0, 213);
             this.lct_SumCostPrice.Name = "lct_SumCostPrice";
             this.lct_SumCostPrice.Size = new System.Drawing.Size(218, 24);
-            this.lct_SumCostPrice.Text = "Tổng Giá Nhập";
+            this.lct_SumCostPrice.Text = "Giá Nhập Thực Tế";
             this.lct_SumCostPrice.TextSize = new System.Drawing.Size(93, 13);
             // 
             // lct_SumPrice
@@ -1119,8 +1121,8 @@
             this.lct_SumPrice.Location = new System.Drawing.Point(218, 213);
             this.lct_SumPrice.Name = "lct_SumPrice";
             this.lct_SumPrice.Size = new System.Drawing.Size(208, 24);
-            this.lct_SumPrice.Text = "Tổng Giá Bán";
-            this.lct_SumPrice.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.lct_SumPrice.Text = "Giá Bán Thực";
+            this.lct_SumPrice.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
             this.lct_SumPrice.TextSize = new System.Drawing.Size(63, 13);
             this.lct_SumPrice.TextToControlDistance = 9;
             // 
@@ -1196,7 +1198,7 @@
             this.lct_SaleNote.Name = "lct_SaleNote";
             this.lct_SaleNote.Size = new System.Drawing.Size(426, 39);
             this.lct_SaleNote.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.lct_SaleNote.Text = "Ghi Chú BH";
+            this.lct_SaleNote.Text = "Ghi Chú BH TT";
             this.lct_SaleNote.TextSize = new System.Drawing.Size(93, 13);
             // 
             // lct_PayNote

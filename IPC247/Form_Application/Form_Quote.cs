@@ -426,7 +426,45 @@ namespace IPC247
 			txtThanhTien.EditValue = dongia * quantity;
 		}
 
-		private void btnAdd_Click(object sender, EventArgs e)
+        private void ShowInfo_Commission()
+        {
+            #region Xử Lý Hệ Số Tổng:
+            try
+            {
+                if (lst != null)
+                {
+                    decimal sumofCostPrice = 0;
+                    decimal sumofPrice = 0;
+                    sumofCostPrice = lst.Sum(p => p.CostPrice*p.SoLuong);
+                    sumofPrice = lst.Sum(p => p.ThanhTien);
+                    decimal sumprofit = 0;
+                    if (sumofPrice > 0)
+                    {
+                        sumprofit = Math.Round(((sumofPrice - sumofCostPrice) / sumofPrice) * 100, 2)* HeSoBienDoi;
+                    }
+                    lblTongTien.Text = sumofPrice.ToString("n0");
+                    lbl_Sumprofit.Text = string.Format("Hệ Số Tổng: {0}", sumprofit.ToString("n2"));
+                    Dictionary<string, object> param = new Dictionary<string, object>();
+                    param.Add("Profit", sumprofit); //0
+                    param.Add("DayofLate", 0); //1
+                    param.Add("Money", sumofPrice); //2
+                    DataTable tablecommission = new DataTable();
+                    tablecommission = SQLHelper.ExecuteDataTableUndefine("sp_Get_MasterData_Commission", param);
+                    if (tablecommission != null && tablecommission.Rows.Count > 0)
+                    {
+                        lbl_Adv_JHC.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyAdv_JHC"]);
+                        lbl_Other.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyỌther"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "btnAdd_Click_sp_Get_MasterData_Commission", ex.ToString()));
+            }
+            #endregion Xử Lý Hệ Số Tổng:
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
 		{
 			try
 			{
@@ -466,8 +504,10 @@ namespace IPC247
 				dgc_BaoGia.DataSource = lst;
 				dgv_BaoGia.RefreshData();
 				dgv_BaoGia.BestFitColumns(true);
-			}
-			catch (Exception ex)
+
+                ShowInfo_Commission();
+            }
+            catch (Exception ex)
 			{
 				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "btnAdd_Click", ex.ToString()));
 			}
@@ -548,8 +588,9 @@ namespace IPC247
 					dgv_BaoGia.OptionsView.EnableAppearanceOddRow = true;
 				}
 				dgv_BaoGia.RefreshData();
-			}
-			catch (Exception ex)
+                ShowInfo_Commission();
+            }
+            catch (Exception ex)
 			{
 				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "btnCapNhat_Click", ex.ToString()));
 			}
@@ -585,7 +626,8 @@ namespace IPC247
 					}
 					dgv_BaoGia.RefreshData();
 				}
-			}
+                ShowInfo_Commission();
+            }
 			catch (Exception ex)
 			{
 				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "xóaSảnPhẩmToolStripMenuItem_Click", ex.ToString()));
@@ -865,7 +907,7 @@ namespace IPC247
 			decimal dongia, profit;
 			decimal.TryParse(txtDonGia.EditValue.ToString(), out dongia);
 			decimal.TryParse(txtProfit.EditValue.ToString(), out profit);
-
+            
 			if (profit < 0)
 			{
 				txtTienChietKhau.EditValue = dongia - CostPrice;

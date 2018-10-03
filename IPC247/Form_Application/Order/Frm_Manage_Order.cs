@@ -19,7 +19,7 @@ namespace IPC247
         string ID_CardCode = "0";
         string IDQuote = "0";
         bool Check_Save = true;
-
+        bool Flag_Change_Profit = true;
         public Frm_Manage_Order()
         {
             InitializeComponent();
@@ -75,6 +75,22 @@ namespace IPC247
                 API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "LoadComboboxVendor()", ex.ToString()));
             }
         }
+        private void SetProfit()
+        {
+            decimal SumCostPriceReal = 0;
+            decimal.TryParse(txtSum_CostPrice.EditValue.ToString(),out SumCostPriceReal);
+            decimal SumPriceReal = 0;
+            decimal.TryParse(txtSum_Price.EditValue.ToString(), out SumPriceReal);
+            if(SumPriceReal > 0 && SumCostPriceReal > 0)
+            {
+                Profit = Math.Round(((SumPriceReal - SumCostPriceReal) / SumPriceReal) * 500, 2);
+            }
+            else
+            {
+                Profit = 0;
+            }
+            txt_Profit.EditValue = Profit;
+        }
         private void LoadBaoGiaAll(string ID)
         {
             try
@@ -97,7 +113,9 @@ namespace IPC247
                     txtAddress.Text = dt.Rows[0]["DiaChi"].ToString();
                     txtContactPerson.Text = dt.Rows[0]["ContractPerson"].ToString();
                     txtSum_CostPrice.EditValue = dt.Rows[0]["CostPrice"];
+                    txtSum_CostPrice.ToolTip = string.Format("Tổng Giá Nhập Trên Hợp Đồng: {0}", dt.Rows[0]["SumCostPirceOfQuote"]);
                     txtSum_Price.Text = dt.Rows[0]["TongTien"].ToString();
+                    txtSum_Price.ToolTip = string.Format("Tổng Giá Bán Trên Hợp Đồng: {0}", dt.Rows[0]["SumPirceOfQuote"]);
                     txtDeposit.Text = dt.Rows[0]["Deposit"].ToString();
                     txt_DayDebt.EditValue = dt.Rows[0]["DayDebt"];
                     if (dt.Rows[0]["PayOffDate"].ToString() != "")
@@ -180,7 +198,7 @@ namespace IPC247
             {
                 int dayoflate = (dte_PayOffDate.DateTime.Date - dte_DayofPlank.DateTime.Date).Days;
                 txtDayLate.EditValue = dayoflate > 0 ? dayoflate : 0;
-                if (dte_PayOffDate.DateTime.Date <= dte_CreateOrder.DateTime.Date && dte_PayOffDate.Text != "")
+                if (dte_PayOffDate.DateTime.Date < dte_CreateOrder.DateTime.Date && dte_PayOffDate.Text != "")
                 {
                     dxErrorProvider1.SetError(dte_PayOffDate, "Ngày thực tế thanh toán không được nhỏ hơn ngày tạo đơn hàng");
                     Check_Save = false;
@@ -376,6 +394,16 @@ namespace IPC247
             {
                 API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "txt_Remainder_EditValueChanged()", ex.ToString()));
             }
+        }
+
+        private void txtSum_CostPrice_EditValueChanged(object sender, EventArgs e)
+        {
+            SetProfit();
+        }
+
+        private void txtSum_Price_EditValueChanged(object sender, EventArgs e)
+        {
+            SetProfit();
         }
     }
 }

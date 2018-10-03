@@ -757,8 +757,9 @@ D:\TFS\dtson\IPC247Client\IPC247\IPC247\obj\Debug\IPC247.csproj.CoreCompileInput
 D:\TFS\dtson\IPC247Client\IPC247\IPC247\obj\Debug\IPC247.csproj.CopyComplete
 D:\TFS\dtson\IPC247Client\IPC247\IPC247\obj\Debug\IPC247.exe
 D:\TFS\dtson\IPC247Client\IPC247\IPC247\obj\Debug\IPC247.pdb
-D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\IPC247.exe
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\IPC247.exe.config
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\IPC247.exe
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\IPC247.pdb
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\DevExpress.BonusSkins.v17.2.dll
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\DevExpress.Charts.v17.2.Core.dll
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\DevExpress.Dashboard.v17.2.Core.dll
@@ -1013,4 +1014,3 @@ D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.csproj.CoreCompileInput
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.csproj.CopyComplete
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.exe
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Debug\IPC247.pdb
-D:\TFS\dtson\IPC247New\IPC247New\IPC247\bin\Debug\IPC247.pdb
