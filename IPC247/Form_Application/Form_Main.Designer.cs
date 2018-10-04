@@ -57,6 +57,7 @@
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.btnLuongTheoDS = new DevExpress.XtraBars.BarButtonItem();
             this.btn_CommissionEpl = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_SalaryOfElp = new DevExpress.XtraBars.BarButtonItem();
             this.rbp_NhanSu = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpg_TaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpg_Master_Commission = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -173,8 +174,8 @@
             this.btn_EnquiryDetails.Caption = "Quản Lý Dự Án";
             this.btn_EnquiryDetails.Enabled = false;
             this.btn_EnquiryDetails.Id = 17;
-            this.btn_EnquiryDetails.ImageOptions.Image = global::IPC247.Properties.Resources.managerules_16x16;
-            this.btn_EnquiryDetails.ImageOptions.LargeImage = global::IPC247.Properties.Resources.managerules_32x32;
+            this.btn_EnquiryDetails.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_EnquiryDetails.ImageOptions.Image")));
+            this.btn_EnquiryDetails.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_EnquiryDetails.ImageOptions.LargeImage")));
             this.btn_EnquiryDetails.Name = "btn_EnquiryDetails";
             this.btn_EnquiryDetails.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_EnquiryDetails_ItemClick);
             // 
@@ -188,9 +189,10 @@
             // btn_CreateDocEntry
             // 
             this.btn_CreateDocEntry.Caption = "Tạo Đơn Hàng";
+            this.btn_CreateDocEntry.Enabled = false;
             this.btn_CreateDocEntry.Id = 20;
-            this.btn_CreateDocEntry.ImageOptions.Image = global::IPC247.Properties.Resources.botask_16x16;
-            this.btn_CreateDocEntry.ImageOptions.LargeImage = global::IPC247.Properties.Resources.botask_32x32;
+            this.btn_CreateDocEntry.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_CreateDocEntry.ImageOptions.Image")));
+            this.btn_CreateDocEntry.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_CreateDocEntry.ImageOptions.LargeImage")));
             this.btn_CreateDocEntry.Name = "btn_CreateDocEntry";
             this.btn_CreateDocEntry.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_CreateDocEntry_ItemClick);
             // 
@@ -199,8 +201,8 @@
             this.btn_Config_MasterData_Order.Caption = "Thông Tin Chung";
             this.btn_Config_MasterData_Order.Enabled = false;
             this.btn_Config_MasterData_Order.Id = 21;
-            this.btn_Config_MasterData_Order.ImageOptions.Image = global::IPC247.Properties.Resources.bonote_16x16;
-            this.btn_Config_MasterData_Order.ImageOptions.LargeImage = global::IPC247.Properties.Resources.bonote_32x32;
+            this.btn_Config_MasterData_Order.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Config_MasterData_Order.ImageOptions.Image")));
+            this.btn_Config_MasterData_Order.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_Config_MasterData_Order.ImageOptions.LargeImage")));
             this.btn_Config_MasterData_Order.Name = "btn_Config_MasterData_Order";
             this.btn_Config_MasterData_Order.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Config_MasterData_Order_ItemClick);
             // 
@@ -233,9 +235,10 @@
             this.btnLuongTheoDS,
             this.btn_CommissionEpl,
             this.btn_CreateDocEntry,
-            this.btn_Config_MasterData_Order});
+            this.btn_Config_MasterData_Order,
+            this.btn_SalaryOfElp});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 22;
+            this.ribbonControl1.MaxItemId = 23;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barheader_text);
             this.ribbonControl1.PageHeaderItemLinks.Add(this.barButtonItem2);
@@ -334,8 +337,8 @@
             this.btnLuongTheoDS.Caption = "Lương Theo Doanh Số";
             this.btnLuongTheoDS.Enabled = false;
             this.btnLuongTheoDS.Id = 18;
-            this.btnLuongTheoDS.ImageOptions.Image = global::IPC247.Properties.Resources.financial_16x16;
-            this.btnLuongTheoDS.ImageOptions.LargeImage = global::IPC247.Properties.Resources.financial_32x32;
+            this.btnLuongTheoDS.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLuongTheoDS.ImageOptions.Image")));
+            this.btnLuongTheoDS.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLuongTheoDS.ImageOptions.LargeImage")));
             this.btnLuongTheoDS.Name = "btnLuongTheoDS";
             this.btnLuongTheoDS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLuongTheoDS_ItemClick);
             // 
@@ -344,10 +347,20 @@
             this.btn_CommissionEpl.Caption = "Bảng Hoa Hồng Nhân Viên";
             this.btn_CommissionEpl.Enabled = false;
             this.btn_CommissionEpl.Id = 19;
-            this.btn_CommissionEpl.ImageOptions.Image = global::IPC247.Properties.Resources.conditionalformatting_16x16;
-            this.btn_CommissionEpl.ImageOptions.LargeImage = global::IPC247.Properties.Resources.conditionalformatting_32x32;
+            this.btn_CommissionEpl.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_CommissionEpl.ImageOptions.Image")));
+            this.btn_CommissionEpl.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_CommissionEpl.ImageOptions.LargeImage")));
             this.btn_CommissionEpl.Name = "btn_CommissionEpl";
             this.btn_CommissionEpl.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_CommissionEpl_ItemClick);
+            // 
+            // btn_SalaryOfElp
+            // 
+            this.btn_SalaryOfElp.Caption = "Hoa Hồng Nhân Viên";
+            this.btn_SalaryOfElp.Enabled = false;
+            this.btn_SalaryOfElp.Id = 22;
+            this.btn_SalaryOfElp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_SalaryOfElp.ImageOptions.Image")));
+            this.btn_SalaryOfElp.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_SalaryOfElp.ImageOptions.LargeImage")));
+            this.btn_SalaryOfElp.Name = "btn_SalaryOfElp";
+            this.btn_SalaryOfElp.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_SalaryOfElp_ItemClick);
             // 
             // rbp_NhanSu
             // 
@@ -368,6 +381,7 @@
             // 
             this.rpg_Master_Commission.ItemLinks.Add(this.btnLuongTheoDS);
             this.rpg_Master_Commission.ItemLinks.Add(this.btn_CommissionEpl);
+            this.rpg_Master_Commission.ItemLinks.Add(this.btn_SalaryOfElp);
             this.rpg_Master_Commission.Name = "rpg_Master_Commission";
             this.rpg_Master_Commission.Text = "Cấu Hình Lương Theo Doanh Số";
             // 
@@ -504,5 +518,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpg_Docentry;
         private DevExpress.XtraBars.BarButtonItem btn_CreateDocEntry;
         private DevExpress.XtraBars.BarButtonItem btn_Config_MasterData_Order;
+        private DevExpress.XtraBars.BarButtonItem btn_SalaryOfElp;
     }
 }

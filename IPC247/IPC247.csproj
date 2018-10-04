@@ -226,6 +226,12 @@
     <Compile Include="Form_Application\Form_Wait.Designer.cs">
       <DependentUpon>Form_Wait.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Application\Commission\Frm_CommissonOfElp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Application\Commission\Frm_CommissonOfElp.Designer.cs">
+      <DependentUpon>Frm_CommissonOfElp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Application\Frm_NhomQuyen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Application\Commission\Frm_Commission.resx">
       <DependentUpon>Frm_Commission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Application\Commission\Frm_CommissonOfElp.resx">
+      <DependentUpon>Frm_CommissonOfElp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Application\Commission\MasterData_Commission.resx">
       <DependentUpon>MasterData_Commission.cs</DependentUpon>
@@ -433,6 +442,8 @@
     <Content Include="icon.ico" />
     <Content Include="icon_b_5FE_icon.ico" />
     <Content Include="ipc247_370x471_SjF_icon.ico" />
+    <None Include="Resources\reviewallowuserstoeditranges_16x16.png" />
+    <None Include="Resources\reviewallowuserstoeditranges_32x32.png" />
     <None Include="Resources\bonote_16x16.png" />
     <None Include="Resources\bonote_32x32.png" />
     <None Include="Resources\botask_16x16.png" />

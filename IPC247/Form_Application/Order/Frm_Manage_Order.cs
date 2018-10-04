@@ -20,9 +20,56 @@ namespace IPC247
         string IDQuote = "0";
         bool Check_Save = true;
         bool Flag_Change_Profit = true;
+        string IDOrder = "0";
         public Frm_Manage_Order()
         {
             InitializeComponent();
+        }
+        private void sp_Cancel_Order()
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IDOrder", IDOrder); //0
+                param.Add("UserID", Form_Main.user.Username); //2
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Cancel_Order", param);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    var Result = dt.Rows[0]["Result"].ToString();
+                    var Message = dt.Rows[0]["Message"].ToString();
+                    XtraMessageBox.Show(Message, "Thông Báo");
+                }
+                else
+                {
+                    API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "sp_Cancel_Order()", "Không có dữ liệu trả về!"));
+                }
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "sp_Cancel_Order()", ex.ToString()));
+            }
+        }
+        private void sp_Get_ListOrderForDate()
+        {
+            try
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                string fromDate = (dte_FromDate.EditValue == null ? "" : dte_FromDate.DateTime.ToString("dd/MM/yyyy"));
+                string toDate = (dte_ToDate.EditValue == null ? "" : dte_ToDate.DateTime.ToString("dd/MM/yyyy"));
+                param.Add("p_FromDate", fromDate); //0
+                param.Add("p_ToDate", toDate); //2
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_Get_ListOrderForDate", param);
+                dgc_Main.DataSource = dt;
+                dgv_Main.BestFitColumns(true);
+                dgv_Main.RefreshData();
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "sp_Cancel_Order()", ex.ToString()));
+            }
         }
         private void LoadMaster_Quote()
         {
@@ -130,6 +177,7 @@ namespace IPC247
                     txt_SaleNote.EditValue = dt.Rows[0]["SalesNote"].ToString();
                     ID_CardCode =  dt.Rows[0]["IDCardCode"].ToString();
                     decimal.TryParse(dt.Rows[0]["Profit"].ToString(),out Profit);
+                    IDOrder = dt.Rows[0]["IDOrder"].ToString();
                     txt_Profit.EditValue = Profit;
                 }
             }
@@ -150,6 +198,7 @@ namespace IPC247
             LoadComboboxUser();
             LoadComboboxVendor();
             LoadPayStatus();
+            sp_Get_ListOrderForDate();
         }
 
         private void txt_DayDebt_EditValueChanged(object sender, EventArgs e)
@@ -180,10 +229,13 @@ namespace IPC247
         {
             try
             {
-                int rowHandle = slk_BaoGia.Properties.GetIndexByKeyValue(slk_BaoGia.EditValue);
-                object row = slk_BaoGia.Properties.View.GetRow(rowHandle);
-                IDQuote = (row as DataRowView).Row["ID"].ToString();
-                LoadBaoGiaAll(IDQuote);
+                //int rowHandle = slk_BaoGia.Properties.GetIndexByKeyValue(slk_BaoGia.EditValue);
+                //object row = slk_BaoGia.Properties.View.GetRow(rowHandle);
+                if(slk_BaoGia.EditValue != null)
+                {
+                    IDQuote = slk_BaoGia.EditValue.ToString();
+                    LoadBaoGiaAll(IDQuote);
+                }
             }
             catch (Exception ex)
             {
@@ -339,7 +391,7 @@ namespace IPC247
                 param.Add("p_ShipDate", dte_ShipDate.Text); //10
                 param.Add("DayDebt", txt_DayDebt.EditValue); //11
                 param.Add("p_DayofPlank", dte_DayofPlank.Text); //12
-                param.Add("p_PayOffDate", dte_PayOffDate.Text); //13
+                param.Add("p_PayOffDate", dte_PayOffDate.EditValue==null?"":dte_PayOffDate.DateTime.ToString("dd/MM/yyyy HH:mm:ss")); //13
                 param.Add("PayStatus", slu_Paystatus.EditValue); //14
                 param.Add("PayNote", txt_PayNote.Text); //15
                 param.Add("Sales", slu_Saler.EditValue); //16
@@ -350,6 +402,7 @@ namespace IPC247
                 param.Add("UserID", Form_Main.user.Username); //21
                 param.Add("Policy", txt_Policy.Text); //22
                 param.Add("QuoteID", IDQuote); //23
+                param.Add("IDOrder", IDOrder); //24
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDataTableUndefine("sp_Save_Order", param);
 
@@ -357,13 +410,10 @@ namespace IPC247
                 {
                     var Result = dt.Rows[0]["Result"].ToString();
                     var Message = dt.Rows[0]["Message"].ToString();
+                    XtraMessageBox.Show(Message, "Thông Báo");
                     if (Result == "1")//Login thành công
                     {
-                        XtraMessageBox.Show(Message, "Thông Báo");
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show("Tạo Báo Giá Không Thành Công", "Thông Báo");
+                        sp_Get_ListOrderForDate();
                     }
                 }
                 else
@@ -404,6 +454,101 @@ namespace IPC247
         private void txtSum_Price_EditValueChanged(object sender, EventArgs e)
         {
             SetProfit();
+        }
+
+        private void slu_Paystatus_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (slu_Paystatus.EditValue != null)
+                {
+                    decimal Remainder = 0;
+                    decimal.TryParse(txt_Remainder.EditValue.ToString(), out Remainder);
+                    string paystatus = slu_Paystatus.EditValue.ToString();
+                    if (paystatus =="F")
+                    {
+                        dte_PayOffDate.EditValue = DateTime.Now;
+                        txt_Remainder.EditValue = 0;
+                    }
+                    else
+                    {
+
+                        txt_Remainder.EditValue = Remainder;
+                        dte_PayOffDate.EditValue = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "slu_Paystatus_EditValueChanged()", ex.ToString())); 
+            }
+        }
+
+        private void btn_HuyDH_Click(object sender, EventArgs e)
+        {
+            if(DialogResult.No == XtraMessageBox.Show("Bạn có chắc muốn hủy đơn hàng này?","Thông Báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question))
+            {
+                return;
+            }
+            sp_Cancel_Order();
+            sp_Get_ListOrderForDate();
+        }
+
+        private void dgv_Main_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if(DialogResult.No == XtraMessageBox.Show("Bạn có chắc muốn load thông tin đơn hàng này? Thông Tin đang xử lý sẽ được làm mới!","Thông Báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question))
+                {
+                    return;
+                }
+                int focus = dgv_Main.FocusedRowHandle;
+                if (focus >= 0)
+                {
+                    slk_BaoGia.EditValue = dgv_Main.GetDataRow(focus)["IDQuote"].ToString();
+                    //DateTime createOrder, PayOffDate;
+                    //if (dgv_Main.GetDataRow(focus)["CreateDate"].ToString() != "")
+                    //{
+                    //    createOrder = DateTime.ParseExact(dgv_Main.GetDataRow(focus)["CreateDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    //    dte_CreateOrder.EditValue = createOrder;
+                    //}
+                    //txtContractNum.Text = dgv_Main.GetDataRow(focus)["ContractNum"].ToString();
+                    //txt_Policy.Text = dgv_Main.GetDataRow(focus)["DieuKhoan"].ToString();
+                    //txt_ProductCode.Text = dgv_Main.GetDataRow(focus)["ProductCode"].ToString();
+                    //txtCardName.Text = dgv_Main.GetDataRow(focus)["TenKH"].ToString();
+                    //txtAddress.Text = dgv_Main.GetDataRow(focus)["DiaChi"].ToString();
+                    //txtContactPerson.Text = dgv_Main.GetDataRow(focus)["ContractPerson"].ToString();
+                    //txtSum_CostPrice.EditValue = dgv_Main.GetDataRow(focus)["CostPrice"];
+                    //txtSum_CostPrice.ToolTip = string.Format("Tổng Giá Nhập Trên Hợp Đồng: {0}", dgv_Main.GetDataRow(focus)["SumCostPirceOfQuote"]);
+                    //txtSum_Price.Text = dgv_Main.GetDataRow(focus)["TongTien"].ToString();
+                    //txtSum_Price.ToolTip = string.Format("Tổng Giá Bán Trên Hợp Đồng: {0}", dgv_Main.GetDataRow(focus)["SumPirceOfQuote"]);
+                    //txtDeposit.Text = dgv_Main.GetDataRow(focus)["Deposit"].ToString();
+                    //txt_DayDebt.EditValue = dgv_Main.GetDataRow(focus)["DayDebt"];
+                    //if (dgv_Main.GetDataRow(focus)["PayOffDate"].ToString() != "")
+                    //{
+                    //    PayOffDate = DateTime.ParseExact(dgv_Main.GetDataRow(focus)["PayOffDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    //    dte_PayOffDate.EditValue = PayOffDate;
+                    //}
+                    //slu_Paystatus.EditValue = dgv_Main.GetDataRow(focus)["PayStatus"];
+                    //slu_Saler.EditValue = dgv_Main.GetDataRow(focus)["Sales"];
+                    //slu_Vendor.EditValue = dgv_Main.GetDataRow(focus)["VendorCode"];
+                    //txt_PayNote.EditValue = dgv_Main.GetDataRow(focus)["PayNote"].ToString();
+                    //txt_SaleNote.EditValue = dgv_Main.GetDataRow(focus)["SalesNote"].ToString();
+                    //ID_CardCode = dgv_Main.GetDataRow(focus)["IDCardCode"].ToString();
+                    //decimal.TryParse(dgv_Main.GetDataRow(focus)["Profit"].ToString(), out Profit);
+                    //IDOrder = dgv_Main.GetDataRow(focus)["IDOrder"].ToString();
+                    //txt_Profit.EditValue = Profit;
+                }
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "dgv_Main_RowClick()", ex.ToString()));
+            }
+        }
+
+        private void btn_SearchOrder_Click(object sender, EventArgs e)
+        {
+            sp_Get_ListOrderForDate();
         }
     }
 }

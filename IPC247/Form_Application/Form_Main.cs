@@ -732,5 +732,24 @@ namespace IPC247
             }
             SplashScreenManager.CloseDefaultWaitForm();
         }
+
+        private void btn_SalaryOfElp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SplashScreenManager.ShowDefaultWaitForm("Vui Lòng Chờ...", "Đang tải dữ liệu...");
+            System.Windows.Forms.Form f = GetChildFormByName("Frm_CommissonOfElp");
+            if (f == null)
+            {
+                f = new Frm_CommissonOfElp();
+                f.Name = "Frm_CommissonOfElp";
+                f.MdiParent = this;
+                f.Show();
+            }
+            else
+            {
+                f.Activate();
+            }
+            SplashScreenManager.CloseDefaultWaitForm();
+
+        }
     }
 }
