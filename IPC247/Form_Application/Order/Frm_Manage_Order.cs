@@ -59,7 +59,8 @@ namespace IPC247
                 string fromDate = (dte_FromDate.EditValue == null ? "" : dte_FromDate.DateTime.ToString("dd/MM/yyyy"));
                 string toDate = (dte_ToDate.EditValue == null ? "" : dte_ToDate.DateTime.ToString("dd/MM/yyyy"));
                 param.Add("p_FromDate", fromDate); //0
-                param.Add("p_ToDate", toDate); //2
+                param.Add("p_ToDate", toDate); //1
+                param.Add("IsHide", chkHide.Checked?"1":"0"); //2
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDataTableUndefine("sp_Get_ListOrderForDate", param);
                 dgc_Main.DataSource = dt;
@@ -76,7 +77,11 @@ namespace IPC247
             try
             {
                 DataTable dt = new DataTable();
-                dt = SQLHelper.ExecuteDataTable("sp_getData_Quote_header");
+
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("IsHide", chkHide.Checked ? "1" : "0"); //0
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_getData_Quote_header", param);
+
                 slk_BaoGia.Properties.DataSource = dt;
                 slk_BaoGia.Properties.View.ExpandAllGroups();
 
@@ -163,7 +168,7 @@ namespace IPC247
                     txtSum_CostPrice.ToolTip = string.Format("Tổng Giá Nhập Trên Hợp Đồng: {0}", dt.Rows[0]["SumCostPirceOfQuote"]);
                     txtSum_Price.Text = dt.Rows[0]["TongTien"].ToString();
                     txtSum_Price.ToolTip = string.Format("Tổng Giá Bán Trên Hợp Đồng: {0}", dt.Rows[0]["SumPirceOfQuote"]);
-                    txtDeposit.Text = dt.Rows[0]["Deposit"].ToString();
+                    txtDeposit.EditValue = dt.Rows[0]["Deposit"].ToString();
                     txt_DayDebt.EditValue = dt.Rows[0]["DayDebt"];
                     if (dt.Rows[0]["PayOffDate"].ToString() != "")
                     {
@@ -250,9 +255,19 @@ namespace IPC247
             {
                 int dayoflate = (dte_PayOffDate.DateTime.Date - dte_DayofPlank.DateTime.Date).Days;
                 txtDayLate.EditValue = dayoflate > 0 ? dayoflate : 0;
-                if (dte_PayOffDate.DateTime.Date < dte_CreateOrder.DateTime.Date && dte_PayOffDate.Text != "")
+                if (dte_PayOffDate.Text != "" && dte_PayOffDate.DateTime.Date < dte_CreateOrder.DateTime.Date  )
                 {
                     dxErrorProvider1.SetError(dte_PayOffDate, "Ngày thực tế thanh toán không được nhỏ hơn ngày tạo đơn hàng");
+                    Check_Save = false;
+                }
+                else
+                {
+                    dxErrorProvider1.SetError(dte_PayOffDate, null);
+                    Check_Save = true;
+                }
+                if (dte_PayOffDate.Text != "" &&  (dte_PayOffDate.DateTime-DateTime.Today).Days > 0)
+                {
+                    dxErrorProvider1.SetError(dte_PayOffDate, "Ngày thực tế thanh toán không được vượt ngày hiện tại");
                     Check_Save = false;
                 }
                 else
@@ -411,10 +426,15 @@ namespace IPC247
                     var Result = dt.Rows[0]["Result"].ToString();
                     var Message = dt.Rows[0]["Message"].ToString();
                     XtraMessageBox.Show(Message, "Thông Báo");
-                    if (Result == "1")//Login thành công
+                    if (Result == "1" ||Result =="2")//Login thành công
                     {
+                        if(Result =="2")
+                        {
+                            IDOrder = dt.Rows[0]["IDOrder"].ToString();
+                        }
                         sp_Get_ListOrderForDate();
                     }
+                    
                 }
                 else
                 {
@@ -549,6 +569,58 @@ namespace IPC247
         private void btn_SearchOrder_Click(object sender, EventArgs e)
         {
             sp_Get_ListOrderForDate();
+        }
+
+        private void txtDeposit_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal deposit = 0;
+                decimal.TryParse(txtDeposit.EditValue.ToString(), out deposit);
+                decimal money = 0;
+                if (txtSum_Price.EditValue != null)
+                {
+                    decimal.TryParse(txtSum_Price.EditValue.ToString(), out money);
+                }
+                if (deposit < 0 || deposit > money)
+                {
+                    dxErrorProvider1.SetError(txtDeposit, "số tiền đặt cọc phải lớn hơn 0 và không quá số tiền đơn hàng");
+                    Check_Save = false;
+                }
+                else
+                {
+                    txt_Remainder.EditValue = money - deposit;
+                    dxErrorProvider1.SetError(txtDeposit, null);
+                    Check_Save = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Frm_Manage_Order", "txtDeposit_EditValueChanged()", ex.ToString()));
+            }
+        }
+
+        private void dte_PayOffDate_TextChanged(object sender, EventArgs e)
+        {
+            if(dte_PayOffDate.Text =="")
+            {
+                decimal Deposit = 0;
+                decimal.TryParse(txtDeposit.EditValue.ToString(), out Deposit);
+                if (Deposit > 0)
+                {
+                    slu_Paystatus.EditValue = "O";
+                }
+                else
+                {
+                    slu_Paystatus.EditValue = "N";
+                }
+            }
+        }
+
+        private void chkHide_CheckedChanged(object sender, EventArgs e)
+        {
+            sp_Get_ListOrderForDate();
+            LoadMaster_Quote();
         }
     }
 }

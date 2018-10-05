@@ -504,3 +504,7 @@ D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.exe
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.pdb
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.MasterData_Commission.resources
 D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.csprojAssemblyReference.cache
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.Frm_Commission.resources
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.Frm_CommissonOfElp.resources
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.Frm_Config_Order.resources
+D:\TFS\dtson\IPC247New\IPC247New\IPC247\obj\Release\IPC247.Frm_Manage_Order.resources

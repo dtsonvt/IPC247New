@@ -453,7 +453,42 @@ namespace IPC247
                     if (tablecommission != null && tablecommission.Rows.Count > 0)
                     {
                         lbl_Adv_JHC.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyAdv_JHC"]);
-                        lbl_Other.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyỌther"]);
+                        lbl_Other.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyOtherProfit_MoneyOther"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_Quote", "btnAdd_Click_sp_Get_MasterData_Commission", ex.ToString()));
+            }
+            #endregion Xử Lý Hệ Số Tổng:
+        }
+        private void ShowInfo_CommissionOfProduct()
+        {
+            #region Xử Lý Hệ Số Tổng:
+            try
+            {
+                if (lst != null)
+                {
+                   // decimal sumofCostPrice = 0;
+                    decimal sumofPrice = 0;
+                  //  int Soluong = 0;
+               //     int.TryParse(txtSoLuong.EditValue.ToString(), out Soluong);
+                    decimal profit = 0;
+                    decimal.TryParse(txtProfit.Text, out profit);
+                    decimal.TryParse(txtThanhTien.EditValue.ToString(), out sumofPrice);
+                 //   sumofCostPrice = CostPrice* Soluong;
+                    
+                    Dictionary<string, object> param = new Dictionary<string, object>();
+                    param.Add("Profit", profit); //0
+                    param.Add("DayofLate", 0); //1
+                    param.Add("Money", sumofPrice); //2
+                    DataTable tablecommission = new DataTable();
+                    tablecommission = SQLHelper.ExecuteDataTableUndefine("sp_Get_MasterData_Commission", param);
+                    if (tablecommission != null && tablecommission.Rows.Count > 0)
+                    {
+                        lbl_ADV_JHC_Product.Text = string.Format("Adv/JHC: {0} đ", tablecommission.Rows[0]["Profit_MoneyAdv_JHC"]);
+                        lbl_Other_Product.Text = string.Format("Hãng Khác: {0} đ", tablecommission.Rows[0]["Profit_MoneyOther"]);
                     }
                 }
             }
@@ -699,6 +734,7 @@ namespace IPC247
 						
 						#endregion load dữ liệu print
 						dgv_BaoGia.BestFitColumns(true);
+                        ShowInfo_Commission();
 					}
 				}
 			}
@@ -912,6 +948,7 @@ namespace IPC247
 			{
 				txtTienChietKhau.EditValue = dongia - CostPrice;
 			}
+            ShowInfo_CommissionOfProduct();
 		}
 
         private void txtTenKH_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -1009,6 +1046,11 @@ namespace IPC247
         private void Form_Quote_Activated(object sender, EventArgs e)
         {
             LoadControlProduct();
+        }
+
+        private void txtThanhTien_EditValueChanged(object sender, EventArgs e)
+        {
+            ShowInfo_CommissionOfProduct();
         }
     }
 }
