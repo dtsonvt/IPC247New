@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lctMain = new DevExpress.XtraLayout.LayoutControl();
+            this.lbl_Other_Product = new DevExpress.XtraEditors.LabelControl();
+            this.lbl_ADV_JHC_Product = new DevExpress.XtraEditors.LabelControl();
             this.lbl_Other = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.lbl_Adv_JHC = new DevExpress.XtraEditors.LabelControl();
@@ -131,6 +133,8 @@
             this.lctDonGiaNew = new DevExpress.XtraLayout.LayoutControlItem();
             this.lctThanhTien = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcg_Info = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_TongTien = new DevExpress.XtraLayout.LayoutControlItem();
@@ -144,10 +148,6 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lbl_ADV_JHC_Product = new DevExpress.XtraEditors.LabelControl();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lbl_Other_Product = new DevExpress.XtraEditors.LabelControl();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lctMain)).BeginInit();
             this.lctMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dteDeadLine.Properties.CalendarTimeProperties)).BeginInit();
@@ -213,6 +213,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lctDonGiaNew)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lctThanhTien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Info)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_TongTien)).BeginInit();
@@ -226,8 +228,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             this.SuspendLayout();
             // 
             // lctMain
@@ -280,6 +280,30 @@
             this.lctMain.Size = new System.Drawing.Size(1370, 647);
             this.lctMain.TabIndex = 0;
             this.lctMain.Text = "layoutControl1";
+            // 
+            // lbl_Other_Product
+            // 
+            this.lbl_Other_Product.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_Other_Product.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.lbl_Other_Product.Appearance.Options.UseFont = true;
+            this.lbl_Other_Product.Appearance.Options.UseForeColor = true;
+            this.lbl_Other_Product.Location = new System.Drawing.Point(1006, 295);
+            this.lbl_Other_Product.Name = "lbl_Other_Product";
+            this.lbl_Other_Product.Size = new System.Drawing.Size(123, 13);
+            this.lbl_Other_Product.StyleController = this.lctMain;
+            this.lbl_Other_Product.TabIndex = 36;
+            // 
+            // lbl_ADV_JHC_Product
+            // 
+            this.lbl_ADV_JHC_Product.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lbl_ADV_JHC_Product.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.lbl_ADV_JHC_Product.Appearance.Options.UseFont = true;
+            this.lbl_ADV_JHC_Product.Appearance.Options.UseForeColor = true;
+            this.lbl_ADV_JHC_Product.Location = new System.Drawing.Point(1006, 269);
+            this.lbl_ADV_JHC_Product.Name = "lbl_ADV_JHC_Product";
+            this.lbl_ADV_JHC_Product.Size = new System.Drawing.Size(123, 13);
+            this.lbl_ADV_JHC_Product.StyleController = this.lctMain;
+            this.lbl_ADV_JHC_Product.TabIndex = 35;
             // 
             // lbl_Other
             // 
@@ -1503,6 +1527,24 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(43, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.lbl_ADV_JHC_Product;
+            this.layoutControlItem15.Location = new System.Drawing.Point(609, 227);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(127, 26);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.lbl_Other_Product;
+            this.layoutControlItem16.Location = new System.Drawing.Point(609, 253);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(127, 26);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
+            // 
             // lcg_Info
             // 
             this.lcg_Info.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1639,48 +1681,6 @@
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
-            // lbl_ADV_JHC_Product
-            // 
-            this.lbl_ADV_JHC_Product.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lbl_ADV_JHC_Product.Appearance.ForeColor = System.Drawing.Color.Green;
-            this.lbl_ADV_JHC_Product.Appearance.Options.UseFont = true;
-            this.lbl_ADV_JHC_Product.Appearance.Options.UseForeColor = true;
-            this.lbl_ADV_JHC_Product.Location = new System.Drawing.Point(1006, 269);
-            this.lbl_ADV_JHC_Product.Name = "lbl_ADV_JHC_Product";
-            this.lbl_ADV_JHC_Product.Size = new System.Drawing.Size(123, 13);
-            this.lbl_ADV_JHC_Product.StyleController = this.lctMain;
-            this.lbl_ADV_JHC_Product.TabIndex = 35;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.lbl_ADV_JHC_Product;
-            this.layoutControlItem15.Location = new System.Drawing.Point(609, 227);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(127, 26);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
-            // lbl_Other_Product
-            // 
-            this.lbl_Other_Product.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lbl_Other_Product.Appearance.ForeColor = System.Drawing.Color.Green;
-            this.lbl_Other_Product.Appearance.Options.UseFont = true;
-            this.lbl_Other_Product.Appearance.Options.UseForeColor = true;
-            this.lbl_Other_Product.Location = new System.Drawing.Point(1006, 295);
-            this.lbl_Other_Product.Name = "lbl_Other_Product";
-            this.lbl_Other_Product.Size = new System.Drawing.Size(123, 13);
-            this.lbl_Other_Product.StyleController = this.lctMain;
-            this.lbl_Other_Product.TabIndex = 36;
-            // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.Control = this.lbl_Other_Product;
-            this.layoutControlItem16.Location = new System.Drawing.Point(609, 253);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(127, 26);
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem16.TextVisible = false;
-            // 
             // Form_Quote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1757,6 +1757,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lctDonGiaNew)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lctThanhTien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Info)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_TongTien)).EndInit();
@@ -1770,8 +1772,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -604,6 +604,7 @@ namespace IPC247
                             int AutoFormDelay;
                             int.TryParse(dt.Rows[i]["AutoFormDelay"].ToString(), out AutoFormDelay);
                             alertControl1.AutoFormDelay = AutoFormDelay;
+                            ///AppData/Image/switchtimescalesto_32x32.png"
                             alertControl1.Show(this, Caption, Body, "", Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "/AppData/Image/switchtimescalesto_32x32.png"), null);
                         }
                     }

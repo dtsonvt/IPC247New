@@ -453,7 +453,7 @@ namespace IPC247
                     if (tablecommission != null && tablecommission.Rows.Count > 0)
                     {
                         lbl_Adv_JHC.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyAdv_JHC"]);
-                        lbl_Other.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyOtherProfit_MoneyOther"]);
+                        lbl_Other.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyOther"]);
                     }
                 }
             }
