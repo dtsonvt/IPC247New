@@ -143,7 +143,6 @@
             this.lct_Saler = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_SaleNote = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_PayNote = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.slu_SearchQuote = new DevExpress.XtraLayout.LayoutControlItem();
@@ -164,6 +163,10 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.gclRemainder = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lblStatus = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkHide.Properties)).BeginInit();
@@ -231,7 +234,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_Saler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SaleNote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_PayNote)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slu_SearchQuote)).BeginInit();
@@ -252,10 +254,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // lct_Main
             // 
+            this.lct_Main.Controls.Add(this.lblStatus);
             this.lct_Main.Controls.Add(this.chkHide);
             this.lct_Main.Controls.Add(this.btn_SearchOrder);
             this.lct_Main.Controls.Add(this.searchLookUpEdit1);
@@ -436,9 +441,9 @@
             // 
             // btn_HuyDH
             // 
-            this.btn_HuyDH.Location = new System.Drawing.Point(994, 567);
+            this.btn_HuyDH.Location = new System.Drawing.Point(1020, 567);
             this.btn_HuyDH.Name = "btn_HuyDH";
-            this.btn_HuyDH.Size = new System.Drawing.Size(142, 22);
+            this.btn_HuyDH.Size = new System.Drawing.Size(116, 22);
             this.btn_HuyDH.StyleController = this.lct_Main;
             this.btn_HuyDH.TabIndex = 30;
             this.btn_HuyDH.Text = "Hủy Đơn Hàng";
@@ -610,6 +615,7 @@
             this.gclSumPirceOfQuote,
             this.gclTongTien,
             this.gclDeposit,
+            this.gclRemainder,
             this.gclShipDate,
             this.gclDayofPlank,
             this.gclDayOfLate,
@@ -703,19 +709,23 @@
             // 
             // gclSumPirceOfQuote
             // 
+            this.gclSumPirceOfQuote.AppearanceCell.Options.UseTextOptions = true;
+            this.gclSumPirceOfQuote.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gclSumPirceOfQuote.Caption = "Giá Bán Trên Hợp Đồng";
             this.gclSumPirceOfQuote.DisplayFormat.FormatString = "n0";
             this.gclSumPirceOfQuote.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumPirceOfQuote.FieldName = "SumPirceOfQuote";
             this.gclSumPirceOfQuote.Name = "gclSumPirceOfQuote";
             this.gclSumPirceOfQuote.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumPirceOfQuote", "Tổng={0:n0}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumPirceOfQuote", "{0:n0}")});
             this.gclSumPirceOfQuote.Visible = true;
             this.gclSumPirceOfQuote.VisibleIndex = 3;
             this.gclSumPirceOfQuote.Width = 104;
             // 
             // gclTongTien
             // 
+            this.gclTongTien.AppearanceCell.Options.UseTextOptions = true;
+            this.gclTongTien.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gclTongTien.Caption = "Giá Bán Thực";
             this.gclTongTien.DisplayFormat.FormatString = "n0";
             this.gclTongTien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -725,20 +735,25 @@
             this.gclTongTien.Name = "gclTongTien";
             this.gclTongTien.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
             this.gclTongTien.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TongTien", "Tổng={0:n0}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TongTien", "{0:n0}")});
             this.gclTongTien.Visible = true;
             this.gclTongTien.VisibleIndex = 4;
             this.gclTongTien.Width = 125;
             // 
             // gclDeposit
             // 
-            this.gclDeposit.Caption = "Đặt Cọc";
+            this.gclDeposit.AppearanceCell.Options.UseTextOptions = true;
+            this.gclDeposit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gclDeposit.Caption = "Đã Thanh Toán";
             this.gclDeposit.DisplayFormat.FormatString = "n0";
             this.gclDeposit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclDeposit.FieldName = "Deposit";
             this.gclDeposit.Name = "gclDeposit";
+            this.gclDeposit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Deposit", "{0:n0}")});
             this.gclDeposit.Visible = true;
             this.gclDeposit.VisibleIndex = 5;
+            this.gclDeposit.Width = 112;
             // 
             // gclShipDate
             // 
@@ -748,7 +763,7 @@
             this.gclShipDate.FieldName = "ShipDate";
             this.gclShipDate.Name = "gclShipDate";
             this.gclShipDate.Visible = true;
-            this.gclShipDate.VisibleIndex = 6;
+            this.gclShipDate.VisibleIndex = 7;
             this.gclShipDate.Width = 95;
             // 
             // gclDayofPlank
@@ -759,7 +774,7 @@
             this.gclDayofPlank.FieldName = "DayofPlank";
             this.gclDayofPlank.Name = "gclDayofPlank";
             this.gclDayofPlank.Visible = true;
-            this.gclDayofPlank.VisibleIndex = 7;
+            this.gclDayofPlank.VisibleIndex = 8;
             // 
             // gclDayOfLate
             // 
@@ -767,7 +782,7 @@
             this.gclDayOfLate.FieldName = "DayOfLate";
             this.gclDayOfLate.Name = "gclDayOfLate";
             this.gclDayOfLate.Visible = true;
-            this.gclDayOfLate.VisibleIndex = 8;
+            this.gclDayOfLate.VisibleIndex = 9;
             // 
             // gclTrangThaiTT
             // 
@@ -775,7 +790,7 @@
             this.gclTrangThaiTT.FieldName = "TrangThaiTT";
             this.gclTrangThaiTT.Name = "gclTrangThaiTT";
             this.gclTrangThaiTT.Visible = true;
-            this.gclTrangThaiTT.VisibleIndex = 9;
+            this.gclTrangThaiTT.VisibleIndex = 10;
             // 
             // gclPayNote
             // 
@@ -783,7 +798,7 @@
             this.gclPayNote.FieldName = "PayNote";
             this.gclPayNote.Name = "gclPayNote";
             this.gclPayNote.Visible = true;
-            this.gclPayNote.VisibleIndex = 10;
+            this.gclPayNote.VisibleIndex = 11;
             // 
             // gclNguoiBan
             // 
@@ -791,7 +806,7 @@
             this.gclNguoiBan.FieldName = "NguoiBan";
             this.gclNguoiBan.Name = "gclNguoiBan";
             this.gclNguoiBan.Visible = true;
-            this.gclNguoiBan.VisibleIndex = 11;
+            this.gclNguoiBan.VisibleIndex = 12;
             this.gclNguoiBan.Width = 112;
             // 
             // gclDieuKhoan
@@ -1035,9 +1050,9 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(848, 567);
+            this.btn_Save.Location = new System.Drawing.Point(900, 567);
             this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(142, 22);
+            this.btn_Save.Size = new System.Drawing.Size(116, 22);
             this.btn_Save.StyleController = this.lct_Main;
             this.btn_Save.TabIndex = 29;
             this.btn_Save.Text = "Lưu Đơn Hàng";
@@ -1391,7 +1406,6 @@
             this.lct_Saler,
             this.lct_SaleNote,
             this.lct_PayNote,
-            this.emptySpaceItem3,
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.slu_SearchQuote,
@@ -1402,7 +1416,8 @@
             this.lct_Remainder,
             this.lct_ShipDate,
             this.lct_GiaNhapHD,
-            this.lct_PriceContract});
+            this.lct_PriceContract,
+            this.layoutControlItem9});
             this.lcg_Details.Location = new System.Drawing.Point(690, 68);
             this.lcg_Details.Name = "lcg_Details";
             this.lcg_Details.Size = new System.Drawing.Size(450, 561);
@@ -1620,22 +1635,14 @@
             this.lct_PayNote.Text = "Ghi Chú Thanh Toán";
             this.lct_PayNote.TextSize = new System.Drawing.Size(97, 13);
             // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 457);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(134, 26);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btn_Save;
-            this.layoutControlItem4.Location = new System.Drawing.Point(134, 457);
-            this.layoutControlItem4.MaxSize = new System.Drawing.Size(146, 26);
-            this.layoutControlItem4.MinSize = new System.Drawing.Size(146, 26);
+            this.layoutControlItem4.Location = new System.Drawing.Point(186, 457);
+            this.layoutControlItem4.MaxSize = new System.Drawing.Size(120, 26);
+            this.layoutControlItem4.MinSize = new System.Drawing.Size(120, 26);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(146, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(120, 26);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
@@ -1643,11 +1650,11 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btn_HuyDH;
-            this.layoutControlItem5.Location = new System.Drawing.Point(280, 457);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(146, 26);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(146, 26);
+            this.layoutControlItem5.Location = new System.Drawing.Point(306, 457);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(120, 26);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(120, 26);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(146, 26);
+            this.layoutControlItem5.Size = new System.Drawing.Size(120, 26);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -1845,6 +1852,51 @@
             // 
             this.dxErrorProvider1.ContainerControl = this;
             // 
+            // gclRemainder
+            // 
+            this.gclRemainder.AppearanceCell.Options.UseTextOptions = true;
+            this.gclRemainder.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gclRemainder.Caption = "Số Tiền Còn Lại";
+            this.gclRemainder.DisplayFormat.FormatString = "n0";
+            this.gclRemainder.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gclRemainder.FieldName = "Remainder";
+            this.gclRemainder.Name = "gclRemainder";
+            this.gclRemainder.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Remainder", "{0:n0}")});
+            this.gclRemainder.Visible = true;
+            this.gclRemainder.VisibleIndex = 6;
+            this.gclRemainder.Width = 83;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblStatus.Appearance.Options.UseFont = true;
+            this.lblStatus.Appearance.Options.UseForeColor = true;
+            this.lblStatus.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
+            this.lblStatus.Location = new System.Drawing.Point(714, 567);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(182, 1);
+            this.lblStatus.StyleController = this.lct_Main;
+            this.lblStatus.TabIndex = 41;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.lblStatus;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 457);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(186, 26);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(67, 457);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(119, 26);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // Frm_Manage_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1922,7 +1974,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_Saler)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SaleNote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_PayNote)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slu_SearchQuote)).EndInit();
@@ -1943,6 +1994,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1999,7 +2052,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_Save;
         private DevExpress.XtraLayout.LayoutControlItem lct_SaleNote;
         private DevExpress.XtraLayout.LayoutControlItem lct_PayNote;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
@@ -2084,5 +2136,9 @@
         private DevExpress.XtraEditors.SpinEdit txt_PriceContract;
         private DevExpress.XtraLayout.LayoutControlItem lct_GiaNhapHD;
         private DevExpress.XtraLayout.LayoutControlItem lct_PriceContract;
+        private DevExpress.XtraGrid.Columns.GridColumn gclRemainder;
+        private DevExpress.XtraEditors.LabelControl lblStatus;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
     }
 }

@@ -328,7 +328,8 @@ namespace IPC247
 
             this.barheader_text.Caption = string.Format("Xin Chào: {0} - chúc bạn một ngày làm việc hiệu quả", user.Name);
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            this.Text = string.Format("IPC247 - Version - {0}", version);
+            string versionDB = SQLHelper.str_connect.Contains("Test")?"(TEST)":"";
+            this.Text = string.Format("IPC247 - Version - {0} {1}", version, versionDB);
         }
        
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

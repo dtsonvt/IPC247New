@@ -231,14 +231,8 @@ namespace IPC247
                     var Message = dt.Rows[0]["Message"].ToString();
                     cus.ID = dt.Rows[0]["IDCardCode"].ToString();
                     com.ID = dt.Rows[0]["IDCompany"].ToString();
-                    if (Result == "1")//Login thành công
-                    {
-                        XtraMessageBox.Show(Message, "Thông Báo");
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show("Tạo Báo Giá Không Thành Công", "Thông Báo");
-                    }
+                    XtraMessageBox.Show(Message, "Thông Báo");
+                    LoadSoBaoGia();
                 }
                 else
                 {

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Globalization;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace IPC247
 {
@@ -194,7 +195,18 @@ namespace IPC247
                     ID_CardCode =  dt.Rows[0]["IDCardCode"].ToString();
                     decimal.TryParse(dt.Rows[0]["Profit"].ToString(),out Profit);
                     IDOrder = dt.Rows[0]["IDOrder"].ToString();
-                    
+                    string Flag_New  = dt.Rows[0]["Flag_New"].ToString();
+                    if(Flag_New =="0")
+                    {
+                       // XtraMessageBox.Show("Báo Giá Số này đã được tạo đơn hàng", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        lblStatus.Text = "Đã Tạo Đơn Hàng";
+                        lblStatus.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        lblStatus.Text = "Chưa Tạo Đơn Hàng";
+                        lblStatus.ForeColor = Color.Green;
+                    }
                     txt_Profit.EditValue = Profit;
                 }
             }
@@ -204,9 +216,46 @@ namespace IPC247
             }
         }
 
+        void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (!dgv_Main.IsGroupRow(e.RowHandle)) //Nếu không phải là Group
+            {
+                if (e.Info.IsRowIndicator) //Nếu là dòng Indicator
+                {
+                    if (e.RowHandle < 0)
+                    {
+                        e.Info.ImageIndex = 0;
+                        e.Info.DisplayText = string.Empty;
+                    }
+                    else
+                    {
+                        e.Info.ImageIndex = -1; //Không hiển thị hình
+                        e.Info.DisplayText = (e.RowHandle + 1).ToString(); //Số thứ tự tăng dần
+                    }
+                    SizeF _Size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font); //Lấy kích thước của vùng hiển thị Text
+                    Int32 _Width = Convert.ToInt32(_Size.Width) + 20;
+                    BeginInvoke(new MethodInvoker(delegate { cal(_Width, dgv_Main); })); //Tăng kích thước nếu Text vượt quá
+                }
+            }
+            else
+            {
+                e.Info.ImageIndex = -1;
+                e.Info.DisplayText = string.Format("[{0}]", (e.RowHandle * -1)); //Nhân -1 để đánh lại số thứ tự tăng dần
+                SizeF _Size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font);
+                Int32 _Width = Convert.ToInt32(_Size.Width) + 20;
+                BeginInvoke(new MethodInvoker(delegate { cal(_Width, dgv_Main); }));
+            }
+        }
+        bool cal(Int32 _Width, GridView _View)
+        {
+            _View.IndicatorWidth = _View.IndicatorWidth < _Width ? _Width : _View.IndicatorWidth;
+            return true;
+        }
+
 
         private void Frm_Manage_Order_Load(object sender, EventArgs e)
         {
+            dgv_Main.CustomDrawRowIndicator += gridView1_CustomDrawRowIndicator;
             dte_FromDate.DateTime = DateTime.Today.AddDays(-(DateTime.Today.Day - 1));
             dte_ToDate.DateTime = DateTime.Today;
             dte_CreateOrder.DateTime = DateTime.Now;
