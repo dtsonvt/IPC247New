@@ -172,105 +172,105 @@
             // 
             // txt_SumAllcommision
             // 
-            this.txt_SumAllcommision.Location = new System.Drawing.Point(988, 330);
+            this.txt_SumAllcommision.Location = new System.Drawing.Point(1013, 330);
             this.txt_SumAllcommision.Name = "txt_SumAllcommision";
             this.txt_SumAllcommision.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_SumAllcommision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txt_SumAllcommision.Properties.DisplayFormat.FormatString = "n0";
             this.txt_SumAllcommision.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_SumAllcommision.Properties.ReadOnly = true;
-            this.txt_SumAllcommision.Size = new System.Drawing.Size(156, 20);
+            this.txt_SumAllcommision.Size = new System.Drawing.Size(131, 20);
             this.txt_SumAllcommision.StyleController = this.lct_Main;
             this.txt_SumAllcommision.TabIndex = 18;
             // 
             // txt_SumCommisionProduct
             // 
-            this.txt_SumCommisionProduct.Location = new System.Drawing.Point(988, 301);
+            this.txt_SumCommisionProduct.Location = new System.Drawing.Point(1013, 301);
             this.txt_SumCommisionProduct.Name = "txt_SumCommisionProduct";
             this.txt_SumCommisionProduct.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_SumCommisionProduct.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txt_SumCommisionProduct.Properties.DisplayFormat.FormatString = "n0";
             this.txt_SumCommisionProduct.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_SumCommisionProduct.Properties.ReadOnly = true;
-            this.txt_SumCommisionProduct.Size = new System.Drawing.Size(156, 20);
+            this.txt_SumCommisionProduct.Size = new System.Drawing.Size(131, 20);
             this.txt_SumCommisionProduct.StyleController = this.lct_Main;
             this.txt_SumCommisionProduct.TabIndex = 17;
             // 
             // txt_SumCommissionAmount
             // 
-            this.txt_SumCommissionAmount.Location = new System.Drawing.Point(988, 277);
+            this.txt_SumCommissionAmount.Location = new System.Drawing.Point(1013, 277);
             this.txt_SumCommissionAmount.Name = "txt_SumCommissionAmount";
             this.txt_SumCommissionAmount.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_SumCommissionAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txt_SumCommissionAmount.Properties.DisplayFormat.FormatString = "n0";
             this.txt_SumCommissionAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_SumCommissionAmount.Properties.ReadOnly = true;
-            this.txt_SumCommissionAmount.Size = new System.Drawing.Size(156, 20);
+            this.txt_SumCommissionAmount.Size = new System.Drawing.Size(131, 20);
             this.txt_SumCommissionAmount.StyleController = this.lct_Main;
             this.txt_SumCommissionAmount.TabIndex = 16;
             // 
             // txt_SumAllCommissionOfElp
             // 
-            this.txt_SumAllCommissionOfElp.Location = new System.Drawing.Point(988, 187);
+            this.txt_SumAllCommissionOfElp.Location = new System.Drawing.Point(1013, 187);
             this.txt_SumAllCommissionOfElp.Name = "txt_SumAllCommissionOfElp";
             this.txt_SumAllCommissionOfElp.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_SumAllCommissionOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txt_SumAllCommissionOfElp.Properties.DisplayFormat.FormatString = "n0";
             this.txt_SumAllCommissionOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_SumAllCommissionOfElp.Properties.ReadOnly = true;
-            this.txt_SumAllCommissionOfElp.Size = new System.Drawing.Size(156, 20);
+            this.txt_SumAllCommissionOfElp.Size = new System.Drawing.Size(131, 20);
             this.txt_SumAllCommissionOfElp.StyleController = this.lct_Main;
             this.txt_SumAllCommissionOfElp.TabIndex = 15;
             // 
             // txt_CommissionOfProductElp
             // 
-            this.txt_CommissionOfProductElp.Location = new System.Drawing.Point(988, 158);
+            this.txt_CommissionOfProductElp.Location = new System.Drawing.Point(1013, 158);
             this.txt_CommissionOfProductElp.Name = "txt_CommissionOfProductElp";
             this.txt_CommissionOfProductElp.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_CommissionOfProductElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txt_CommissionOfProductElp.Properties.DisplayFormat.FormatString = "n0";
             this.txt_CommissionOfProductElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_CommissionOfProductElp.Properties.ReadOnly = true;
-            this.txt_CommissionOfProductElp.Size = new System.Drawing.Size(156, 20);
+            this.txt_CommissionOfProductElp.Size = new System.Drawing.Size(131, 20);
             this.txt_CommissionOfProductElp.StyleController = this.lct_Main;
             this.txt_CommissionOfProductElp.TabIndex = 14;
             // 
             // txt_SumCommissionAmountOfElp
             // 
-            this.txt_SumCommissionAmountOfElp.Location = new System.Drawing.Point(988, 134);
+            this.txt_SumCommissionAmountOfElp.Location = new System.Drawing.Point(1013, 134);
             this.txt_SumCommissionAmountOfElp.Name = "txt_SumCommissionAmountOfElp";
             this.txt_SumCommissionAmountOfElp.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_SumCommissionAmountOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txt_SumCommissionAmountOfElp.Properties.DisplayFormat.FormatString = "n0";
             this.txt_SumCommissionAmountOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_SumCommissionAmountOfElp.Properties.ReadOnly = true;
-            this.txt_SumCommissionAmountOfElp.Size = new System.Drawing.Size(156, 20);
+            this.txt_SumCommissionAmountOfElp.Size = new System.Drawing.Size(131, 20);
             this.txt_SumCommissionAmountOfElp.StyleController = this.lct_Main;
             this.txt_SumCommissionAmountOfElp.TabIndex = 13;
             // 
             // txt_SumAllOrderOfDate
             // 
-            this.txt_SumAllOrderOfDate.Location = new System.Drawing.Point(988, 253);
+            this.txt_SumAllOrderOfDate.Location = new System.Drawing.Point(1013, 253);
             this.txt_SumAllOrderOfDate.Name = "txt_SumAllOrderOfDate";
             this.txt_SumAllOrderOfDate.Properties.Appearance.Options.UseTextOptions = true;
             this.txt_SumAllOrderOfDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txt_SumAllOrderOfDate.Properties.DisplayFormat.FormatString = "n0";
             this.txt_SumAllOrderOfDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txt_SumAllOrderOfDate.Properties.ReadOnly = true;
-            this.txt_SumAllOrderOfDate.Size = new System.Drawing.Size(156, 20);
+            this.txt_SumAllOrderOfDate.Size = new System.Drawing.Size(131, 20);
             this.txt_SumAllOrderOfDate.StyleController = this.lct_Main;
             this.txt_SumAllOrderOfDate.TabIndex = 12;
             // 
             // txtSumAllAmountOfElp
             // 
-            this.txtSumAllAmountOfElp.Location = new System.Drawing.Point(988, 110);
+            this.txtSumAllAmountOfElp.Location = new System.Drawing.Point(1013, 110);
             this.txtSumAllAmountOfElp.Name = "txtSumAllAmountOfElp";
             this.txtSumAllAmountOfElp.Properties.Appearance.Options.UseTextOptions = true;
             this.txtSumAllAmountOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtSumAllAmountOfElp.Properties.DisplayFormat.FormatString = "n0";
             this.txtSumAllAmountOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtSumAllAmountOfElp.Properties.ReadOnly = true;
-            this.txtSumAllAmountOfElp.Size = new System.Drawing.Size(156, 20);
+            this.txtSumAllAmountOfElp.Size = new System.Drawing.Size(131, 20);
             this.txtSumAllAmountOfElp.StyleController = this.lct_Main;
             this.txtSumAllAmountOfElp.TabIndex = 11;
             // 
@@ -620,7 +620,7 @@
             // 
             // gclSumCommission
             // 
-            this.gclSumCommission.Caption = "Tổng Hoa Hồng Theo Sản Phẩm";
+            this.gclSumCommission.Caption = "Hoa Hồng Sản Phẩm";
             this.gclSumCommission.DisplayFormat.FormatString = "n0";
             this.gclSumCommission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumCommission.FieldName = "SumCommission";
@@ -630,7 +630,7 @@
             // 
             // gclCommissionOfAmount
             // 
-            this.gclCommissionOfAmount.Caption = "Tổng Hoa Hồng Theo DS";
+            this.gclCommissionOfAmount.Caption = "Lương Theo Doanh Số";
             this.gclCommissionOfAmount.DisplayFormat.FormatString = "n0";
             this.gclCommissionOfAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclCommissionOfAmount.FieldName = "CommissionOfAmount";
@@ -658,7 +658,7 @@
             // 
             // slu_SearchUser
             // 
-            this.slu_SearchUser.Location = new System.Drawing.Point(124, 42);
+            this.slu_SearchUser.Location = new System.Drawing.Point(149, 42);
             this.slu_SearchUser.Name = "slu_SearchUser";
             this.slu_SearchUser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -666,7 +666,7 @@
             this.slu_SearchUser.Properties.NullText = "";
             this.slu_SearchUser.Properties.PopupView = this.searchLookUpEdit1View;
             this.slu_SearchUser.Properties.ValueMember = "Code";
-            this.slu_SearchUser.Size = new System.Drawing.Size(418, 20);
+            this.slu_SearchUser.Size = new System.Drawing.Size(393, 20);
             this.slu_SearchUser.StyleController = this.lct_Main;
             this.slu_SearchUser.TabIndex = 4;
             // 
@@ -728,7 +728,7 @@
             this.lct_Employees.Name = "lct_Employees";
             this.lct_Employees.Size = new System.Drawing.Size(522, 26);
             this.lct_Employees.Text = "Nhân Viên";
-            this.lct_Employees.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_Employees.TextSize = new System.Drawing.Size(122, 13);
             // 
             // lct_ToDate
             // 
@@ -836,7 +836,7 @@
             this.lct_SumALlAmount.Name = "lct_SumALlAmount";
             this.lct_SumALlAmount.Size = new System.Drawing.Size(260, 24);
             this.lct_SumALlAmount.Text = "Tổng Doanh Số";
-            this.lct_SumALlAmount.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumALlAmount.TextSize = new System.Drawing.Size(122, 13);
             // 
             // lct_SumCommissionAmountOfElp
             // 
@@ -844,8 +844,8 @@
             this.lct_SumCommissionAmountOfElp.Location = new System.Drawing.Point(0, 24);
             this.lct_SumCommissionAmountOfElp.Name = "lct_SumCommissionAmountOfElp";
             this.lct_SumCommissionAmountOfElp.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumCommissionAmountOfElp.Text = "Hoa Hồng Doanh Số";
-            this.lct_SumCommissionAmountOfElp.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumCommissionAmountOfElp.Text = "Lương Theo Doanh Số";
+            this.lct_SumCommissionAmountOfElp.TextSize = new System.Drawing.Size(122, 13);
             // 
             // lct_CommissionOfProductElp
             // 
@@ -854,7 +854,7 @@
             this.lct_CommissionOfProductElp.Name = "lct_CommissionOfProductElp";
             this.lct_CommissionOfProductElp.Size = new System.Drawing.Size(260, 24);
             this.lct_CommissionOfProductElp.Text = "Hoa Hồng Sản Phẩm";
-            this.lct_CommissionOfProductElp.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_CommissionOfProductElp.TextSize = new System.Drawing.Size(122, 13);
             // 
             // lct_SumAllCommission
             // 
@@ -862,8 +862,8 @@
             this.lct_SumAllCommission.Location = new System.Drawing.Point(0, 77);
             this.lct_SumAllCommission.Name = "lct_SumAllCommission";
             this.lct_SumAllCommission.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumAllCommission.Text = "Tổng Hoa Hồng";
-            this.lct_SumAllCommission.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumAllCommission.Text = "Tổng Lương và Hoa Hồng";
+            this.lct_SumAllCommission.TextSize = new System.Drawing.Size(122, 13);
             // 
             // splitterItem1
             // 
@@ -892,8 +892,8 @@
             this.lct_SumCommissionAmount.Location = new System.Drawing.Point(0, 24);
             this.lct_SumCommissionAmount.Name = "lct_SumCommissionAmount";
             this.lct_SumCommissionAmount.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumCommissionAmount.Text = "Tổng Hoa Hồng DS";
-            this.lct_SumCommissionAmount.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumCommissionAmount.Text = "Lương Theo Doanh Số";
+            this.lct_SumCommissionAmount.TextSize = new System.Drawing.Size(122, 13);
             // 
             // lct_SumAllOrderOfDate
             // 
@@ -902,7 +902,7 @@
             this.lct_SumAllOrderOfDate.Name = "lct_SumAllOrderOfDate";
             this.lct_SumAllOrderOfDate.Size = new System.Drawing.Size(260, 24);
             this.lct_SumAllOrderOfDate.Text = "Tổng Doanh Số";
-            this.lct_SumAllOrderOfDate.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumAllOrderOfDate.TextSize = new System.Drawing.Size(122, 13);
             // 
             // emptySpaceItem1
             // 
@@ -919,7 +919,7 @@
             this.lct_SumCommisionProduct.Name = "lct_SumCommisionProduct";
             this.lct_SumCommisionProduct.Size = new System.Drawing.Size(260, 24);
             this.lct_SumCommisionProduct.Text = "Tổng Hoa Hồng SP";
-            this.lct_SumCommisionProduct.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumCommisionProduct.TextSize = new System.Drawing.Size(122, 13);
             // 
             // splitterItem2
             // 
@@ -934,8 +934,8 @@
             this.lct_SumAllcommision.Location = new System.Drawing.Point(0, 77);
             this.lct_SumAllcommision.Name = "lct_SumAllcommision";
             this.lct_SumAllcommision.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumAllcommision.Text = "Tổng Hoa Hồng";
-            this.lct_SumAllcommision.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumAllcommision.Text = "Tổng Lương và Hoa Hồng";
+            this.lct_SumAllcommision.TextSize = new System.Drawing.Size(122, 13);
             // 
             // Frm_CommissonOfElp
             // 

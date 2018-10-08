@@ -81,7 +81,7 @@ namespace IPC247
 
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("IsHide", chkHide.Checked ? "1" : "0"); //0
-                dt = SQLHelper.ExecuteDataTableUndefine("sp_getData_Quote_header", param);
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_getData_Quote_header_Order", param);
 
                 slk_BaoGia.Properties.DataSource = dt;
                 slk_BaoGia.Properties.View.ExpandAllGroups();
