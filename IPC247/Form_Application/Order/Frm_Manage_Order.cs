@@ -386,9 +386,9 @@ namespace IPC247
                 decimal deposit = 0;
                 decimal.TryParse(txtDeposit.EditValue.ToString(), out deposit);
                // decimal money = 0;
-                if (txtSum_Price.EditValue != null)
+                if (txt_PriceContract.EditValue != null)
                 {
-                    decimal.TryParse(txtSum_Price.EditValue.ToString(), out PriceContract);
+                    decimal.TryParse(txt_PriceContract.EditValue.ToString(), out PriceContract);
                 }
                 if (deposit < 0 || deposit > PriceContract)
                 {
@@ -715,6 +715,34 @@ namespace IPC247
             if (dte_PayOffDate.Text == "")
             {
                 dte_PayOffDate.EditValue = DateTime.Now;
+            }
+        }
+
+        private void dgv_Main_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            GridView View = sender as GridView;
+            if(View.RowCount > 0)
+            {
+                if (e.RowHandle >= 0)
+                {
+                    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["RowStyle"]);
+                    switch (category)
+                    {
+                        //0 đã thanh toán - green / 1 : chưa đến hạn -yellow / 2 đã trễ hạn red
+                        case "0":
+                            e.Appearance.BackColor = Color.LightGreen;
+                           // e.Appearance.BackColor2 = Color.White;
+                            break;
+                        case "1":
+                            e.Appearance.BackColor = Color.Gold;
+                           // e.Appearance.BackColor2 = Color.White;
+                            break;
+                        default:
+                            e.Appearance.BackColor = Color.OrangeRed;
+                          //  e.Appearance.BackColor2 = Color.White;
+                            break;
+                    }
+                }
             }
         }
     }

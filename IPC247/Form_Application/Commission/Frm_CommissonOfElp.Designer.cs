@@ -65,6 +65,7 @@
             this.gclVendorName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclSalesNote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclProfit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclProfitMoney = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclSumAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclSumCommission = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclCommissionOfAmount = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -97,6 +98,7 @@
             this.lct_SumCommisionProduct = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItem2 = new DevExpress.XtraLayout.SplitterItem();
             this.lct_SumAllcommision = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gclpercentage_Commission = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllcommision.Properties)).BeginInit();
@@ -380,12 +382,14 @@
             this.gclVendorName,
             this.gclSalesNote,
             this.gclProfit,
+            this.gclProfitMoney,
             this.gclSumAmount,
             this.gclSumCommission,
             this.gclCommissionOfAmount,
             this.gclSumAmountAll,
             this.gclSumCommissionAll,
-            this.gclCommissionOfAmountAll});
+            this.gclCommissionOfAmountAll,
+            this.gclpercentage_Commission});
             this.dgv_Main.GridControl = this.dgc_Main;
             this.dgv_Main.Name = "dgv_Main";
             this.dgv_Main.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
@@ -557,6 +561,7 @@
             this.gclDayofLate.Name = "gclDayofLate";
             this.gclDayofLate.Visible = true;
             this.gclDayofLate.VisibleIndex = 14;
+            this.gclDayofLate.Width = 107;
             // 
             // gclPayStatus
             // 
@@ -572,7 +577,7 @@
             this.gclPayNote.FieldName = "PayNote";
             this.gclPayNote.Name = "gclPayNote";
             this.gclPayNote.Visible = true;
-            this.gclPayNote.VisibleIndex = 16;
+            this.gclPayNote.VisibleIndex = 18;
             // 
             // gclSales
             // 
@@ -580,7 +585,7 @@
             this.gclSales.FieldName = "Sales";
             this.gclSales.Name = "gclSales";
             this.gclSales.Visible = true;
-            this.gclSales.VisibleIndex = 17;
+            this.gclSales.VisibleIndex = 19;
             // 
             // gclVendorName
             // 
@@ -588,7 +593,7 @@
             this.gclVendorName.FieldName = "VendorName";
             this.gclVendorName.Name = "gclVendorName";
             this.gclVendorName.Visible = true;
-            this.gclVendorName.VisibleIndex = 18;
+            this.gclVendorName.VisibleIndex = 20;
             // 
             // gclSalesNote
             // 
@@ -596,7 +601,7 @@
             this.gclSalesNote.FieldName = "SalesNote";
             this.gclSalesNote.Name = "gclSalesNote";
             this.gclSalesNote.Visible = true;
-            this.gclSalesNote.VisibleIndex = 19;
+            this.gclSalesNote.VisibleIndex = 21;
             // 
             // gclProfit
             // 
@@ -606,7 +611,19 @@
             this.gclProfit.FieldName = "Profit";
             this.gclProfit.Name = "gclProfit";
             this.gclProfit.Visible = true;
-            this.gclProfit.VisibleIndex = 20;
+            this.gclProfit.VisibleIndex = 16;
+            // 
+            // gclProfitMoney
+            // 
+            this.gclProfitMoney.Caption = "Hoa Hồng Sản Phẩm";
+            this.gclProfitMoney.DisplayFormat.FormatString = "n0";
+            this.gclProfitMoney.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gclProfitMoney.FieldName = "ProfitMoney";
+            this.gclProfitMoney.Name = "gclProfitMoney";
+            this.gclProfitMoney.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ProfitMoney", "{0:n0}")});
+            this.gclProfitMoney.Visible = true;
+            this.gclProfitMoney.VisibleIndex = 17;
             // 
             // gclSumAmount
             // 
@@ -615,8 +632,6 @@
             this.gclSumAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumAmount.FieldName = "SumAmount";
             this.gclSumAmount.Name = "gclSumAmount";
-            this.gclSumAmount.Visible = true;
-            this.gclSumAmount.VisibleIndex = 21;
             // 
             // gclSumCommission
             // 
@@ -625,8 +640,6 @@
             this.gclSumCommission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumCommission.FieldName = "SumCommission";
             this.gclSumCommission.Name = "gclSumCommission";
-            this.gclSumCommission.Visible = true;
-            this.gclSumCommission.VisibleIndex = 22;
             // 
             // gclCommissionOfAmount
             // 
@@ -635,8 +648,6 @@
             this.gclCommissionOfAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclCommissionOfAmount.FieldName = "CommissionOfAmount";
             this.gclCommissionOfAmount.Name = "gclCommissionOfAmount";
-            this.gclCommissionOfAmount.Visible = true;
-            this.gclCommissionOfAmount.VisibleIndex = 23;
             // 
             // gclSumAmountAll
             // 
@@ -937,6 +948,16 @@
             this.lct_SumAllcommision.Text = "Tổng Lương và Hoa Hồng";
             this.lct_SumAllcommision.TextSize = new System.Drawing.Size(122, 13);
             // 
+            // gclpercentage_Commission
+            // 
+            this.gclpercentage_Commission.Caption = "Hoa Hồng SP (%)";
+            this.gclpercentage_Commission.DisplayFormat.FormatString = "n0";
+            this.gclpercentage_Commission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gclpercentage_Commission.FieldName = "percentage_Commission";
+            this.gclpercentage_Commission.Name = "gclpercentage_Commission";
+            this.gclpercentage_Commission.Visible = true;
+            this.gclpercentage_Commission.VisibleIndex = 22;
+            // 
             // Frm_CommissonOfElp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1065,5 +1086,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gclSumAmountAll;
         private DevExpress.XtraGrid.Columns.GridColumn gclSumCommissionAll;
         private DevExpress.XtraGrid.Columns.GridColumn gclCommissionOfAmountAll;
+        private DevExpress.XtraGrid.Columns.GridColumn gclProfitMoney;
+        private DevExpress.XtraGrid.Columns.GridColumn gclpercentage_Commission;
     }
 }

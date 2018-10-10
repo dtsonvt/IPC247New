@@ -900,20 +900,29 @@ namespace IPC247
 
 		private void dgv_BaoGia_RowStyle(object sender, RowStyleEventArgs e)
 		{
-			GridView View = sender as GridView;
-			if (e.RowHandle >= 0)
-			{
-				string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Status"]);
-				if (category == "0")
-				{
-					e.Appearance.BackColor = Color.Salmon;
-					e.Appearance.BackColor2 = Color.SeaShell;
-				}
-				else
-				{
-					e.Appearance.BackColor = Color.White;
-				}
-			}
+            try
+            {
+                GridView View = sender as GridView;
+                if (View.RowCount > 0)
+                {
+                    if (e.RowHandle >= 0)
+                    {
+                        string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Status"]);
+                        if (category == "0")
+                        {
+                            e.Appearance.BackColor = Color.Salmon;
+                            e.Appearance.BackColor2 = Color.SeaShell;
+                        }
+                        else
+                        {
+                            e.Appearance.BackColor = Color.White;
+                        }
+                    }
+                }
+            }
+            catch 
+            {
+            }
 		}
 
 		private void btnLamMoi_Click(object sender, EventArgs e)

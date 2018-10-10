@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lct_Main = new DevExpress.XtraLayout.LayoutControl();
+            this.lblStatus = new DevExpress.XtraEditors.LabelControl();
             this.chkHide = new DevExpress.XtraEditors.CheckEdit();
             this.btn_SearchOrder = new DevExpress.XtraEditors.SimpleButton();
             this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -63,6 +64,7 @@
             this.gclSumPirceOfQuote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclTongTien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclDeposit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclRemainder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclShipDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclDayofPlank = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclDayOfLate = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -154,6 +156,7 @@
             this.lct_ShipDate = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_GiaNhapHD = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_PriceContract = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcg_Grid = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcg_SearchInfo = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -163,10 +166,8 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.gclRemainder = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.lblStatus = new DevExpress.XtraEditors.LabelControl();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkHide.Properties)).BeginInit();
@@ -245,6 +246,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_ShipDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_GiaNhapHD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_PriceContract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_SearchInfo)).BeginInit();
@@ -254,7 +256,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -305,6 +306,19 @@
             this.lct_Main.Size = new System.Drawing.Size(1160, 673);
             this.lct_Main.TabIndex = 0;
             this.lct_Main.Text = "layoutControl1";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblStatus.Appearance.Options.UseFont = true;
+            this.lblStatus.Appearance.Options.UseForeColor = true;
+            this.lblStatus.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
+            this.lblStatus.Location = new System.Drawing.Point(714, 567);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(182, 1);
+            this.lblStatus.StyleController = this.lct_Main;
+            this.lblStatus.TabIndex = 41;
             // 
             // chkHide
             // 
@@ -637,7 +651,8 @@
             this.gclPayOffDate,
             this.gclSalesNote,
             this.gclSumCostPirceOfQuote,
-            this.gclProfitMoney});
+            this.gclProfitMoney,
+            this.gridColumn17});
             this.dgv_Main.GridControl = this.dgc_Main;
             this.dgv_Main.Name = "dgv_Main";
             this.dgv_Main.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
@@ -645,10 +660,8 @@
             this.dgv_Main.OptionsBehavior.ReadOnly = true;
             this.dgv_Main.OptionsCustomization.AllowColumnMoving = false;
             this.dgv_Main.OptionsCustomization.AllowColumnResizing = false;
-            this.dgv_Main.OptionsCustomization.AllowFilter = false;
             this.dgv_Main.OptionsCustomization.AllowGroup = false;
             this.dgv_Main.OptionsCustomization.AllowQuickHideColumns = false;
-            this.dgv_Main.OptionsCustomization.AllowSort = false;
             this.dgv_Main.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.False;
             this.dgv_Main.OptionsFilter.AllowFilterEditor = false;
             this.dgv_Main.OptionsMenu.EnableColumnMenu = false;
@@ -659,7 +672,6 @@
             this.dgv_Main.OptionsNavigation.AutoMoveRowFocus = false;
             this.dgv_Main.OptionsSelection.MultiSelect = true;
             this.dgv_Main.OptionsView.ColumnAutoWidth = false;
-            this.dgv_Main.OptionsView.EnableAppearanceOddRow = true;
             this.dgv_Main.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
             this.dgv_Main.OptionsView.RowAutoHeight = true;
             this.dgv_Main.OptionsView.ShowAutoFilterRow = true;
@@ -667,6 +679,7 @@
             this.dgv_Main.OptionsView.ShowFooter = true;
             this.dgv_Main.OptionsView.ShowGroupPanel = false;
             this.dgv_Main.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dgv_Main_RowClick);
+            this.dgv_Main.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.dgv_Main_RowStyle);
             // 
             // gclIDQuote
             // 
@@ -754,6 +767,21 @@
             this.gclDeposit.Visible = true;
             this.gclDeposit.VisibleIndex = 5;
             this.gclDeposit.Width = 112;
+            // 
+            // gclRemainder
+            // 
+            this.gclRemainder.AppearanceCell.Options.UseTextOptions = true;
+            this.gclRemainder.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gclRemainder.Caption = "Số Tiền Còn Lại";
+            this.gclRemainder.DisplayFormat.FormatString = "n0";
+            this.gclRemainder.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gclRemainder.FieldName = "Remainder";
+            this.gclRemainder.Name = "gclRemainder";
+            this.gclRemainder.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Remainder", "{0:n0}")});
+            this.gclRemainder.Visible = true;
+            this.gclRemainder.VisibleIndex = 6;
+            this.gclRemainder.Width = 83;
             // 
             // gclShipDate
             // 
@@ -1761,6 +1789,15 @@
             this.lct_PriceContract.TextSize = new System.Drawing.Size(54, 13);
             this.lct_PriceContract.TextToControlDistance = 18;
             // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.lblStatus;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 457);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(186, 26);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
             // lcg_Grid
             // 
             this.lcg_Grid.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1852,43 +1889,6 @@
             // 
             this.dxErrorProvider1.ContainerControl = this;
             // 
-            // gclRemainder
-            // 
-            this.gclRemainder.AppearanceCell.Options.UseTextOptions = true;
-            this.gclRemainder.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.gclRemainder.Caption = "Số Tiền Còn Lại";
-            this.gclRemainder.DisplayFormat.FormatString = "n0";
-            this.gclRemainder.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gclRemainder.FieldName = "Remainder";
-            this.gclRemainder.Name = "gclRemainder";
-            this.gclRemainder.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Remainder", "{0:n0}")});
-            this.gclRemainder.Visible = true;
-            this.gclRemainder.VisibleIndex = 6;
-            this.gclRemainder.Width = 83;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.lblStatus.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStatus.Appearance.Options.UseFont = true;
-            this.lblStatus.Appearance.Options.UseForeColor = true;
-            this.lblStatus.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
-            this.lblStatus.Location = new System.Drawing.Point(714, 567);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(182, 1);
-            this.lblStatus.StyleController = this.lct_Main;
-            this.lblStatus.TabIndex = 41;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.lblStatus;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 457);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(186, 26);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
@@ -1896,6 +1896,12 @@
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(119, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "RowStyle";
+            this.gridColumn17.FieldName = "RowStyle";
+            this.gridColumn17.Name = "gridColumn17";
             // 
             // Frm_Manage_Order
             // 
@@ -1985,6 +1991,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_ShipDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_GiaNhapHD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_PriceContract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_SearchInfo)).EndInit();
@@ -1994,7 +2001,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
 
@@ -2140,5 +2146,6 @@
         private DevExpress.XtraEditors.LabelControl lblStatus;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
     }
 }
