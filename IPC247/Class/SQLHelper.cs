@@ -170,7 +170,32 @@ namespace IPC247
             }
             return dt;
         }
-
+        public static DataSet ExecuteDataSetUndefine(string sql_exec, Dictionary<string, object> parameters)
+        {
+            DataSet dt = new DataSet();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(str_connect))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql_exec, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        foreach (var param in parameters)
+                        {
+                            cmd.Parameters.Add(new SqlParameter(param.Key, param.Value));
+                        }
+                        conn.Open();
+                        dt = ExecuteNonQuery_DataSet(cmd);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                SendMailERROR(string.Format("Lỗi rồi ExecuteDataSetUndefine: {0}", ex.ToString()));
+                return dt;
+            }
+            return dt;
+        }
         private static void SendMailERROR(string Error)
         {
             try
