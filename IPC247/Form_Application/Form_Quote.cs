@@ -231,14 +231,8 @@ namespace IPC247
                     var Message = dt.Rows[0]["Message"].ToString();
                     cus.ID = dt.Rows[0]["IDCardCode"].ToString();
                     com.ID = dt.Rows[0]["IDCompany"].ToString();
-                    if (Result == "1")//Login thành công
-                    {
-                        XtraMessageBox.Show(Message, "Thông Báo");
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show("Tạo Báo Giá Không Thành Công", "Thông Báo");
-                    }
+                    XtraMessageBox.Show(Message, "Thông Báo");
+                    LoadSoBaoGia();
                 }
                 else
                 {
@@ -453,7 +447,7 @@ namespace IPC247
                     if (tablecommission != null && tablecommission.Rows.Count > 0)
                     {
                         lbl_Adv_JHC.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyAdv_JHC"]);
-                        lbl_Other.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyOtherProfit_MoneyOther"]);
+                        lbl_Other.Text = string.Format("{0} đ", tablecommission.Rows[0]["Profit_MoneyOther"]);
                     }
                 }
             }
@@ -906,20 +900,29 @@ namespace IPC247
 
 		private void dgv_BaoGia_RowStyle(object sender, RowStyleEventArgs e)
 		{
-			GridView View = sender as GridView;
-			if (e.RowHandle >= 0)
-			{
-				string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Status"]);
-				if (category == "0")
-				{
-					e.Appearance.BackColor = Color.Salmon;
-					e.Appearance.BackColor2 = Color.SeaShell;
-				}
-				else
-				{
-					e.Appearance.BackColor = Color.White;
-				}
-			}
+            try
+            {
+                GridView View = sender as GridView;
+                if (View.RowCount > 0)
+                {
+                    if (e.RowHandle >= 0)
+                    {
+                        string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Status"]);
+                        if (category == "0")
+                        {
+                            e.Appearance.BackColor = Color.Salmon;
+                            e.Appearance.BackColor2 = Color.SeaShell;
+                        }
+                        else
+                        {
+                            e.Appearance.BackColor = Color.White;
+                        }
+                    }
+                }
+            }
+            catch 
+            {
+            }
 		}
 
 		private void btnLamMoi_Click(object sender, EventArgs e)

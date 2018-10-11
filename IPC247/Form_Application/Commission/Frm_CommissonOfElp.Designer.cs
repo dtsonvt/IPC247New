@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.lct_Main = new DevExpress.XtraLayout.LayoutControl();
+            this.txt_SumAllcommision = new DevExpress.XtraEditors.TextEdit();
+            this.txt_SumCommisionProduct = new DevExpress.XtraEditors.TextEdit();
+            this.txt_SumCommissionAmount = new DevExpress.XtraEditors.TextEdit();
+            this.txt_SumAllCommissionOfElp = new DevExpress.XtraEditors.TextEdit();
+            this.txt_CommissionOfProductElp = new DevExpress.XtraEditors.TextEdit();
+            this.txt_SumCommissionAmountOfElp = new DevExpress.XtraEditors.TextEdit();
+            this.txt_SumAllOrderOfDate = new DevExpress.XtraEditors.TextEdit();
+            this.txtSumAllAmountOfElp = new DevExpress.XtraEditors.TextEdit();
             this.cbb_Month = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btn_SearchIfo = new DevExpress.XtraEditors.SimpleButton();
             this.dte_FromDate = new DevExpress.XtraEditors.DateEdit();
@@ -57,9 +65,14 @@
             this.gclVendorName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclSalesNote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclProfit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclProfitMoney = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclSumAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclSumCommission = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclCommissionOfAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclSumAmountAll = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclSumCommissionAll = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclCommissionOfAmountAll = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclpercentage_Commission = new DevExpress.XtraGrid.Columns.GridColumn();
             this.slu_SearchUser = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtNam = new DevExpress.XtraEditors.SpinEdit();
@@ -73,32 +86,30 @@
             this.lct_Year = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_Gridview = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtSumAllAmountOfElp = new DevExpress.XtraEditors.TextEdit();
-            this.lct_SumALlAmount = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcg_InfoDetails = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.txt_SumAllOrderOfDate = new DevExpress.XtraEditors.TextEdit();
-            this.lct_SumAllOrderOfDate = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lcg_InfoAll = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.txt_SumCommissionAmountOfElp = new DevExpress.XtraEditors.TextEdit();
+            this.lct_SumALlAmount = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_SumCommissionAmountOfElp = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txt_CommissionOfProductElp = new DevExpress.XtraEditors.TextEdit();
             this.lct_CommissionOfProductElp = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txt_SumAllCommissionOfElp = new DevExpress.XtraEditors.TextEdit();
             this.lct_SumAllCommission = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
-            this.txt_SumCommissionAmount = new DevExpress.XtraEditors.TextEdit();
+            this.lcg_InfoAll = new DevExpress.XtraLayout.LayoutControlGroup();
             this.lct_SumCommissionAmount = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lct_SumAllOrderOfDate = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txt_SumCommisionProduct = new DevExpress.XtraEditors.TextEdit();
             this.lct_SumCommisionProduct = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItem2 = new DevExpress.XtraLayout.SplitterItem();
-            this.txt_SumAllcommision = new DevExpress.XtraEditors.TextEdit();
             this.lct_SumAllcommision = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gclSumAmountAll = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gclSumCommissionAll = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gclCommissionOfAmountAll = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclRowStyle = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllcommision.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommisionProduct.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllCommissionOfElp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_CommissionOfProductElp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmountOfElp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllOrderOfDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSumAllAmountOfElp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbb_Month.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_FromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_FromDate.Properties)).BeginInit();
@@ -120,26 +131,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_Year)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Gridview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSumAllAmountOfElp.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lct_SumALlAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_InfoDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllOrderOfDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllOrderOfDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcg_InfoAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmountOfElp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lct_SumALlAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumCommissionAmountOfElp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_CommissionOfProductElp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_CommissionOfProductElp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllCommissionOfElp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllCommission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcg_InfoAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumCommissionAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllOrderOfDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommisionProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumCommisionProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllcommision.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllcommision)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,6 +172,110 @@
             this.lct_Main.Size = new System.Drawing.Size(1168, 540);
             this.lct_Main.TabIndex = 0;
             this.lct_Main.Text = "layoutControl1";
+            // 
+            // txt_SumAllcommision
+            // 
+            this.txt_SumAllcommision.Location = new System.Drawing.Point(1013, 330);
+            this.txt_SumAllcommision.Name = "txt_SumAllcommision";
+            this.txt_SumAllcommision.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_SumAllcommision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_SumAllcommision.Properties.DisplayFormat.FormatString = "n0";
+            this.txt_SumAllcommision.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txt_SumAllcommision.Properties.ReadOnly = true;
+            this.txt_SumAllcommision.Size = new System.Drawing.Size(131, 20);
+            this.txt_SumAllcommision.StyleController = this.lct_Main;
+            this.txt_SumAllcommision.TabIndex = 18;
+            // 
+            // txt_SumCommisionProduct
+            // 
+            this.txt_SumCommisionProduct.Location = new System.Drawing.Point(1013, 301);
+            this.txt_SumCommisionProduct.Name = "txt_SumCommisionProduct";
+            this.txt_SumCommisionProduct.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_SumCommisionProduct.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_SumCommisionProduct.Properties.DisplayFormat.FormatString = "n0";
+            this.txt_SumCommisionProduct.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txt_SumCommisionProduct.Properties.ReadOnly = true;
+            this.txt_SumCommisionProduct.Size = new System.Drawing.Size(131, 20);
+            this.txt_SumCommisionProduct.StyleController = this.lct_Main;
+            this.txt_SumCommisionProduct.TabIndex = 17;
+            // 
+            // txt_SumCommissionAmount
+            // 
+            this.txt_SumCommissionAmount.Location = new System.Drawing.Point(1013, 277);
+            this.txt_SumCommissionAmount.Name = "txt_SumCommissionAmount";
+            this.txt_SumCommissionAmount.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_SumCommissionAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_SumCommissionAmount.Properties.DisplayFormat.FormatString = "n0";
+            this.txt_SumCommissionAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txt_SumCommissionAmount.Properties.ReadOnly = true;
+            this.txt_SumCommissionAmount.Size = new System.Drawing.Size(131, 20);
+            this.txt_SumCommissionAmount.StyleController = this.lct_Main;
+            this.txt_SumCommissionAmount.TabIndex = 16;
+            // 
+            // txt_SumAllCommissionOfElp
+            // 
+            this.txt_SumAllCommissionOfElp.Location = new System.Drawing.Point(1013, 187);
+            this.txt_SumAllCommissionOfElp.Name = "txt_SumAllCommissionOfElp";
+            this.txt_SumAllCommissionOfElp.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_SumAllCommissionOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_SumAllCommissionOfElp.Properties.DisplayFormat.FormatString = "n0";
+            this.txt_SumAllCommissionOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txt_SumAllCommissionOfElp.Properties.ReadOnly = true;
+            this.txt_SumAllCommissionOfElp.Size = new System.Drawing.Size(131, 20);
+            this.txt_SumAllCommissionOfElp.StyleController = this.lct_Main;
+            this.txt_SumAllCommissionOfElp.TabIndex = 15;
+            // 
+            // txt_CommissionOfProductElp
+            // 
+            this.txt_CommissionOfProductElp.Location = new System.Drawing.Point(1013, 158);
+            this.txt_CommissionOfProductElp.Name = "txt_CommissionOfProductElp";
+            this.txt_CommissionOfProductElp.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_CommissionOfProductElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_CommissionOfProductElp.Properties.DisplayFormat.FormatString = "n0";
+            this.txt_CommissionOfProductElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txt_CommissionOfProductElp.Properties.ReadOnly = true;
+            this.txt_CommissionOfProductElp.Size = new System.Drawing.Size(131, 20);
+            this.txt_CommissionOfProductElp.StyleController = this.lct_Main;
+            this.txt_CommissionOfProductElp.TabIndex = 14;
+            // 
+            // txt_SumCommissionAmountOfElp
+            // 
+            this.txt_SumCommissionAmountOfElp.Location = new System.Drawing.Point(1013, 134);
+            this.txt_SumCommissionAmountOfElp.Name = "txt_SumCommissionAmountOfElp";
+            this.txt_SumCommissionAmountOfElp.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_SumCommissionAmountOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_SumCommissionAmountOfElp.Properties.DisplayFormat.FormatString = "n0";
+            this.txt_SumCommissionAmountOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txt_SumCommissionAmountOfElp.Properties.ReadOnly = true;
+            this.txt_SumCommissionAmountOfElp.Size = new System.Drawing.Size(131, 20);
+            this.txt_SumCommissionAmountOfElp.StyleController = this.lct_Main;
+            this.txt_SumCommissionAmountOfElp.TabIndex = 13;
+            // 
+            // txt_SumAllOrderOfDate
+            // 
+            this.txt_SumAllOrderOfDate.Location = new System.Drawing.Point(1013, 253);
+            this.txt_SumAllOrderOfDate.Name = "txt_SumAllOrderOfDate";
+            this.txt_SumAllOrderOfDate.Properties.Appearance.Options.UseTextOptions = true;
+            this.txt_SumAllOrderOfDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txt_SumAllOrderOfDate.Properties.DisplayFormat.FormatString = "n0";
+            this.txt_SumAllOrderOfDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txt_SumAllOrderOfDate.Properties.ReadOnly = true;
+            this.txt_SumAllOrderOfDate.Size = new System.Drawing.Size(131, 20);
+            this.txt_SumAllOrderOfDate.StyleController = this.lct_Main;
+            this.txt_SumAllOrderOfDate.TabIndex = 12;
+            // 
+            // txtSumAllAmountOfElp
+            // 
+            this.txtSumAllAmountOfElp.Location = new System.Drawing.Point(1013, 110);
+            this.txtSumAllAmountOfElp.Name = "txtSumAllAmountOfElp";
+            this.txtSumAllAmountOfElp.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtSumAllAmountOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtSumAllAmountOfElp.Properties.DisplayFormat.FormatString = "n0";
+            this.txtSumAllAmountOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtSumAllAmountOfElp.Properties.ReadOnly = true;
+            this.txtSumAllAmountOfElp.Size = new System.Drawing.Size(131, 20);
+            this.txtSumAllAmountOfElp.StyleController = this.lct_Main;
+            this.txtSumAllAmountOfElp.TabIndex = 11;
             // 
             // cbb_Month
             // 
@@ -276,12 +383,15 @@
             this.gclVendorName,
             this.gclSalesNote,
             this.gclProfit,
+            this.gclProfitMoney,
             this.gclSumAmount,
             this.gclSumCommission,
             this.gclCommissionOfAmount,
             this.gclSumAmountAll,
             this.gclSumCommissionAll,
-            this.gclCommissionOfAmountAll});
+            this.gclCommissionOfAmountAll,
+            this.gclpercentage_Commission,
+            this.gclRowStyle});
             this.dgv_Main.GridControl = this.dgc_Main;
             this.dgv_Main.Name = "dgv_Main";
             this.dgv_Main.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
@@ -292,7 +402,6 @@
             this.dgv_Main.OptionsCustomization.AllowFilter = false;
             this.dgv_Main.OptionsCustomization.AllowGroup = false;
             this.dgv_Main.OptionsCustomization.AllowQuickHideColumns = false;
-            this.dgv_Main.OptionsCustomization.AllowSort = false;
             this.dgv_Main.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.False;
             this.dgv_Main.OptionsFilter.AllowFilterEditor = false;
             this.dgv_Main.OptionsMenu.EnableColumnMenu = false;
@@ -303,21 +412,19 @@
             this.dgv_Main.OptionsNavigation.AutoMoveRowFocus = false;
             this.dgv_Main.OptionsSelection.MultiSelect = true;
             this.dgv_Main.OptionsView.ColumnAutoWidth = false;
-            this.dgv_Main.OptionsView.EnableAppearanceOddRow = true;
             this.dgv_Main.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
             this.dgv_Main.OptionsView.RowAutoHeight = true;
             this.dgv_Main.OptionsView.ShowAutoFilterRow = true;
             this.dgv_Main.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.dgv_Main.OptionsView.ShowFooter = true;
             this.dgv_Main.OptionsView.ShowGroupPanel = false;
+            this.dgv_Main.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.dgv_Main_RowStyle);
             // 
             // gclCardName
             // 
             this.gclCardName.Caption = "Tên Khách Hàng";
             this.gclCardName.FieldName = "CardName";
             this.gclCardName.Name = "gclCardName";
-            this.gclCardName.Visible = true;
-            this.gclCardName.VisibleIndex = 0;
             // 
             // gclAddress
             // 
@@ -325,8 +432,6 @@
             this.gclAddress.ColumnEdit = this.repositoryItemMemoEdit1;
             this.gclAddress.FieldName = "Address";
             this.gclAddress.Name = "gclAddress";
-            this.gclAddress.Visible = true;
-            this.gclAddress.VisibleIndex = 1;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -339,24 +444,18 @@
             this.gclContractPerson.Caption = "Người Liên Hệ";
             this.gclContractPerson.FieldName = "ContractPerson";
             this.gclContractPerson.Name = "gclContractPerson";
-            this.gclContractPerson.Visible = true;
-            this.gclContractPerson.VisibleIndex = 2;
             // 
             // gclContractNum
             // 
             this.gclContractNum.Caption = "Số Hợp Đồng";
             this.gclContractNum.FieldName = "ContractNum";
             this.gclContractNum.Name = "gclContractNum";
-            this.gclContractNum.Visible = true;
-            this.gclContractNum.VisibleIndex = 3;
             // 
             // gclProductCode
             // 
             this.gclProductCode.Caption = "Mã Hàng";
             this.gclProductCode.FieldName = "ProductCode";
             this.gclProductCode.Name = "gclProductCode";
-            this.gclProductCode.Visible = true;
-            this.gclProductCode.VisibleIndex = 4;
             // 
             // gclSumCostPrice
             // 
@@ -365,8 +464,8 @@
             this.gclSumCostPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumCostPrice.FieldName = "SumCostPrice";
             this.gclSumCostPrice.Name = "gclSumCostPrice";
-            this.gclSumCostPrice.Visible = true;
-            this.gclSumCostPrice.VisibleIndex = 5;
+            this.gclSumCostPrice.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumCostPrice", "{0:n0}")});
             // 
             // gclSumCostPirceOfQuote
             // 
@@ -375,8 +474,9 @@
             this.gclSumCostPirceOfQuote.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumCostPirceOfQuote.FieldName = "SumCostPirceOfQuote";
             this.gclSumCostPirceOfQuote.Name = "gclSumCostPirceOfQuote";
-            this.gclSumCostPirceOfQuote.Visible = true;
-            this.gclSumCostPirceOfQuote.VisibleIndex = 6;
+            this.gclSumCostPirceOfQuote.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumCostPirceOfQuote", "{0:n0}")});
+            this.gclSumCostPirceOfQuote.Width = 102;
             // 
             // gclSumPrice
             // 
@@ -385,8 +485,8 @@
             this.gclSumPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumPrice.FieldName = "SumPrice";
             this.gclSumPrice.Name = "gclSumPrice";
-            this.gclSumPrice.Visible = true;
-            this.gclSumPrice.VisibleIndex = 7;
+            this.gclSumPrice.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumPrice", "{0:n0}")});
             // 
             // gclSumPirceOfQuote
             // 
@@ -395,8 +495,8 @@
             this.gclSumPirceOfQuote.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumPirceOfQuote.FieldName = "SumPirceOfQuote";
             this.gclSumPirceOfQuote.Name = "gclSumPirceOfQuote";
-            this.gclSumPirceOfQuote.Visible = true;
-            this.gclSumPirceOfQuote.VisibleIndex = 8;
+            this.gclSumPirceOfQuote.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumPirceOfQuote", "{0:n0}")});
             // 
             // gclDeposit
             // 
@@ -405,16 +505,12 @@
             this.gclDeposit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclDeposit.FieldName = "Deposit";
             this.gclDeposit.Name = "gclDeposit";
-            this.gclDeposit.Visible = true;
-            this.gclDeposit.VisibleIndex = 9;
             // 
             // gclDayDebt
             // 
             this.gclDayDebt.Caption = "Thanh Toán Chậm";
             this.gclDayDebt.FieldName = "DayDebt";
             this.gclDayDebt.Name = "gclDayDebt";
-            this.gclDayDebt.Visible = true;
-            this.gclDayDebt.VisibleIndex = 10;
             // 
             // gclShipDate
             // 
@@ -423,8 +519,7 @@
             this.gclShipDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclShipDate.FieldName = "ShipDate";
             this.gclShipDate.Name = "gclShipDate";
-            this.gclShipDate.Visible = true;
-            this.gclShipDate.VisibleIndex = 11;
+            this.gclShipDate.Width = 136;
             // 
             // gclDayofPlank
             // 
@@ -433,8 +528,6 @@
             this.gclDayofPlank.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclDayofPlank.FieldName = "DayofPlank";
             this.gclDayofPlank.Name = "gclDayofPlank";
-            this.gclDayofPlank.Visible = true;
-            this.gclDayofPlank.VisibleIndex = 12;
             // 
             // gclPayOffDate
             // 
@@ -443,56 +536,44 @@
             this.gclPayOffDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclPayOffDate.FieldName = "PayOffDate";
             this.gclPayOffDate.Name = "gclPayOffDate";
-            this.gclPayOffDate.Visible = true;
-            this.gclPayOffDate.VisibleIndex = 13;
+            this.gclPayOffDate.Width = 100;
             // 
             // gclDayofLate
             // 
             this.gclDayofLate.Caption = "Số Ngày Trễ Hạn";
             this.gclDayofLate.FieldName = "DayofLate";
             this.gclDayofLate.Name = "gclDayofLate";
-            this.gclDayofLate.Visible = true;
-            this.gclDayofLate.VisibleIndex = 14;
+            this.gclDayofLate.Width = 107;
             // 
             // gclPayStatus
             // 
             this.gclPayStatus.Caption = "Trạng Thái Thanh Toán";
             this.gclPayStatus.FieldName = "PayStatus";
             this.gclPayStatus.Name = "gclPayStatus";
-            this.gclPayStatus.Visible = true;
-            this.gclPayStatus.VisibleIndex = 15;
             // 
             // gclPayNote
             // 
             this.gclPayNote.Caption = "Ghi Chú Thanh Toán";
             this.gclPayNote.FieldName = "PayNote";
             this.gclPayNote.Name = "gclPayNote";
-            this.gclPayNote.Visible = true;
-            this.gclPayNote.VisibleIndex = 16;
             // 
             // gclSales
             // 
             this.gclSales.Caption = "Nhân Viên Bán";
             this.gclSales.FieldName = "Sales";
             this.gclSales.Name = "gclSales";
-            this.gclSales.Visible = true;
-            this.gclSales.VisibleIndex = 17;
             // 
             // gclVendorName
             // 
-            this.gclVendorName.Caption = "Doanh Nghiệp";
+            this.gclVendorName.Caption = "Hãng";
             this.gclVendorName.FieldName = "VendorName";
             this.gclVendorName.Name = "gclVendorName";
-            this.gclVendorName.Visible = true;
-            this.gclVendorName.VisibleIndex = 18;
             // 
             // gclSalesNote
             // 
             this.gclSalesNote.Caption = "Ghi Chú Bán Hàng";
             this.gclSalesNote.FieldName = "SalesNote";
             this.gclSalesNote.Name = "gclSalesNote";
-            this.gclSalesNote.Visible = true;
-            this.gclSalesNote.VisibleIndex = 19;
             // 
             // gclProfit
             // 
@@ -501,41 +582,74 @@
             this.gclProfit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclProfit.FieldName = "Profit";
             this.gclProfit.Name = "gclProfit";
-            this.gclProfit.Visible = true;
-            this.gclProfit.VisibleIndex = 20;
+            // 
+            // gclProfitMoney
+            // 
+            this.gclProfitMoney.Caption = "Hoa Hồng Sản Phẩm";
+            this.gclProfitMoney.DisplayFormat.FormatString = "n0";
+            this.gclProfitMoney.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gclProfitMoney.FieldName = "ProfitMoney";
+            this.gclProfitMoney.Name = "gclProfitMoney";
+            this.gclProfitMoney.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ProfitMoney", "{0:n0}")});
+            this.gclProfitMoney.Width = 133;
             // 
             // gclSumAmount
             // 
             this.gclSumAmount.Caption = "Tổng DS của Nhân Viên";
             this.gclSumAmount.DisplayFormat.FormatString = "n0";
             this.gclSumAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gclSumAmount.FieldName = "SumAmount";
             this.gclSumAmount.Name = "gclSumAmount";
-            this.gclSumAmount.Visible = true;
-            this.gclSumAmount.VisibleIndex = 21;
             // 
             // gclSumCommission
             // 
-            this.gclSumCommission.Caption = "Tổng Hoa Hồng Theo Sản Phẩm";
+            this.gclSumCommission.Caption = "Hoa Hồng Nhân Viên";
             this.gclSumCommission.DisplayFormat.FormatString = "n0";
             this.gclSumCommission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclSumCommission.FieldName = "SumCommission";
             this.gclSumCommission.Name = "gclSumCommission";
-            this.gclSumCommission.Visible = true;
-            this.gclSumCommission.VisibleIndex = 22;
+            this.gclSumCommission.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SumCommission", "{0:n0}")});
             // 
             // gclCommissionOfAmount
             // 
-            this.gclCommissionOfAmount.Caption = "Tổng Hoa Hồng Theo DS";
+            this.gclCommissionOfAmount.Caption = "Lương Theo Doanh Số";
             this.gclCommissionOfAmount.DisplayFormat.FormatString = "n0";
             this.gclCommissionOfAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gclCommissionOfAmount.FieldName = "CommissionOfAmount";
             this.gclCommissionOfAmount.Name = "gclCommissionOfAmount";
-            this.gclCommissionOfAmount.Visible = true;
-            this.gclCommissionOfAmount.VisibleIndex = 23;
+            // 
+            // gclSumAmountAll
+            // 
+            this.gclSumAmountAll.Caption = "SumAmountAll";
+            this.gclSumAmountAll.FieldName = "SumAmountAll";
+            this.gclSumAmountAll.Name = "gclSumAmountAll";
+            // 
+            // gclSumCommissionAll
+            // 
+            this.gclSumCommissionAll.Caption = "SumCommissionAll";
+            this.gclSumCommissionAll.FieldName = "SumCommissionAll";
+            this.gclSumCommissionAll.Name = "gclSumCommissionAll";
+            // 
+            // gclCommissionOfAmountAll
+            // 
+            this.gclCommissionOfAmountAll.Caption = "CommissionOfAmountAll";
+            this.gclCommissionOfAmountAll.FieldName = "CommissionOfAmountAll";
+            this.gclCommissionOfAmountAll.Name = "gclCommissionOfAmountAll";
+            // 
+            // gclpercentage_Commission
+            // 
+            this.gclpercentage_Commission.Caption = "Hoa Hồng SP (%)";
+            this.gclpercentage_Commission.DisplayFormat.FormatString = "n1";
+            this.gclpercentage_Commission.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gclpercentage_Commission.FieldName = "percentage_Commission";
+            this.gclpercentage_Commission.Name = "gclpercentage_Commission";
+            this.gclpercentage_Commission.Width = 104;
             // 
             // slu_SearchUser
             // 
-            this.slu_SearchUser.Location = new System.Drawing.Point(124, 42);
+            this.slu_SearchUser.Location = new System.Drawing.Point(149, 42);
             this.slu_SearchUser.Name = "slu_SearchUser";
             this.slu_SearchUser.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -543,7 +657,7 @@
             this.slu_SearchUser.Properties.NullText = "";
             this.slu_SearchUser.Properties.PopupView = this.searchLookUpEdit1View;
             this.slu_SearchUser.Properties.ValueMember = "Code";
-            this.slu_SearchUser.Size = new System.Drawing.Size(418, 20);
+            this.slu_SearchUser.Size = new System.Drawing.Size(393, 20);
             this.slu_SearchUser.StyleController = this.lct_Main;
             this.slu_SearchUser.TabIndex = 4;
             // 
@@ -605,7 +719,7 @@
             this.lct_Employees.Name = "lct_Employees";
             this.lct_Employees.Size = new System.Drawing.Size(522, 26);
             this.lct_Employees.Text = "Nhân Viên";
-            this.lct_Employees.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_Employees.TextSize = new System.Drawing.Size(122, 13);
             // 
             // lct_ToDate
             // 
@@ -693,28 +807,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // txtSumAllAmountOfElp
-            // 
-            this.txtSumAllAmountOfElp.Location = new System.Drawing.Point(988, 110);
-            this.txtSumAllAmountOfElp.Name = "txtSumAllAmountOfElp";
-            this.txtSumAllAmountOfElp.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtSumAllAmountOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtSumAllAmountOfElp.Properties.DisplayFormat.FormatString = "n0";
-            this.txtSumAllAmountOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtSumAllAmountOfElp.Properties.ReadOnly = true;
-            this.txtSumAllAmountOfElp.Size = new System.Drawing.Size(156, 20);
-            this.txtSumAllAmountOfElp.StyleController = this.lct_Main;
-            this.txtSumAllAmountOfElp.TabIndex = 11;
-            // 
-            // lct_SumALlAmount
-            // 
-            this.lct_SumALlAmount.Control = this.txtSumAllAmountOfElp;
-            this.lct_SumALlAmount.Location = new System.Drawing.Point(0, 0);
-            this.lct_SumALlAmount.Name = "lct_SumALlAmount";
-            this.lct_SumALlAmount.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumALlAmount.Text = "Tổng Doanh Số";
-            this.lct_SumALlAmount.TextSize = new System.Drawing.Size(97, 13);
-            // 
             // lcg_InfoDetails
             // 
             this.lcg_InfoDetails.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -728,27 +820,48 @@
             this.lcg_InfoDetails.Size = new System.Drawing.Size(284, 143);
             this.lcg_InfoDetails.Text = "THÔNG TIN CHI TIẾT THEO NHÂN VIÊN";
             // 
-            // txt_SumAllOrderOfDate
+            // lct_SumALlAmount
             // 
-            this.txt_SumAllOrderOfDate.Location = new System.Drawing.Point(988, 253);
-            this.txt_SumAllOrderOfDate.Name = "txt_SumAllOrderOfDate";
-            this.txt_SumAllOrderOfDate.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_SumAllOrderOfDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_SumAllOrderOfDate.Properties.DisplayFormat.FormatString = "n0";
-            this.txt_SumAllOrderOfDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_SumAllOrderOfDate.Properties.ReadOnly = true;
-            this.txt_SumAllOrderOfDate.Size = new System.Drawing.Size(156, 20);
-            this.txt_SumAllOrderOfDate.StyleController = this.lct_Main;
-            this.txt_SumAllOrderOfDate.TabIndex = 12;
+            this.lct_SumALlAmount.Control = this.txtSumAllAmountOfElp;
+            this.lct_SumALlAmount.Location = new System.Drawing.Point(0, 0);
+            this.lct_SumALlAmount.Name = "lct_SumALlAmount";
+            this.lct_SumALlAmount.Size = new System.Drawing.Size(260, 24);
+            this.lct_SumALlAmount.Text = "Tổng Doanh Số";
+            this.lct_SumALlAmount.TextSize = new System.Drawing.Size(122, 13);
             // 
-            // lct_SumAllOrderOfDate
+            // lct_SumCommissionAmountOfElp
             // 
-            this.lct_SumAllOrderOfDate.Control = this.txt_SumAllOrderOfDate;
-            this.lct_SumAllOrderOfDate.Location = new System.Drawing.Point(0, 0);
-            this.lct_SumAllOrderOfDate.Name = "lct_SumAllOrderOfDate";
-            this.lct_SumAllOrderOfDate.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumAllOrderOfDate.Text = "Tổng Doanh Số";
-            this.lct_SumAllOrderOfDate.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumCommissionAmountOfElp.Control = this.txt_SumCommissionAmountOfElp;
+            this.lct_SumCommissionAmountOfElp.Location = new System.Drawing.Point(0, 24);
+            this.lct_SumCommissionAmountOfElp.Name = "lct_SumCommissionAmountOfElp";
+            this.lct_SumCommissionAmountOfElp.Size = new System.Drawing.Size(260, 24);
+            this.lct_SumCommissionAmountOfElp.Text = "Lương Theo Doanh Số";
+            this.lct_SumCommissionAmountOfElp.TextSize = new System.Drawing.Size(122, 13);
+            // 
+            // lct_CommissionOfProductElp
+            // 
+            this.lct_CommissionOfProductElp.Control = this.txt_CommissionOfProductElp;
+            this.lct_CommissionOfProductElp.Location = new System.Drawing.Point(0, 48);
+            this.lct_CommissionOfProductElp.Name = "lct_CommissionOfProductElp";
+            this.lct_CommissionOfProductElp.Size = new System.Drawing.Size(260, 24);
+            this.lct_CommissionOfProductElp.Text = "Hoa Hồng Sản Phẩm";
+            this.lct_CommissionOfProductElp.TextSize = new System.Drawing.Size(122, 13);
+            // 
+            // lct_SumAllCommission
+            // 
+            this.lct_SumAllCommission.Control = this.txt_SumAllCommissionOfElp;
+            this.lct_SumAllCommission.Location = new System.Drawing.Point(0, 77);
+            this.lct_SumAllCommission.Name = "lct_SumAllCommission";
+            this.lct_SumAllCommission.Size = new System.Drawing.Size(260, 24);
+            this.lct_SumAllCommission.Text = "Tổng Lương và Hoa Hồng";
+            this.lct_SumAllCommission.TextSize = new System.Drawing.Size(122, 13);
+            // 
+            // splitterItem1
+            // 
+            this.splitterItem1.AllowHotTrack = true;
+            this.splitterItem1.Location = new System.Drawing.Point(0, 72);
+            this.splitterItem1.Name = "splitterItem1";
+            this.splitterItem1.Size = new System.Drawing.Size(260, 5);
             // 
             // lcg_InfoAll
             // 
@@ -764,100 +877,23 @@
             this.lcg_InfoAll.Size = new System.Drawing.Size(284, 309);
             this.lcg_InfoAll.Text = "THÔNG TIN CHUNG";
             // 
-            // txt_SumCommissionAmountOfElp
-            // 
-            this.txt_SumCommissionAmountOfElp.Location = new System.Drawing.Point(988, 134);
-            this.txt_SumCommissionAmountOfElp.Name = "txt_SumCommissionAmountOfElp";
-            this.txt_SumCommissionAmountOfElp.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_SumCommissionAmountOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_SumCommissionAmountOfElp.Properties.DisplayFormat.FormatString = "n0";
-            this.txt_SumCommissionAmountOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_SumCommissionAmountOfElp.Properties.ReadOnly = true;
-            this.txt_SumCommissionAmountOfElp.Size = new System.Drawing.Size(156, 20);
-            this.txt_SumCommissionAmountOfElp.StyleController = this.lct_Main;
-            this.txt_SumCommissionAmountOfElp.TabIndex = 13;
-            // 
-            // lct_SumCommissionAmountOfElp
-            // 
-            this.lct_SumCommissionAmountOfElp.Control = this.txt_SumCommissionAmountOfElp;
-            this.lct_SumCommissionAmountOfElp.Location = new System.Drawing.Point(0, 24);
-            this.lct_SumCommissionAmountOfElp.Name = "lct_SumCommissionAmountOfElp";
-            this.lct_SumCommissionAmountOfElp.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumCommissionAmountOfElp.Text = "Hoa Hồng Doanh Số";
-            this.lct_SumCommissionAmountOfElp.TextSize = new System.Drawing.Size(97, 13);
-            // 
-            // txt_CommissionOfProductElp
-            // 
-            this.txt_CommissionOfProductElp.Location = new System.Drawing.Point(988, 158);
-            this.txt_CommissionOfProductElp.Name = "txt_CommissionOfProductElp";
-            this.txt_CommissionOfProductElp.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_CommissionOfProductElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_CommissionOfProductElp.Properties.DisplayFormat.FormatString = "n0";
-            this.txt_CommissionOfProductElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_CommissionOfProductElp.Properties.ReadOnly = true;
-            this.txt_CommissionOfProductElp.Size = new System.Drawing.Size(156, 20);
-            this.txt_CommissionOfProductElp.StyleController = this.lct_Main;
-            this.txt_CommissionOfProductElp.TabIndex = 14;
-            // 
-            // lct_CommissionOfProductElp
-            // 
-            this.lct_CommissionOfProductElp.Control = this.txt_CommissionOfProductElp;
-            this.lct_CommissionOfProductElp.Location = new System.Drawing.Point(0, 48);
-            this.lct_CommissionOfProductElp.Name = "lct_CommissionOfProductElp";
-            this.lct_CommissionOfProductElp.Size = new System.Drawing.Size(260, 24);
-            this.lct_CommissionOfProductElp.Text = "Hoa Hồng Sản Phẩm";
-            this.lct_CommissionOfProductElp.TextSize = new System.Drawing.Size(97, 13);
-            // 
-            // txt_SumAllCommissionOfElp
-            // 
-            this.txt_SumAllCommissionOfElp.Location = new System.Drawing.Point(988, 187);
-            this.txt_SumAllCommissionOfElp.Name = "txt_SumAllCommissionOfElp";
-            this.txt_SumAllCommissionOfElp.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_SumAllCommissionOfElp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_SumAllCommissionOfElp.Properties.DisplayFormat.FormatString = "n0";
-            this.txt_SumAllCommissionOfElp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_SumAllCommissionOfElp.Properties.ReadOnly = true;
-            this.txt_SumAllCommissionOfElp.Size = new System.Drawing.Size(156, 20);
-            this.txt_SumAllCommissionOfElp.StyleController = this.lct_Main;
-            this.txt_SumAllCommissionOfElp.TabIndex = 15;
-            // 
-            // lct_SumAllCommission
-            // 
-            this.lct_SumAllCommission.Control = this.txt_SumAllCommissionOfElp;
-            this.lct_SumAllCommission.Location = new System.Drawing.Point(0, 77);
-            this.lct_SumAllCommission.Name = "lct_SumAllCommission";
-            this.lct_SumAllCommission.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumAllCommission.Text = "Tổng Hoa Hồng";
-            this.lct_SumAllCommission.TextSize = new System.Drawing.Size(97, 13);
-            // 
-            // splitterItem1
-            // 
-            this.splitterItem1.AllowHotTrack = true;
-            this.splitterItem1.Location = new System.Drawing.Point(0, 72);
-            this.splitterItem1.Name = "splitterItem1";
-            this.splitterItem1.Size = new System.Drawing.Size(260, 5);
-            // 
-            // txt_SumCommissionAmount
-            // 
-            this.txt_SumCommissionAmount.Location = new System.Drawing.Point(988, 277);
-            this.txt_SumCommissionAmount.Name = "txt_SumCommissionAmount";
-            this.txt_SumCommissionAmount.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_SumCommissionAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_SumCommissionAmount.Properties.DisplayFormat.FormatString = "n0";
-            this.txt_SumCommissionAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_SumCommissionAmount.Properties.ReadOnly = true;
-            this.txt_SumCommissionAmount.Size = new System.Drawing.Size(156, 20);
-            this.txt_SumCommissionAmount.StyleController = this.lct_Main;
-            this.txt_SumCommissionAmount.TabIndex = 16;
-            // 
             // lct_SumCommissionAmount
             // 
             this.lct_SumCommissionAmount.Control = this.txt_SumCommissionAmount;
             this.lct_SumCommissionAmount.Location = new System.Drawing.Point(0, 24);
             this.lct_SumCommissionAmount.Name = "lct_SumCommissionAmount";
             this.lct_SumCommissionAmount.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumCommissionAmount.Text = "Tổng Hoa Hồng DS";
-            this.lct_SumCommissionAmount.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumCommissionAmount.Text = "Lương Theo Doanh Số";
+            this.lct_SumCommissionAmount.TextSize = new System.Drawing.Size(122, 13);
+            // 
+            // lct_SumAllOrderOfDate
+            // 
+            this.lct_SumAllOrderOfDate.Control = this.txt_SumAllOrderOfDate;
+            this.lct_SumAllOrderOfDate.Location = new System.Drawing.Point(0, 0);
+            this.lct_SumAllOrderOfDate.Name = "lct_SumAllOrderOfDate";
+            this.lct_SumAllOrderOfDate.Size = new System.Drawing.Size(260, 24);
+            this.lct_SumAllOrderOfDate.Text = "Tổng Doanh Số";
+            this.lct_SumAllOrderOfDate.TextSize = new System.Drawing.Size(122, 13);
             // 
             // emptySpaceItem1
             // 
@@ -867,19 +903,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(260, 166);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txt_SumCommisionProduct
-            // 
-            this.txt_SumCommisionProduct.Location = new System.Drawing.Point(988, 301);
-            this.txt_SumCommisionProduct.Name = "txt_SumCommisionProduct";
-            this.txt_SumCommisionProduct.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_SumCommisionProduct.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_SumCommisionProduct.Properties.DisplayFormat.FormatString = "n0";
-            this.txt_SumCommisionProduct.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_SumCommisionProduct.Properties.ReadOnly = true;
-            this.txt_SumCommisionProduct.Size = new System.Drawing.Size(156, 20);
-            this.txt_SumCommisionProduct.StyleController = this.lct_Main;
-            this.txt_SumCommisionProduct.TabIndex = 17;
-            // 
             // lct_SumCommisionProduct
             // 
             this.lct_SumCommisionProduct.Control = this.txt_SumCommisionProduct;
@@ -887,7 +910,7 @@
             this.lct_SumCommisionProduct.Name = "lct_SumCommisionProduct";
             this.lct_SumCommisionProduct.Size = new System.Drawing.Size(260, 24);
             this.lct_SumCommisionProduct.Text = "Tổng Hoa Hồng SP";
-            this.lct_SumCommisionProduct.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumCommisionProduct.TextSize = new System.Drawing.Size(122, 13);
             // 
             // splitterItem2
             // 
@@ -896,47 +919,20 @@
             this.splitterItem2.Name = "splitterItem2";
             this.splitterItem2.Size = new System.Drawing.Size(260, 5);
             // 
-            // txt_SumAllcommision
-            // 
-            this.txt_SumAllcommision.Location = new System.Drawing.Point(988, 330);
-            this.txt_SumAllcommision.Name = "txt_SumAllcommision";
-            this.txt_SumAllcommision.Properties.Appearance.Options.UseTextOptions = true;
-            this.txt_SumAllcommision.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txt_SumAllcommision.Properties.DisplayFormat.FormatString = "n0";
-            this.txt_SumAllcommision.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txt_SumAllcommision.Properties.ReadOnly = true;
-            this.txt_SumAllcommision.Size = new System.Drawing.Size(156, 20);
-            this.txt_SumAllcommision.StyleController = this.lct_Main;
-            this.txt_SumAllcommision.TabIndex = 18;
-            // 
             // lct_SumAllcommision
             // 
             this.lct_SumAllcommision.Control = this.txt_SumAllcommision;
             this.lct_SumAllcommision.Location = new System.Drawing.Point(0, 77);
             this.lct_SumAllcommision.Name = "lct_SumAllcommision";
             this.lct_SumAllcommision.Size = new System.Drawing.Size(260, 24);
-            this.lct_SumAllcommision.Text = "Tổng Hoa Hồng";
-            this.lct_SumAllcommision.TextSize = new System.Drawing.Size(97, 13);
+            this.lct_SumAllcommision.Text = "Tổng Lương và Hoa Hồng";
+            this.lct_SumAllcommision.TextSize = new System.Drawing.Size(122, 13);
             // 
-            // gclSumAmountAll
+            // gclRowStyle
             // 
-            this.gclSumAmountAll.Caption = "SumAmountAll";
-            this.gclSumAmountAll.FieldName = "SumAmountAll";
-            this.gclSumAmountAll.Name = "gclSumAmountAll";
-            // 
-            // gclSumCommissionAll
-            // 
-            this.gclSumCommissionAll.Caption = "SumCommissionAll";
-            this.gclSumCommissionAll.FieldName = "SumCommissionAll";
-            this.gclSumCommissionAll.Name = "gclSumCommissionAll";
-            this.gclSumCommissionAll.Visible = true;
-            this.gclSumCommissionAll.VisibleIndex = 24;
-            // 
-            // gclCommissionOfAmountAll
-            // 
-            this.gclCommissionOfAmountAll.Caption = "CommissionOfAmountAll";
-            this.gclCommissionOfAmountAll.FieldName = "CommissionOfAmountAll";
-            this.gclCommissionOfAmountAll.Name = "gclCommissionOfAmountAll";
+            this.gclRowStyle.Caption = "RowStyle";
+            this.gclRowStyle.FieldName = "RowStyle";
+            this.gclRowStyle.Name = "gclRowStyle";
             // 
             // Frm_CommissonOfElp
             // 
@@ -949,6 +945,14 @@
             this.Load += new System.EventHandler(this.Frm_CommissonOfElp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).EndInit();
             this.lct_Main.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllcommision.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommisionProduct.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllCommissionOfElp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_CommissionOfProductElp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmountOfElp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllOrderOfDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSumAllAmountOfElp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbb_Month.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_FromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dte_FromDate.Properties)).EndInit();
@@ -970,26 +974,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_Year)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Gridview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSumAllAmountOfElp.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lct_SumALlAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_InfoDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllOrderOfDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllOrderOfDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lcg_InfoAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmountOfElp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lct_SumALlAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumCommissionAmountOfElp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_CommissionOfProductElp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_CommissionOfProductElp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllCommissionOfElp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllCommission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommissionAmount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lcg_InfoAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumCommissionAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllOrderOfDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumCommisionProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumCommisionProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitterItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllcommision.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_SumAllcommision)).EndInit();
             this.ResumeLayout(false);
 
@@ -1066,5 +1062,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gclSumAmountAll;
         private DevExpress.XtraGrid.Columns.GridColumn gclSumCommissionAll;
         private DevExpress.XtraGrid.Columns.GridColumn gclCommissionOfAmountAll;
+        private DevExpress.XtraGrid.Columns.GridColumn gclProfitMoney;
+        private DevExpress.XtraGrid.Columns.GridColumn gclpercentage_Commission;
+        private DevExpress.XtraGrid.Columns.GridColumn gclRowStyle;
     }
 }

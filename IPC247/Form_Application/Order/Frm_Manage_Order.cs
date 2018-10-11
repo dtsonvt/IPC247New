@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Globalization;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace IPC247
 {
@@ -21,6 +22,7 @@ namespace IPC247
         bool Check_Save = true;
         bool Flag_Change_Profit = true;
         string IDOrder = "0";
+        decimal PriceContract = 0;
         public Frm_Manage_Order()
         {
             InitializeComponent();
@@ -80,7 +82,7 @@ namespace IPC247
 
                 Dictionary<string, object> param = new Dictionary<string, object>();
                 param.Add("IsHide", chkHide.Checked ? "1" : "0"); //0
-                dt = SQLHelper.ExecuteDataTableUndefine("sp_getData_Quote_header", param);
+                dt = SQLHelper.ExecuteDataTableUndefine("sp_getData_Quote_header_Order", param);
 
                 slk_BaoGia.Properties.DataSource = dt;
                 slk_BaoGia.Properties.View.ExpandAllGroups();
@@ -148,7 +150,7 @@ namespace IPC247
             try
             {
                 string sql_Exect = string.Format("Exec sp_GetQuote_To_Order " +
-              "@ID={0}", ID);
+              "@ID={0}, @IsHide={1}", ID,chkHide.Checked?"1":"0");
                 DataTable dt = SQLHelper.ExecuteDataTableByQuery(sql_Exect);
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -158,6 +160,7 @@ namespace IPC247
                         createOrder = DateTime.ParseExact(dt.Rows[0]["CreateDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                         dte_CreateOrder.EditValue = createOrder;
                     }
+
                     txtContractNum.Text = dt.Rows[0]["ContractNum"].ToString();
                     txt_Policy.Text = dt.Rows[0]["DieuKhoan"].ToString();
                     txt_ProductCode.Text = dt.Rows[0]["ProductCode"].ToString();
@@ -165,11 +168,20 @@ namespace IPC247
                     txtAddress.Text = dt.Rows[0]["DiaChi"].ToString();
                     txtContactPerson.Text = dt.Rows[0]["ContractPerson"].ToString();
                     txtSum_CostPrice.EditValue = dt.Rows[0]["CostPrice"];
+                    decimal.TryParse(dt.Rows[0]["SumPirceOfQuote"].ToString(), out PriceContract);
+                    txt_PriceContract.EditValue = PriceContract;
                     txtSum_CostPrice.ToolTip = string.Format("Tổng Giá Nhập Trên Hợp Đồng: {0}", dt.Rows[0]["SumCostPirceOfQuote"]);
                     txtSum_Price.Text = dt.Rows[0]["TongTien"].ToString();
+                    decimal CostPriceContract = 0;
+                    decimal.TryParse(dt.Rows[0]["SumCostPirceOfQuote"].ToString(), out CostPriceContract);
+                    txt_CostPriceContract.EditValue = CostPriceContract;
                     txtSum_Price.ToolTip = string.Format("Tổng Giá Bán Trên Hợp Đồng: {0}", dt.Rows[0]["SumPirceOfQuote"]);
                     txtDeposit.EditValue = dt.Rows[0]["Deposit"].ToString();
                     txt_DayDebt.EditValue = dt.Rows[0]["DayDebt"];
+                    if (dt.Rows[0]["ShipDate"].ToString() != "")
+                    {
+                        dte_ShipDate.EditValue = DateTime.ParseExact(dt.Rows[0]["ShipDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                    }
                     if (dt.Rows[0]["PayOffDate"].ToString() != "")
                     {
                         PayOffDate = DateTime.ParseExact(dt.Rows[0]["PayOffDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
@@ -183,6 +195,18 @@ namespace IPC247
                     ID_CardCode =  dt.Rows[0]["IDCardCode"].ToString();
                     decimal.TryParse(dt.Rows[0]["Profit"].ToString(),out Profit);
                     IDOrder = dt.Rows[0]["IDOrder"].ToString();
+                    string Flag_New  = dt.Rows[0]["Flag_New"].ToString();
+                    if(Flag_New =="0")
+                    {
+                       // XtraMessageBox.Show("Báo Giá Số này đã được tạo đơn hàng", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        lblStatus.Text = "Đã Tạo Đơn Hàng";
+                        lblStatus.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        lblStatus.Text = "Chưa Tạo Đơn Hàng";
+                        lblStatus.ForeColor = Color.Green;
+                    }
                     txt_Profit.EditValue = Profit;
                 }
             }
@@ -192,9 +216,46 @@ namespace IPC247
             }
         }
 
+        void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (!dgv_Main.IsGroupRow(e.RowHandle)) //Nếu không phải là Group
+            {
+                if (e.Info.IsRowIndicator) //Nếu là dòng Indicator
+                {
+                    if (e.RowHandle < 0)
+                    {
+                        e.Info.ImageIndex = 0;
+                        e.Info.DisplayText = string.Empty;
+                    }
+                    else
+                    {
+                        e.Info.ImageIndex = -1; //Không hiển thị hình
+                        e.Info.DisplayText = (e.RowHandle + 1).ToString(); //Số thứ tự tăng dần
+                    }
+                    SizeF _Size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font); //Lấy kích thước của vùng hiển thị Text
+                    Int32 _Width = Convert.ToInt32(_Size.Width) + 20;
+                    BeginInvoke(new MethodInvoker(delegate { cal(_Width, dgv_Main); })); //Tăng kích thước nếu Text vượt quá
+                }
+            }
+            else
+            {
+                e.Info.ImageIndex = -1;
+                e.Info.DisplayText = string.Format("[{0}]", (e.RowHandle * -1)); //Nhân -1 để đánh lại số thứ tự tăng dần
+                SizeF _Size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font);
+                Int32 _Width = Convert.ToInt32(_Size.Width) + 20;
+                BeginInvoke(new MethodInvoker(delegate { cal(_Width, dgv_Main); }));
+            }
+        }
+        bool cal(Int32 _Width, GridView _View)
+        {
+            _View.IndicatorWidth = _View.IndicatorWidth < _Width ? _Width : _View.IndicatorWidth;
+            return true;
+        }
+
 
         private void Frm_Manage_Order_Load(object sender, EventArgs e)
         {
+            dgv_Main.CustomDrawRowIndicator += gridView1_CustomDrawRowIndicator;
             dte_FromDate.DateTime = DateTime.Today.AddDays(-(DateTime.Today.Day - 1));
             dte_ToDate.DateTime = DateTime.Today;
             dte_CreateOrder.DateTime = DateTime.Now;
@@ -275,6 +336,24 @@ namespace IPC247
                     dxErrorProvider1.SetError(dte_PayOffDate, null);
                     Check_Save = true;
                 }
+                if(dte_PayOffDate.Text != "" && (dte_PayOffDate.DateTime - DateTime.Today).Days  <= 0)
+                {
+                    slu_Paystatus.EditValue = "F";
+                    txtDeposit.EditValue = PriceContract;
+                }
+                else
+                {
+                    decimal deposit = 0;
+                    decimal.TryParse(txtDeposit.EditValue.ToString(), out deposit);
+                    if(deposit > 0)
+                    {
+                        slu_Paystatus.EditValue = "N";
+                    }
+                    else
+                    {
+                        slu_Paystatus.EditValue = "O";
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -306,19 +385,19 @@ namespace IPC247
             {
                 decimal deposit = 0;
                 decimal.TryParse(txtDeposit.EditValue.ToString(), out deposit);
-                decimal money = 0;
-                if (txtSum_Price.EditValue != null)
+               // decimal money = 0;
+                if (txt_PriceContract.EditValue != null)
                 {
-                    decimal.TryParse(txtSum_Price.EditValue.ToString(), out money);
+                    decimal.TryParse(txt_PriceContract.EditValue.ToString(), out PriceContract);
                 }
-                if (deposit < 0 || deposit > money)
+                if (deposit < 0 || deposit > PriceContract)
                 {
                     dxErrorProvider1.SetError(txtDeposit, "số tiền đặt cọc phải lớn hơn 0 và không quá số tiền đơn hàng");
                     Check_Save = false;
                 }
                 else
                 {
-                    txt_Remainder.EditValue = money - deposit;
+                    txt_Remainder.EditValue = PriceContract - deposit;
                     dxErrorProvider1.SetError(txtDeposit, null);
                     Check_Save = true;
                 }
@@ -621,6 +700,50 @@ namespace IPC247
         {
             sp_Get_ListOrderForDate();
             LoadMaster_Quote();
+        }
+
+        private void dte_PayOffDate_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(dte_PayOffDate.Text =="")
+            {
+                dte_PayOffDate.EditValue = DateTime.Now;
+            }
+        }
+
+        private void dte_PayOffDate_Click(object sender, EventArgs e)
+        {
+            if (dte_PayOffDate.Text == "")
+            {
+                dte_PayOffDate.EditValue = DateTime.Now;
+            }
+        }
+
+        private void dgv_Main_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            GridView View = sender as GridView;
+            if(View.RowCount > 0)
+            {
+                if (e.RowHandle >= 0)
+                {
+                    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["RowStyle"]);
+                    switch (category)
+                    {
+                        //0 đã thanh toán - green / 1 : chưa đến hạn -yellow / 2 đã trễ hạn red
+                        case "0":
+                            e.Appearance.BackColor = Color.LightGreen;
+                           // e.Appearance.BackColor2 = Color.White;
+                            break;
+                        case "1":
+                            e.Appearance.BackColor = Color.Gold;
+                           // e.Appearance.BackColor2 = Color.White;
+                            break;
+                        default:
+                            e.Appearance.BackColor = Color.OrangeRed;
+                          //  e.Appearance.BackColor2 = Color.White;
+                            break;
+                    }
+                }
+            }
         }
     }
 }
