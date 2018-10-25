@@ -12,6 +12,41 @@ namespace IPC247
     public class SQLHelper
     {
         public static string str_connect = StringCipher.Decrypt(System.Configuration.ConfigurationManager.ConnectionStrings["IPC247ConnectionString"].ConnectionString, "IPC247@2018");
+
+        public static string getQueryFromCommand(SqlCommand cmd)
+        {
+            string CommandTxt = cmd.CommandText;
+            string str_Return = "";
+            try
+            {
+                switch (cmd.CommandType)
+                {
+                    case CommandType.Text:
+                        str_Return = cmd.CommandText;
+                        break;
+                    case CommandType.StoredProcedure:
+                        str_Return = "exec " + cmd.CommandText + " ";
+                        foreach (SqlParameter prm in cmd.Parameters)
+                        {
+                            str_Return += string.Format("{0}=N'{1}',", prm.ParameterName, prm.Value);
+                        }
+                        if (str_Return.Length > 1)
+                        {
+                            str_Return = str_Return.Substring(0, str_Return.Length - 1);
+                        }
+                        break;
+                    case CommandType.TableDirect:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return str_Return;
+        }
+
         private static DataTable ExecuteNonQuery(SqlCommand cmd)
         {
             DataTable dtTemp = new DataTable();
@@ -28,7 +63,7 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-                SendMailERROR(string.Format("Lỗi rồi ExecuteNonQuery: {0}", ex.ToString()));
+                SendMailERROR(string.Format("Lỗi rồi ExecuteNonQuery: {0} \r\n {1} \r\n {2}", ex.ToString(), getQueryFromCommand(cmd), Form_Main.IPAddress));
                 return dtTemp;
             }
         }
@@ -48,7 +83,8 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-                SendMailERROR(string.Format("Lỗi rồi ExecuteNonQuery_DataSet: {0}", ex.ToString()));
+                SendMailERROR(string.Format("Lỗi rồi ExecuteNonQuery_DataSet: {0} \r\n {1} \r\n {2}", ex.ToString(), getQueryFromCommand(cmd), Form_Main.IPAddress));
+              //  SendMailERROR(string.Format("Lỗi rồi ExecuteNonQuery_DataSet: {0}", ex.ToString()));
                 return dtTemp;
             }
         }
@@ -70,6 +106,7 @@ namespace IPC247
             }
             catch (Exception ex)
             {
+               // SendMailERROR(string.Format("Lỗi rồi ExecuteDataTable: {0} \r\n {1} \r\n {2}", ex.ToString(), sql_exec, Form_Main.IPAddress));
                 SendMailERROR(string.Format("Lỗi rồi ExecuteDataTable: {0}", ex.ToString()));
                 return dt;
             }
@@ -93,6 +130,7 @@ namespace IPC247
             }
             catch (Exception ex)
             {
+                //SendMailERROR(string.Format("Lỗi rồi ExecuteDataTableByQuery: {0} \r\n {1} \r\n {2}", ex.ToString(), sql_exec, Form_Main.IPAddress));
                 SendMailERROR(string.Format("Lỗi rồi ExecuteDataTableByQuery: {0}", ex.ToString()));
                 return dt;
             }
@@ -117,6 +155,7 @@ namespace IPC247
             catch (Exception ex)
             {
                 SendMailERROR(string.Format("Lỗi rồi ExecuteDataSetByStore: {0}", ex.ToString()));
+               // SendMailERROR(string.Format("Lỗi rồi ExecuteDataSetByStore: {0} \r\n {1} \r\n {2}", ex.ToString(), sql_exec, Form_Main.IPAddress));
                 return dt;
             }
 
@@ -139,7 +178,8 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-                SendMailERROR(string.Format("Lỗi rồi ExecuteDataTableByQuery: {0}", ex.ToString()));
+              //  SendMailERROR(string.Format("Lỗi rồi ExecuteDataTableByQuery: {0} \r\n {1} \r\n {2}", ex.ToString(), sql_exec, Form_Main.IPAddress));
+                SendMailERROR(string.Format("Lỗi rồi ExecuteDataSetByQuery: {0}", ex.ToString()));
                 return dt;
             }
 
@@ -165,7 +205,7 @@ namespace IPC247
             }
             catch (Exception ex)
             {
-                SendMailERROR(string.Format("Lỗi rồi ExecuteDataTableByQuery: {0}", ex.ToString()));
+                SendMailERROR(string.Format("Lỗi rồi ExecuteDataTableUndefine: {0}", ex.ToString()));
                 return dt;
             }
             return dt;

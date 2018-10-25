@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_AutoUpdate));
             this.progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
-            this.lblThongBao = new System.Windows.Forms.Label();
-            this.lblCapNhat = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblUpdateDetails = new System.Windows.Forms.Label();
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.lblThongBao = new System.Windows.Forms.Label();
+            this.lblCapNhat = new System.Windows.Forms.Label();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -63,32 +63,23 @@
             this.progressBarControl1.StyleController = this.layoutControl1;
             this.progressBarControl1.TabIndex = 0;
             // 
-            // lblThongBao
+            // layoutControl1
             // 
-            this.lblThongBao.Location = new System.Drawing.Point(12, 83);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(242, 25);
-            this.lblThongBao.TabIndex = 2;
-            // 
-            // lblCapNhat
-            // 
-            this.lblCapNhat.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.lblCapNhat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCapNhat.Location = new System.Drawing.Point(12, 12);
-            this.lblCapNhat.Name = "lblCapNhat";
-            this.lblCapNhat.Size = new System.Drawing.Size(410, 21);
-            this.lblCapNhat.TabIndex = 4;
-            this.lblCapNhat.Text = "AUTO UPDATE";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(258, 83);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(80, 25);
-            this.btnUpdate.TabIndex = 5;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.button1_Click_1);
+            this.layoutControl1.AllowCustomization = false;
+            this.layoutControl1.Controls.Add(this.progressBarControl1);
+            this.layoutControl1.Controls.Add(this.btnExit);
+            this.layoutControl1.Controls.Add(this.lblUpdateDetails);
+            this.layoutControl1.Controls.Add(this.btnUpdate);
+            this.layoutControl1.Controls.Add(this.lblThongBao);
+            this.layoutControl1.Controls.Add(this.lblCapNhat);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsView.UseDefaultDragAndDropRendering = false;
+            this.layoutControl1.Root = this.layoutControlGroup1;
+            this.layoutControl1.Size = new System.Drawing.Size(434, 120);
+            this.layoutControl1.TabIndex = 8;
+            this.layoutControl1.Text = "layoutControl1";
             // 
             // btnExit
             // 
@@ -108,23 +99,32 @@
             this.lblUpdateDetails.TabIndex = 7;
             this.lblUpdateDetails.Text = "Chi Tiết Update:\r";
             // 
-            // layoutControl1
+            // btnUpdate
             // 
-            this.layoutControl1.AllowCustomization = false;
-            this.layoutControl1.Controls.Add(this.progressBarControl1);
-            this.layoutControl1.Controls.Add(this.btnExit);
-            this.layoutControl1.Controls.Add(this.lblUpdateDetails);
-            this.layoutControl1.Controls.Add(this.btnUpdate);
-            this.layoutControl1.Controls.Add(this.lblThongBao);
-            this.layoutControl1.Controls.Add(this.lblCapNhat);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsView.UseDefaultDragAndDropRendering = false;
-            this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(434, 120);
-            this.layoutControl1.TabIndex = 8;
-            this.layoutControl1.Text = "layoutControl1";
+            this.btnUpdate.Location = new System.Drawing.Point(258, 83);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(80, 25);
+            this.btnUpdate.TabIndex = 5;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // lblThongBao
+            // 
+            this.lblThongBao.Location = new System.Drawing.Point(12, 83);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(242, 25);
+            this.lblThongBao.TabIndex = 2;
+            // 
+            // lblCapNhat
+            // 
+            this.lblCapNhat.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.lblCapNhat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblCapNhat.Location = new System.Drawing.Point(12, 12);
+            this.lblCapNhat.Name = "lblCapNhat";
+            this.lblCapNhat.Size = new System.Drawing.Size(410, 21);
+            this.lblCapNhat.TabIndex = 4;
+            this.lblCapNhat.Text = "AUTO UPDATE";
             // 
             // layoutControlGroup1
             // 
