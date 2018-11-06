@@ -88,6 +88,7 @@
             this.gclSalesNote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclSumCostPirceOfQuote = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclProfitMoney = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtAddress = new DevExpress.XtraEditors.MemoEdit();
             this.txt_Policy = new DevExpress.XtraEditors.MemoEdit();
             this.txtSum_CostPrice = new DevExpress.XtraEditors.SpinEdit();
@@ -167,7 +168,8 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chk_Edit = new DevExpress.XtraEditors.CheckEdit();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkHide.Properties)).BeginInit();
@@ -257,10 +259,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chk_Edit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // lct_Main
             // 
+            this.lct_Main.Controls.Add(this.chk_Edit);
             this.lct_Main.Controls.Add(this.lblStatus);
             this.lct_Main.Controls.Add(this.chkHide);
             this.lct_Main.Controls.Add(this.btn_SearchOrder);
@@ -951,6 +956,12 @@
             this.gclProfitMoney.FieldName = "ProfitMoney";
             this.gclProfitMoney.Name = "gclProfitMoney";
             // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "RowStyle";
+            this.gridColumn17.FieldName = "RowStyle";
+            this.gridColumn17.Name = "gridColumn17";
+            // 
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(814, 260);
@@ -1445,7 +1456,8 @@
             this.lct_ShipDate,
             this.lct_GiaNhapHD,
             this.lct_PriceContract,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.layoutControlItem10});
             this.lcg_Details.Location = new System.Drawing.Point(690, 68);
             this.lcg_Details.Name = "lcg_Details";
             this.lcg_Details.Size = new System.Drawing.Size(450, 561);
@@ -1507,9 +1519,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 483);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 506);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(426, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(426, 11);
             this.emptySpaceItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -1897,11 +1909,28 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(119, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // gridColumn17
+            // chk_Edit
             // 
-            this.gridColumn17.Caption = "RowStyle";
-            this.gridColumn17.FieldName = "RowStyle";
-            this.gridColumn17.Name = "gridColumn17";
+            this.chk_Edit.Location = new System.Drawing.Point(714, 593);
+            this.chk_Edit.Name = "chk_Edit";
+            this.chk_Edit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.chk_Edit.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.chk_Edit.Properties.Appearance.Options.UseFont = true;
+            this.chk_Edit.Properties.Appearance.Options.UseForeColor = true;
+            this.chk_Edit.Properties.Caption = "Đơn hàng đã hoàn tất ( Không được phép thay đổi )";
+            this.chk_Edit.Size = new System.Drawing.Size(422, 19);
+            this.chk_Edit.StyleController = this.lct_Main;
+            this.chk_Edit.TabIndex = 42;
+            this.chk_Edit.CheckedChanged += new System.EventHandler(this.chk_Edit_CheckedChanged);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.chk_Edit;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 483);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(426, 23);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
             // 
             // Frm_Manage_Order
             // 
@@ -2002,6 +2031,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chk_Edit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2147,5 +2178,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
+        private DevExpress.XtraEditors.CheckEdit chk_Edit;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
     }
 }

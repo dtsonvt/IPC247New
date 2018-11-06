@@ -119,8 +119,7 @@ namespace IPC247
 				API.API_ERRORLOG(new ERRORLOG(Form_Main.IPAddress, "Form_TimKiemBaoGia", "LoadBaoGiaAll", ex.ToString()));
 			}
 		}
-
-		private InfoCustomer GetQuote_Detail_RealTime(string ID)
+        private InfoCustomer GetQuote_Detail_RealTime(string ID)
 		{
 			InfoCustomer ob = new InfoCustomer();
 			try
@@ -431,6 +430,7 @@ namespace IPC247
                 int focus = dgv_Main.FocusedRowHandle;
                 if (focus >= 0)
                 {
+                    dgv_Main.SetMasterRowExpanded(focus, !dgv_Main.GetMasterRowExpanded(focus));
                     InfoCustomer ob = (InfoCustomer)dgv_Main.GetFocusedRow();
                     ID = ob.ID;
                 }
@@ -441,7 +441,7 @@ namespace IPC247
 				ID = "0";
             }
         }
-
+        
         private void dgv_Main_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             try
@@ -449,6 +449,7 @@ namespace IPC247
                 int focus = dgv_Main.FocusedRowHandle;
                 if (focus >= 0)
                 {
+                   
                     InfoCustomer ob = (InfoCustomer)dgv_Main.GetFocusedRow();
                     ID = ob.ID;
                 }
@@ -459,6 +460,22 @@ namespace IPC247
             }
         }
 
-		#endregion Event
-	}
+        #endregion Event
+
+        private void dgv_detail_MasterRowExpanded(object sender, CustomMasterRowEventArgs e)
+        {
+            try
+            {
+                GridView dView = dgv_Main.GetDetailView(e.RowHandle, 0) as GridView;
+                dView.Columns["ID"].Visible = false;
+                dView.Columns["Profit"].Visible = false;
+                dView.Columns["CostPrice"].Visible = false;
+                dView.Columns["Status"].Visible = false;
+                dView.Columns["IsGroup"].Visible = false;
+            }
+            catch (Exception)
+            {
+            }
+        }
+    }
 }
