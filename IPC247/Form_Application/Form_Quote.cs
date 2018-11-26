@@ -362,7 +362,8 @@ namespace IPC247
 					flag_edit = false;
 					txtProfit.EditValue = 0;
 					_IsGroup = 0;
-				}
+                    CostPrice = 0;
+                }
 				else
 				{
 					flag_edit = true;
@@ -604,6 +605,7 @@ namespace IPC247
 					ob.DonGia = decimal.Parse(txtDonGia.EditValue.ToString());
 					ob.SoLuong = int.Parse(txtSoLuong.EditValue.ToString());
 					ob.Profit = decimal.Parse(txtProfit.EditValue.ToString());
+                    ob.CostPrice = CostPrice;
 					ob.IsGroup = _IsGroup;
 					ob.Status = 1;
 					// ob.MoneyProfit = decimal.Parse(txtTienLoiNhuan.EditValue.ToString());

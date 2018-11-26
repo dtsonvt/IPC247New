@@ -104,7 +104,7 @@
             // 
             this.ptbHinhPhai.BackColor = System.Drawing.Color.White;
             this.ptbHinhPhai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ptbHinhPhai.Location = new System.Drawing.Point(88, 365);
+            this.ptbHinhPhai.Location = new System.Drawing.Point(88, 361);
             this.ptbHinhPhai.Name = "ptbHinhPhai";
             this.ptbHinhPhai.Size = new System.Drawing.Size(450, 100);
             this.ptbHinhPhai.TabIndex = 15;
@@ -115,7 +115,7 @@
             // 
             this.ptbHinhTrai.BackColor = System.Drawing.Color.White;
             this.ptbHinhTrai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ptbHinhTrai.Location = new System.Drawing.Point(88, 261);
+            this.ptbHinhTrai.Location = new System.Drawing.Point(88, 257);
             this.ptbHinhTrai.Name = "ptbHinhTrai";
             this.ptbHinhTrai.Size = new System.Drawing.Size(350, 100);
             this.ptbHinhTrai.TabIndex = 14;
@@ -124,7 +124,7 @@
             // 
             // btnCapNhatThongTin
             // 
-            this.btnCapNhatThongTin.Location = new System.Drawing.Point(12, 481);
+            this.btnCapNhatThongTin.Location = new System.Drawing.Point(12, 477);
             this.btnCapNhatThongTin.Name = "btnCapNhatThongTin";
             this.btnCapNhatThongTin.Size = new System.Drawing.Size(538, 36);
             this.btnCapNhatThongTin.StyleController = this.lctMain;
@@ -134,7 +134,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(24, 365);
+            this.label2.Location = new System.Drawing.Point(24, 361);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 100);
             this.label2.TabIndex = 12;
@@ -143,7 +143,7 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(24, 261);
+            this.label1.Location = new System.Drawing.Point(24, 257);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 100);
             this.label1.TabIndex = 10;
@@ -153,7 +153,7 @@
             // txtEmail
             // 
             this.txtEmail.EditValue = "duong.do@ipc247.com";
-            this.txtEmail.Location = new System.Drawing.Point(88, 193);
+            this.txtEmail.Location = new System.Drawing.Point(88, 191);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(450, 20);
             this.txtEmail.StyleController = this.lctMain;
@@ -162,7 +162,7 @@
             // txtMobile
             // 
             this.txtMobile.EditValue = "0911 395 182";
-            this.txtMobile.Location = new System.Drawing.Point(88, 169);
+            this.txtMobile.Location = new System.Drawing.Point(88, 167);
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Size = new System.Drawing.Size(450, 20);
             this.txtMobile.StyleController = this.lctMain;
@@ -171,7 +171,7 @@
             // txtNguoiGui
             // 
             this.txtNguoiGui.EditValue = "Đỗ Thái Dương";
-            this.txtNguoiGui.Location = new System.Drawing.Point(88, 145);
+            this.txtNguoiGui.Location = new System.Drawing.Point(88, 143);
             this.txtNguoiGui.Name = "txtNguoiGui";
             this.txtNguoiGui.Size = new System.Drawing.Size(450, 20);
             this.txtNguoiGui.StyleController = this.lctMain;
@@ -180,7 +180,7 @@
             // txtDiaChi
             // 
             this.txtDiaChi.EditValue = "141/30 Đường số 28, Phường 6, Quận Gò Vấp, Thành Phố Hồ Chí Minh";
-            this.txtDiaChi.Location = new System.Drawing.Point(88, 121);
+            this.txtDiaChi.Location = new System.Drawing.Point(88, 119);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(450, 20);
             this.txtDiaChi.StyleController = this.lctMain;
@@ -188,7 +188,7 @@
             // 
             // txtTenCty
             // 
-            this.txtTenCty.Location = new System.Drawing.Point(88, 44);
+            this.txtTenCty.Location = new System.Drawing.Point(88, 42);
             this.txtTenCty.Multiline = true;
             this.txtTenCty.Name = "txtTenCty";
             this.txtTenCty.Size = new System.Drawing.Size(450, 73);
@@ -205,7 +205,7 @@
             this.lcgHinhAnh,
             this.layoutControlItem1});
             this.lcg_Main.Name = "lcg_Main";
-            this.lcg_Main.Size = new System.Drawing.Size(1054, 529);
+            this.lcg_Main.Size = new System.Drawing.Size(1071, 525);
             this.lcg_Main.TextVisible = false;
             // 
             // emptySpaceItem1
@@ -213,7 +213,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(542, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(492, 509);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(509, 505);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // lcg_ThongTin
@@ -226,7 +226,7 @@
             this.lctEmail});
             this.lcg_ThongTin.Location = new System.Drawing.Point(0, 0);
             this.lcg_ThongTin.Name = "lcg_ThongTin";
-            this.lcg_ThongTin.Size = new System.Drawing.Size(542, 217);
+            this.lcg_ThongTin.Size = new System.Drawing.Size(542, 215);
             this.lcg_ThongTin.Text = "THÔNG TIN";
             // 
             // lctTenCty
@@ -285,9 +285,9 @@
             this.layoutControlItem3,
             this.layoutControlItem2,
             this.layoutControlItem4});
-            this.lcgHinhAnh.Location = new System.Drawing.Point(0, 217);
+            this.lcgHinhAnh.Location = new System.Drawing.Point(0, 215);
             this.lcgHinhAnh.Name = "lcgHinhAnh";
-            this.lcgHinhAnh.Size = new System.Drawing.Size(542, 252);
+            this.lcgHinhAnh.Size = new System.Drawing.Size(542, 250);
             this.lcgHinhAnh.Text = "Hình Ảnh Report";
             // 
             // lctLableH1
@@ -346,7 +346,7 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.btnCapNhatThongTin;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 469);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 465);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(542, 40);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(542, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";

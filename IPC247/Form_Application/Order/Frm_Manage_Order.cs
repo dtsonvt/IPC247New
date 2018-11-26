@@ -196,7 +196,10 @@ namespace IPC247
                     decimal.TryParse(dt.Rows[0]["Profit"].ToString(),out Profit);
                     IDOrder = dt.Rows[0]["IDOrder"].ToString();
                     string Flag_New  = dt.Rows[0]["Flag_New"].ToString();
-                    if(Flag_New =="0")
+                    string Flag_Edit = dt.Rows[0]["Flag_Edit"].ToString();
+                    chk_Edit.Checked = Flag_Edit == "0" ? true : false;
+                    chk_Edit.Enabled = !chk_Edit.Checked;
+                    if (Flag_New =="0")
                     {
                        // XtraMessageBox.Show("Báo Giá Số này đã được tạo đơn hàng", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         lblStatus.Text = "Đã Tạo Đơn Hàng";
@@ -462,6 +465,14 @@ namespace IPC247
                     XtraMessageBox.Show("Bạn Vui Lòng Bổ Sung Thông Tin Còn Thiếu", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
+                // thêm điều kiện nếu đơn hàng chưa hoàn tất mà check sẽ warning
+                if (chk_Edit.Checked && dte_PayOffDate.Text == "")
+                {
+                    if (DialogResult.No == (XtraMessageBox.Show("Đơn hàng chưa thanh toán đủ, Sau khi xác nhận đơn hàng sẽ không thay đổi được!\r\n Xin vui lòng kiểm tra lại thông tin", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question)))
+                    {
+                        return;
+                    }
+                }
 
                 int rowHandle = slu_Vendor.Properties.GetIndexByKeyValue(slk_BaoGia.EditValue);
                 object row = slu_Vendor.Properties.View.GetRow(rowHandle);
@@ -497,6 +508,7 @@ namespace IPC247
                 param.Add("Policy", txt_Policy.Text); //22
                 param.Add("QuoteID", IDQuote); //23
                 param.Add("IDOrder", IDOrder); //24
+                param.Add("Flag_Edit", chk_Edit.Checked?"0":"1"); //25
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDataTableUndefine("sp_Save_Order", param);
 
@@ -513,7 +525,6 @@ namespace IPC247
                         }
                         sp_Get_ListOrderForDate();
                     }
-                    
                 }
                 else
                 {
@@ -744,6 +755,26 @@ namespace IPC247
                     }
                 }
             }
+        }
+        private void Close_Order()
+        {
+            bool flag_edit = !chk_Edit.Checked;
+            dte_ShipDate.Enabled = flag_edit;
+            txt_CostPriceContract.Enabled = flag_edit;
+            txt_PriceContract.Enabled = flag_edit;
+            txtSum_CostPrice.Enabled = flag_edit;
+            txtSum_Price.Enabled = flag_edit;
+            txtDeposit.Enabled = flag_edit;
+            txt_Remainder.Enabled = flag_edit;
+            txt_DayDebt.Enabled = flag_edit;
+            txt_Profit.Enabled = flag_edit;
+            dte_PayOffDate.Enabled = flag_edit;
+            slu_Vendor.Enabled = flag_edit;
+            slu_Saler.Enabled = flag_edit;
+        }
+        private void chk_Edit_CheckedChanged(object sender, EventArgs e)
+        {
+            Close_Order();
         }
     }
 }

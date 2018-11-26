@@ -306,6 +306,7 @@
             this.dgv_Main.GridControl = this.dgc_Main;
             this.dgv_Main.Name = "dgv_Main";
             this.dgv_Main.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.dgv_Main.OptionsBehavior.ReadOnly = true;
             this.dgv_Main.OptionsCustomization.AllowColumnMoving = false;
             this.dgv_Main.OptionsCustomization.AllowColumnResizing = false;
             this.dgv_Main.OptionsCustomization.AllowFilter = false;
@@ -326,6 +327,7 @@
             this.dgv_Main.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.dgv_Main.OptionsView.ShowGroupPanel = false;
             this.dgv_Main.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.dgv_Main_RowClick);
+            this.dgv_Main.MasterRowExpanded += new DevExpress.XtraGrid.Views.Grid.CustomMasterRowEventHandler(this.dgv_detail_MasterRowExpanded);
             this.dgv_Main.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.dgv_Main_FocusedRowChanged);
             // 
             // colID
@@ -554,6 +556,7 @@
             this.slk_BaoGia.Properties.PopupView = this.searchLookUpEdit1View;
             this.slk_BaoGia.Properties.ValueMember = "ID";
             this.slk_BaoGia.Size = new System.Drawing.Size(979, 20);
+            this.slk_BaoGia.StyleController = this.layoutControl1;
             this.slk_BaoGia.TabIndex = 4;
             this.slk_BaoGia.EditValueChanged += new System.EventHandler(this.slk_BaoGia_EditValueChanged);
             // 
