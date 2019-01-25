@@ -73,6 +73,7 @@
             this.gclSumCommissionAll = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclCommissionOfAmountAll = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gclpercentage_Commission = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gclRowStyle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.slu_SearchUser = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtNam = new DevExpress.XtraEditors.SpinEdit();
@@ -99,7 +100,6 @@
             this.lct_SumCommisionProduct = new DevExpress.XtraLayout.LayoutControlItem();
             this.splitterItem2 = new DevExpress.XtraLayout.SplitterItem();
             this.lct_SumAllcommision = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gclRowStyle = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_SumAllcommision.Properties)).BeginInit();
@@ -647,6 +647,12 @@
             this.gclpercentage_Commission.Name = "gclpercentage_Commission";
             this.gclpercentage_Commission.Width = 104;
             // 
+            // gclRowStyle
+            // 
+            this.gclRowStyle.Caption = "RowStyle";
+            this.gclRowStyle.FieldName = "RowStyle";
+            this.gclRowStyle.Name = "gclRowStyle";
+            // 
             // slu_SearchUser
             // 
             this.slu_SearchUser.Location = new System.Drawing.Point(149, 42);
@@ -927,12 +933,6 @@
             this.lct_SumAllcommision.Size = new System.Drawing.Size(260, 24);
             this.lct_SumAllcommision.Text = "Tổng Lương và Hoa Hồng";
             this.lct_SumAllcommision.TextSize = new System.Drawing.Size(122, 13);
-            // 
-            // gclRowStyle
-            // 
-            this.gclRowStyle.Caption = "RowStyle";
-            this.gclRowStyle.FieldName = "RowStyle";
-            this.gclRowStyle.Name = "gclRowStyle";
             // 
             // Frm_CommissonOfElp
             // 
