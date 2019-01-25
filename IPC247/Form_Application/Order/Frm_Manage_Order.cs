@@ -182,11 +182,6 @@ namespace IPC247
                     {
                         dte_ShipDate.EditValue = DateTime.ParseExact(dt.Rows[0]["ShipDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                     }
-                    if (dt.Rows[0]["PayOffDate"].ToString() != "")
-                    {
-                        PayOffDate = DateTime.ParseExact(dt.Rows[0]["PayOffDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                        dte_PayOffDate.EditValue = PayOffDate;
-                    }
                     slu_Paystatus.EditValue = dt.Rows[0]["PayStatus"];
                     slu_Saler.EditValue = dt.Rows[0]["Sales"];
                     slu_Vendor.EditValue = dt.Rows[0]["VendorCode"];
@@ -211,6 +206,11 @@ namespace IPC247
                         lblStatus.ForeColor = Color.Green;
                     }
                     txt_Profit.EditValue = Profit;
+                    if (dt.Rows[0]["PayOffDate"].ToString() != "")
+                    {
+                        PayOffDate = DateTime.ParseExact(dt.Rows[0]["PayOffDate"].ToString(), "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        dte_PayOffDate.EditValue = PayOffDate;
+                    }
                 }
             }
             catch (Exception ex)
@@ -262,7 +262,7 @@ namespace IPC247
             dte_FromDate.DateTime = DateTime.Today.AddDays(-(DateTime.Today.Day - 1));
             dte_ToDate.DateTime = DateTime.Today;
             dte_CreateOrder.DateTime = DateTime.Now;
-            dte_ShipDate.DateTime = DateTime.Now;
+       //     dte_ShipDate.DateTime = DateTime.Now;
             LoadMaster_Quote();
             LoadComboboxUser();
             LoadComboboxVendor();

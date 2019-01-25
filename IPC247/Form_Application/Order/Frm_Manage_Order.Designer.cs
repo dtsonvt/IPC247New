@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lct_Main = new DevExpress.XtraLayout.LayoutControl();
+            this.chk_Edit = new DevExpress.XtraEditors.CheckEdit();
             this.lblStatus = new DevExpress.XtraEditors.LabelControl();
             this.chkHide = new DevExpress.XtraEditors.CheckEdit();
             this.btn_SearchOrder = new DevExpress.XtraEditors.SimpleButton();
@@ -158,6 +159,7 @@
             this.lct_GiaNhapHD = new DevExpress.XtraLayout.LayoutControlItem();
             this.lct_PriceContract = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcg_Grid = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcg_SearchInfo = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -168,10 +170,9 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.chk_Edit = new DevExpress.XtraEditors.CheckEdit();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).BeginInit();
             this.lct_Main.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chk_Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHide.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -249,6 +250,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_GiaNhapHD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_PriceContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_SearchInfo)).BeginInit();
@@ -259,8 +261,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chk_Edit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // lct_Main
@@ -311,6 +311,20 @@
             this.lct_Main.Size = new System.Drawing.Size(1160, 673);
             this.lct_Main.TabIndex = 0;
             this.lct_Main.Text = "layoutControl1";
+            // 
+            // chk_Edit
+            // 
+            this.chk_Edit.Location = new System.Drawing.Point(714, 593);
+            this.chk_Edit.Name = "chk_Edit";
+            this.chk_Edit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.chk_Edit.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.chk_Edit.Properties.Appearance.Options.UseFont = true;
+            this.chk_Edit.Properties.Appearance.Options.UseForeColor = true;
+            this.chk_Edit.Properties.Caption = "Đơn hàng đã hoàn tất ( Không được phép thay đổi )";
+            this.chk_Edit.Size = new System.Drawing.Size(422, 19);
+            this.chk_Edit.StyleController = this.lct_Main;
+            this.chk_Edit.TabIndex = 42;
+            this.chk_Edit.CheckedChanged += new System.EventHandler(this.chk_Edit_CheckedChanged);
             // 
             // lblStatus
             // 
@@ -1810,6 +1824,15 @@
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.chk_Edit;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 483);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(426, 23);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
             // lcg_Grid
             // 
             this.lcg_Grid.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1909,29 +1932,6 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(119, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // chk_Edit
-            // 
-            this.chk_Edit.Location = new System.Drawing.Point(714, 593);
-            this.chk_Edit.Name = "chk_Edit";
-            this.chk_Edit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.chk_Edit.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.chk_Edit.Properties.Appearance.Options.UseFont = true;
-            this.chk_Edit.Properties.Appearance.Options.UseForeColor = true;
-            this.chk_Edit.Properties.Caption = "Đơn hàng đã hoàn tất ( Không được phép thay đổi )";
-            this.chk_Edit.Size = new System.Drawing.Size(422, 19);
-            this.chk_Edit.StyleController = this.lct_Main;
-            this.chk_Edit.TabIndex = 42;
-            this.chk_Edit.CheckedChanged += new System.EventHandler(this.chk_Edit_CheckedChanged);
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.chk_Edit;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 483);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(426, 23);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
-            // 
             // Frm_Manage_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1944,6 +1944,7 @@
             this.Load += new System.EventHandler(this.Frm_Manage_Order_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lct_Main)).EndInit();
             this.lct_Main.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chk_Edit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHide.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -2021,6 +2022,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lct_GiaNhapHD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lct_PriceContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lcg_SearchInfo)).EndInit();
@@ -2031,8 +2033,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chk_Edit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
 
         }
